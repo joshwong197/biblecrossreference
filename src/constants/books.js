@@ -1,0 +1,96 @@
+export const TESTAMENTS = {
+  OT: 'OT',
+  NT: 'NT',
+};
+
+export const BOOK_GROUPS = {
+  PENTATEUCH: 'Pentateuch',
+  HISTORICAL: 'Historical',
+  WISDOM: 'Wisdom & Poetry',
+  MAJOR_PROPHETS: 'Major Prophets',
+  MINOR_PROPHETS: 'Minor Prophets',
+  GOSPELS: 'Gospels',
+  ACTS: 'Acts',
+  PAULINE: 'Pauline Epistles',
+  GENERAL: 'General Epistles',
+  REVELATION: 'Revelation',
+};
+
+const G = BOOK_GROUPS;
+const T = TESTAMENTS;
+
+export const BOOKS = [
+  { num: 1,  name: 'Genesis',         abbrev: 'Gen',   testament: T.OT, group: G.PENTATEUCH },
+  { num: 2,  name: 'Exodus',          abbrev: 'Exod',  testament: T.OT, group: G.PENTATEUCH },
+  { num: 3,  name: 'Leviticus',       abbrev: 'Lev',   testament: T.OT, group: G.PENTATEUCH },
+  { num: 4,  name: 'Numbers',         abbrev: 'Num',   testament: T.OT, group: G.PENTATEUCH },
+  { num: 5,  name: 'Deuteronomy',     abbrev: 'Deut',  testament: T.OT, group: G.PENTATEUCH },
+  { num: 6,  name: 'Joshua',          abbrev: 'Josh',  testament: T.OT, group: G.HISTORICAL },
+  { num: 7,  name: 'Judges',          abbrev: 'Judg',  testament: T.OT, group: G.HISTORICAL },
+  { num: 8,  name: 'Ruth',            abbrev: 'Ruth',  testament: T.OT, group: G.HISTORICAL },
+  { num: 9,  name: '1 Samuel',        abbrev: '1Sam',  testament: T.OT, group: G.HISTORICAL },
+  { num: 10, name: '2 Samuel',        abbrev: '2Sam',  testament: T.OT, group: G.HISTORICAL },
+  { num: 11, name: '1 Kings',         abbrev: '1Kgs',  testament: T.OT, group: G.HISTORICAL },
+  { num: 12, name: '2 Kings',         abbrev: '2Kgs',  testament: T.OT, group: G.HISTORICAL },
+  { num: 13, name: '1 Chronicles',    abbrev: '1Chr',  testament: T.OT, group: G.HISTORICAL },
+  { num: 14, name: '2 Chronicles',    abbrev: '2Chr',  testament: T.OT, group: G.HISTORICAL },
+  { num: 15, name: 'Ezra',            abbrev: 'Ezra',  testament: T.OT, group: G.HISTORICAL },
+  { num: 16, name: 'Nehemiah',        abbrev: 'Neh',   testament: T.OT, group: G.HISTORICAL },
+  { num: 17, name: 'Esther',          abbrev: 'Esth',  testament: T.OT, group: G.HISTORICAL },
+  { num: 18, name: 'Job',             abbrev: 'Job',   testament: T.OT, group: G.WISDOM },
+  { num: 19, name: 'Psalms',          abbrev: 'Ps',    testament: T.OT, group: G.WISDOM },
+  { num: 20, name: 'Proverbs',        abbrev: 'Prov',  testament: T.OT, group: G.WISDOM },
+  { num: 21, name: 'Ecclesiastes',    abbrev: 'Eccl',  testament: T.OT, group: G.WISDOM },
+  { num: 22, name: 'Song of Solomon', abbrev: 'Song',  testament: T.OT, group: G.WISDOM },
+  { num: 23, name: 'Isaiah',          abbrev: 'Isa',   testament: T.OT, group: G.MAJOR_PROPHETS },
+  { num: 24, name: 'Jeremiah',        abbrev: 'Jer',   testament: T.OT, group: G.MAJOR_PROPHETS },
+  { num: 25, name: 'Lamentations',    abbrev: 'Lam',   testament: T.OT, group: G.MAJOR_PROPHETS },
+  { num: 26, name: 'Ezekiel',         abbrev: 'Ezek',  testament: T.OT, group: G.MAJOR_PROPHETS },
+  { num: 27, name: 'Daniel',          abbrev: 'Dan',   testament: T.OT, group: G.MAJOR_PROPHETS },
+  { num: 28, name: 'Hosea',           abbrev: 'Hos',   testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 29, name: 'Joel',            abbrev: 'Joel',  testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 30, name: 'Amos',            abbrev: 'Amos',  testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 31, name: 'Obadiah',         abbrev: 'Obad',  testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 32, name: 'Jonah',           abbrev: 'Jonah', testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 33, name: 'Micah',           abbrev: 'Mic',   testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 34, name: 'Nahum',           abbrev: 'Nah',   testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 35, name: 'Habakkuk',        abbrev: 'Hab',   testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 36, name: 'Zephaniah',       abbrev: 'Zeph',  testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 37, name: 'Haggai',          abbrev: 'Hag',   testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 38, name: 'Zechariah',       abbrev: 'Zech',  testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 39, name: 'Malachi',         abbrev: 'Mal',   testament: T.OT, group: G.MINOR_PROPHETS },
+  { num: 40, name: 'Matthew',         abbrev: 'Matt',  testament: T.NT, group: G.GOSPELS },
+  { num: 41, name: 'Mark',            abbrev: 'Mark',  testament: T.NT, group: G.GOSPELS },
+  { num: 42, name: 'Luke',            abbrev: 'Luke',  testament: T.NT, group: G.GOSPELS },
+  { num: 43, name: 'John',            abbrev: 'John',  testament: T.NT, group: G.GOSPELS },
+  { num: 44, name: 'Acts',            abbrev: 'Acts',  testament: T.NT, group: G.ACTS },
+  { num: 45, name: 'Romans',          abbrev: 'Rom',   testament: T.NT, group: G.PAULINE },
+  { num: 46, name: '1 Corinthians',   abbrev: '1Cor',  testament: T.NT, group: G.PAULINE },
+  { num: 47, name: '2 Corinthians',   abbrev: '2Cor',  testament: T.NT, group: G.PAULINE },
+  { num: 48, name: 'Galatians',       abbrev: 'Gal',   testament: T.NT, group: G.PAULINE },
+  { num: 49, name: 'Ephesians',       abbrev: 'Eph',   testament: T.NT, group: G.PAULINE },
+  { num: 50, name: 'Philippians',     abbrev: 'Phil',  testament: T.NT, group: G.PAULINE },
+  { num: 51, name: 'Colossians',      abbrev: 'Col',   testament: T.NT, group: G.PAULINE },
+  { num: 52, name: '1 Thessalonians', abbrev: '1Thess',testament: T.NT, group: G.PAULINE },
+  { num: 53, name: '2 Thessalonians', abbrev: '2Thess',testament: T.NT, group: G.PAULINE },
+  { num: 54, name: '1 Timothy',       abbrev: '1Tim',  testament: T.NT, group: G.PAULINE },
+  { num: 55, name: '2 Timothy',       abbrev: '2Tim',  testament: T.NT, group: G.PAULINE },
+  { num: 56, name: 'Titus',           abbrev: 'Titus', testament: T.NT, group: G.PAULINE },
+  { num: 57, name: 'Philemon',        abbrev: 'Phlm',  testament: T.NT, group: G.PAULINE },
+  { num: 58, name: 'Hebrews',         abbrev: 'Heb',   testament: T.NT, group: G.GENERAL },
+  { num: 59, name: 'James',           abbrev: 'Jas',   testament: T.NT, group: G.GENERAL },
+  { num: 60, name: '1 Peter',         abbrev: '1Pet',  testament: T.NT, group: G.GENERAL },
+  { num: 61, name: '2 Peter',         abbrev: '2Pet',  testament: T.NT, group: G.GENERAL },
+  { num: 62, name: '1 John',          abbrev: '1John', testament: T.NT, group: G.GENERAL },
+  { num: 63, name: '2 John',          abbrev: '2John', testament: T.NT, group: G.GENERAL },
+  { num: 64, name: '3 John',          abbrev: '3John', testament: T.NT, group: G.GENERAL },
+  { num: 65, name: 'Jude',            abbrev: 'Jude',  testament: T.NT, group: G.GENERAL },
+  { num: 66, name: 'Revelation',      abbrev: 'Rev',   testament: T.NT, group: G.REVELATION },
+];
+
+export const OT_BOOK_COUNT = 39;
+export const NT_BOOK_COUNT = 27;
+export const TOTAL_CHAPTERS = 1189;
+export const TOTAL_VERSES = 31102;
+export const OT_CHAPTERS = 929;
+export const NT_CHAPTERS = 260;

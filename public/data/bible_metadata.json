@@ -1,0 +1,6745 @@
+{
+  "books": [
+    {
+      "num": 1,
+      "name": "Genesis",
+      "abbrev": "Gen",
+      "testament": "OT",
+      "group": "Pentateuch",
+      "chapters": 50,
+      "verses": 1533,
+      "chapterOffset": 0,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 31,
+          "globalIndex": 0
+        },
+        {
+          "chapter": 2,
+          "verses": 25,
+          "globalIndex": 1
+        },
+        {
+          "chapter": 3,
+          "verses": 24,
+          "globalIndex": 2
+        },
+        {
+          "chapter": 4,
+          "verses": 26,
+          "globalIndex": 3
+        },
+        {
+          "chapter": 5,
+          "verses": 32,
+          "globalIndex": 4
+        },
+        {
+          "chapter": 6,
+          "verses": 22,
+          "globalIndex": 5
+        },
+        {
+          "chapter": 7,
+          "verses": 24,
+          "globalIndex": 6
+        },
+        {
+          "chapter": 8,
+          "verses": 22,
+          "globalIndex": 7
+        },
+        {
+          "chapter": 9,
+          "verses": 29,
+          "globalIndex": 8
+        },
+        {
+          "chapter": 10,
+          "verses": 32,
+          "globalIndex": 9
+        },
+        {
+          "chapter": 11,
+          "verses": 32,
+          "globalIndex": 10
+        },
+        {
+          "chapter": 12,
+          "verses": 20,
+          "globalIndex": 11
+        },
+        {
+          "chapter": 13,
+          "verses": 18,
+          "globalIndex": 12
+        },
+        {
+          "chapter": 14,
+          "verses": 24,
+          "globalIndex": 13
+        },
+        {
+          "chapter": 15,
+          "verses": 21,
+          "globalIndex": 14
+        },
+        {
+          "chapter": 16,
+          "verses": 16,
+          "globalIndex": 15
+        },
+        {
+          "chapter": 17,
+          "verses": 27,
+          "globalIndex": 16
+        },
+        {
+          "chapter": 18,
+          "verses": 33,
+          "globalIndex": 17
+        },
+        {
+          "chapter": 19,
+          "verses": 38,
+          "globalIndex": 18
+        },
+        {
+          "chapter": 20,
+          "verses": 18,
+          "globalIndex": 19
+        },
+        {
+          "chapter": 21,
+          "verses": 34,
+          "globalIndex": 20
+        },
+        {
+          "chapter": 22,
+          "verses": 24,
+          "globalIndex": 21
+        },
+        {
+          "chapter": 23,
+          "verses": 20,
+          "globalIndex": 22
+        },
+        {
+          "chapter": 24,
+          "verses": 67,
+          "globalIndex": 23
+        },
+        {
+          "chapter": 25,
+          "verses": 34,
+          "globalIndex": 24
+        },
+        {
+          "chapter": 26,
+          "verses": 35,
+          "globalIndex": 25
+        },
+        {
+          "chapter": 27,
+          "verses": 46,
+          "globalIndex": 26
+        },
+        {
+          "chapter": 28,
+          "verses": 22,
+          "globalIndex": 27
+        },
+        {
+          "chapter": 29,
+          "verses": 35,
+          "globalIndex": 28
+        },
+        {
+          "chapter": 30,
+          "verses": 43,
+          "globalIndex": 29
+        },
+        {
+          "chapter": 31,
+          "verses": 55,
+          "globalIndex": 30
+        },
+        {
+          "chapter": 32,
+          "verses": 32,
+          "globalIndex": 31
+        },
+        {
+          "chapter": 33,
+          "verses": 20,
+          "globalIndex": 32
+        },
+        {
+          "chapter": 34,
+          "verses": 31,
+          "globalIndex": 33
+        },
+        {
+          "chapter": 35,
+          "verses": 29,
+          "globalIndex": 34
+        },
+        {
+          "chapter": 36,
+          "verses": 43,
+          "globalIndex": 35
+        },
+        {
+          "chapter": 37,
+          "verses": 36,
+          "globalIndex": 36
+        },
+        {
+          "chapter": 38,
+          "verses": 30,
+          "globalIndex": 37
+        },
+        {
+          "chapter": 39,
+          "verses": 23,
+          "globalIndex": 38
+        },
+        {
+          "chapter": 40,
+          "verses": 23,
+          "globalIndex": 39
+        },
+        {
+          "chapter": 41,
+          "verses": 57,
+          "globalIndex": 40
+        },
+        {
+          "chapter": 42,
+          "verses": 38,
+          "globalIndex": 41
+        },
+        {
+          "chapter": 43,
+          "verses": 34,
+          "globalIndex": 42
+        },
+        {
+          "chapter": 44,
+          "verses": 34,
+          "globalIndex": 43
+        },
+        {
+          "chapter": 45,
+          "verses": 28,
+          "globalIndex": 44
+        },
+        {
+          "chapter": 46,
+          "verses": 34,
+          "globalIndex": 45
+        },
+        {
+          "chapter": 47,
+          "verses": 31,
+          "globalIndex": 46
+        },
+        {
+          "chapter": 48,
+          "verses": 22,
+          "globalIndex": 47
+        },
+        {
+          "chapter": 49,
+          "verses": 33,
+          "globalIndex": 48
+        },
+        {
+          "chapter": 50,
+          "verses": 26,
+          "globalIndex": 49
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "name": "Exodus",
+      "abbrev": "Exod",
+      "testament": "OT",
+      "group": "Pentateuch",
+      "chapters": 40,
+      "verses": 1213,
+      "chapterOffset": 50,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 22,
+          "globalIndex": 50
+        },
+        {
+          "chapter": 2,
+          "verses": 25,
+          "globalIndex": 51
+        },
+        {
+          "chapter": 3,
+          "verses": 22,
+          "globalIndex": 52
+        },
+        {
+          "chapter": 4,
+          "verses": 31,
+          "globalIndex": 53
+        },
+        {
+          "chapter": 5,
+          "verses": 23,
+          "globalIndex": 54
+        },
+        {
+          "chapter": 6,
+          "verses": 30,
+          "globalIndex": 55
+        },
+        {
+          "chapter": 7,
+          "verses": 25,
+          "globalIndex": 56
+        },
+        {
+          "chapter": 8,
+          "verses": 32,
+          "globalIndex": 57
+        },
+        {
+          "chapter": 9,
+          "verses": 35,
+          "globalIndex": 58
+        },
+        {
+          "chapter": 10,
+          "verses": 29,
+          "globalIndex": 59
+        },
+        {
+          "chapter": 11,
+          "verses": 10,
+          "globalIndex": 60
+        },
+        {
+          "chapter": 12,
+          "verses": 51,
+          "globalIndex": 61
+        },
+        {
+          "chapter": 13,
+          "verses": 22,
+          "globalIndex": 62
+        },
+        {
+          "chapter": 14,
+          "verses": 31,
+          "globalIndex": 63
+        },
+        {
+          "chapter": 15,
+          "verses": 27,
+          "globalIndex": 64
+        },
+        {
+          "chapter": 16,
+          "verses": 36,
+          "globalIndex": 65
+        },
+        {
+          "chapter": 17,
+          "verses": 16,
+          "globalIndex": 66
+        },
+        {
+          "chapter": 18,
+          "verses": 27,
+          "globalIndex": 67
+        },
+        {
+          "chapter": 19,
+          "verses": 25,
+          "globalIndex": 68
+        },
+        {
+          "chapter": 20,
+          "verses": 26,
+          "globalIndex": 69
+        },
+        {
+          "chapter": 21,
+          "verses": 36,
+          "globalIndex": 70
+        },
+        {
+          "chapter": 22,
+          "verses": 31,
+          "globalIndex": 71
+        },
+        {
+          "chapter": 23,
+          "verses": 33,
+          "globalIndex": 72
+        },
+        {
+          "chapter": 24,
+          "verses": 18,
+          "globalIndex": 73
+        },
+        {
+          "chapter": 25,
+          "verses": 40,
+          "globalIndex": 74
+        },
+        {
+          "chapter": 26,
+          "verses": 37,
+          "globalIndex": 75
+        },
+        {
+          "chapter": 27,
+          "verses": 21,
+          "globalIndex": 76
+        },
+        {
+          "chapter": 28,
+          "verses": 43,
+          "globalIndex": 77
+        },
+        {
+          "chapter": 29,
+          "verses": 46,
+          "globalIndex": 78
+        },
+        {
+          "chapter": 30,
+          "verses": 38,
+          "globalIndex": 79
+        },
+        {
+          "chapter": 31,
+          "verses": 18,
+          "globalIndex": 80
+        },
+        {
+          "chapter": 32,
+          "verses": 35,
+          "globalIndex": 81
+        },
+        {
+          "chapter": 33,
+          "verses": 23,
+          "globalIndex": 82
+        },
+        {
+          "chapter": 34,
+          "verses": 35,
+          "globalIndex": 83
+        },
+        {
+          "chapter": 35,
+          "verses": 35,
+          "globalIndex": 84
+        },
+        {
+          "chapter": 36,
+          "verses": 38,
+          "globalIndex": 85
+        },
+        {
+          "chapter": 37,
+          "verses": 29,
+          "globalIndex": 86
+        },
+        {
+          "chapter": 38,
+          "verses": 31,
+          "globalIndex": 87
+        },
+        {
+          "chapter": 39,
+          "verses": 43,
+          "globalIndex": 88
+        },
+        {
+          "chapter": 40,
+          "verses": 38,
+          "globalIndex": 89
+        }
+      ]
+    },
+    {
+      "num": 3,
+      "name": "Leviticus",
+      "abbrev": "Lev",
+      "testament": "OT",
+      "group": "Pentateuch",
+      "chapters": 27,
+      "verses": 859,
+      "chapterOffset": 90,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 17,
+          "globalIndex": 90
+        },
+        {
+          "chapter": 2,
+          "verses": 16,
+          "globalIndex": 91
+        },
+        {
+          "chapter": 3,
+          "verses": 17,
+          "globalIndex": 92
+        },
+        {
+          "chapter": 4,
+          "verses": 35,
+          "globalIndex": 93
+        },
+        {
+          "chapter": 5,
+          "verses": 19,
+          "globalIndex": 94
+        },
+        {
+          "chapter": 6,
+          "verses": 30,
+          "globalIndex": 95
+        },
+        {
+          "chapter": 7,
+          "verses": 38,
+          "globalIndex": 96
+        },
+        {
+          "chapter": 8,
+          "verses": 36,
+          "globalIndex": 97
+        },
+        {
+          "chapter": 9,
+          "verses": 24,
+          "globalIndex": 98
+        },
+        {
+          "chapter": 10,
+          "verses": 20,
+          "globalIndex": 99
+        },
+        {
+          "chapter": 11,
+          "verses": 47,
+          "globalIndex": 100
+        },
+        {
+          "chapter": 12,
+          "verses": 8,
+          "globalIndex": 101
+        },
+        {
+          "chapter": 13,
+          "verses": 59,
+          "globalIndex": 102
+        },
+        {
+          "chapter": 14,
+          "verses": 57,
+          "globalIndex": 103
+        },
+        {
+          "chapter": 15,
+          "verses": 33,
+          "globalIndex": 104
+        },
+        {
+          "chapter": 16,
+          "verses": 34,
+          "globalIndex": 105
+        },
+        {
+          "chapter": 17,
+          "verses": 16,
+          "globalIndex": 106
+        },
+        {
+          "chapter": 18,
+          "verses": 30,
+          "globalIndex": 107
+        },
+        {
+          "chapter": 19,
+          "verses": 37,
+          "globalIndex": 108
+        },
+        {
+          "chapter": 20,
+          "verses": 27,
+          "globalIndex": 109
+        },
+        {
+          "chapter": 21,
+          "verses": 24,
+          "globalIndex": 110
+        },
+        {
+          "chapter": 22,
+          "verses": 33,
+          "globalIndex": 111
+        },
+        {
+          "chapter": 23,
+          "verses": 44,
+          "globalIndex": 112
+        },
+        {
+          "chapter": 24,
+          "verses": 23,
+          "globalIndex": 113
+        },
+        {
+          "chapter": 25,
+          "verses": 55,
+          "globalIndex": 114
+        },
+        {
+          "chapter": 26,
+          "verses": 46,
+          "globalIndex": 115
+        },
+        {
+          "chapter": 27,
+          "verses": 34,
+          "globalIndex": 116
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "name": "Numbers",
+      "abbrev": "Num",
+      "testament": "OT",
+      "group": "Pentateuch",
+      "chapters": 36,
+      "verses": 1288,
+      "chapterOffset": 117,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 54,
+          "globalIndex": 117
+        },
+        {
+          "chapter": 2,
+          "verses": 34,
+          "globalIndex": 118
+        },
+        {
+          "chapter": 3,
+          "verses": 51,
+          "globalIndex": 119
+        },
+        {
+          "chapter": 4,
+          "verses": 49,
+          "globalIndex": 120
+        },
+        {
+          "chapter": 5,
+          "verses": 31,
+          "globalIndex": 121
+        },
+        {
+          "chapter": 6,
+          "verses": 27,
+          "globalIndex": 122
+        },
+        {
+          "chapter": 7,
+          "verses": 89,
+          "globalIndex": 123
+        },
+        {
+          "chapter": 8,
+          "verses": 26,
+          "globalIndex": 124
+        },
+        {
+          "chapter": 9,
+          "verses": 23,
+          "globalIndex": 125
+        },
+        {
+          "chapter": 10,
+          "verses": 36,
+          "globalIndex": 126
+        },
+        {
+          "chapter": 11,
+          "verses": 35,
+          "globalIndex": 127
+        },
+        {
+          "chapter": 12,
+          "verses": 16,
+          "globalIndex": 128
+        },
+        {
+          "chapter": 13,
+          "verses": 33,
+          "globalIndex": 129
+        },
+        {
+          "chapter": 14,
+          "verses": 45,
+          "globalIndex": 130
+        },
+        {
+          "chapter": 15,
+          "verses": 41,
+          "globalIndex": 131
+        },
+        {
+          "chapter": 16,
+          "verses": 50,
+          "globalIndex": 132
+        },
+        {
+          "chapter": 17,
+          "verses": 13,
+          "globalIndex": 133
+        },
+        {
+          "chapter": 18,
+          "verses": 32,
+          "globalIndex": 134
+        },
+        {
+          "chapter": 19,
+          "verses": 22,
+          "globalIndex": 135
+        },
+        {
+          "chapter": 20,
+          "verses": 29,
+          "globalIndex": 136
+        },
+        {
+          "chapter": 21,
+          "verses": 35,
+          "globalIndex": 137
+        },
+        {
+          "chapter": 22,
+          "verses": 41,
+          "globalIndex": 138
+        },
+        {
+          "chapter": 23,
+          "verses": 30,
+          "globalIndex": 139
+        },
+        {
+          "chapter": 24,
+          "verses": 25,
+          "globalIndex": 140
+        },
+        {
+          "chapter": 25,
+          "verses": 18,
+          "globalIndex": 141
+        },
+        {
+          "chapter": 26,
+          "verses": 65,
+          "globalIndex": 142
+        },
+        {
+          "chapter": 27,
+          "verses": 23,
+          "globalIndex": 143
+        },
+        {
+          "chapter": 28,
+          "verses": 31,
+          "globalIndex": 144
+        },
+        {
+          "chapter": 29,
+          "verses": 40,
+          "globalIndex": 145
+        },
+        {
+          "chapter": 30,
+          "verses": 16,
+          "globalIndex": 146
+        },
+        {
+          "chapter": 31,
+          "verses": 54,
+          "globalIndex": 147
+        },
+        {
+          "chapter": 32,
+          "verses": 42,
+          "globalIndex": 148
+        },
+        {
+          "chapter": 33,
+          "verses": 56,
+          "globalIndex": 149
+        },
+        {
+          "chapter": 34,
+          "verses": 29,
+          "globalIndex": 150
+        },
+        {
+          "chapter": 35,
+          "verses": 34,
+          "globalIndex": 151
+        },
+        {
+          "chapter": 36,
+          "verses": 13,
+          "globalIndex": 152
+        }
+      ]
+    },
+    {
+      "num": 5,
+      "name": "Deuteronomy",
+      "abbrev": "Deut",
+      "testament": "OT",
+      "group": "Pentateuch",
+      "chapters": 34,
+      "verses": 959,
+      "chapterOffset": 153,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 46,
+          "globalIndex": 153
+        },
+        {
+          "chapter": 2,
+          "verses": 37,
+          "globalIndex": 154
+        },
+        {
+          "chapter": 3,
+          "verses": 29,
+          "globalIndex": 155
+        },
+        {
+          "chapter": 4,
+          "verses": 49,
+          "globalIndex": 156
+        },
+        {
+          "chapter": 5,
+          "verses": 33,
+          "globalIndex": 157
+        },
+        {
+          "chapter": 6,
+          "verses": 25,
+          "globalIndex": 158
+        },
+        {
+          "chapter": 7,
+          "verses": 26,
+          "globalIndex": 159
+        },
+        {
+          "chapter": 8,
+          "verses": 20,
+          "globalIndex": 160
+        },
+        {
+          "chapter": 9,
+          "verses": 29,
+          "globalIndex": 161
+        },
+        {
+          "chapter": 10,
+          "verses": 22,
+          "globalIndex": 162
+        },
+        {
+          "chapter": 11,
+          "verses": 32,
+          "globalIndex": 163
+        },
+        {
+          "chapter": 12,
+          "verses": 32,
+          "globalIndex": 164
+        },
+        {
+          "chapter": 13,
+          "verses": 18,
+          "globalIndex": 165
+        },
+        {
+          "chapter": 14,
+          "verses": 29,
+          "globalIndex": 166
+        },
+        {
+          "chapter": 15,
+          "verses": 23,
+          "globalIndex": 167
+        },
+        {
+          "chapter": 16,
+          "verses": 22,
+          "globalIndex": 168
+        },
+        {
+          "chapter": 17,
+          "verses": 20,
+          "globalIndex": 169
+        },
+        {
+          "chapter": 18,
+          "verses": 22,
+          "globalIndex": 170
+        },
+        {
+          "chapter": 19,
+          "verses": 21,
+          "globalIndex": 171
+        },
+        {
+          "chapter": 20,
+          "verses": 20,
+          "globalIndex": 172
+        },
+        {
+          "chapter": 21,
+          "verses": 23,
+          "globalIndex": 173
+        },
+        {
+          "chapter": 22,
+          "verses": 30,
+          "globalIndex": 174
+        },
+        {
+          "chapter": 23,
+          "verses": 25,
+          "globalIndex": 175
+        },
+        {
+          "chapter": 24,
+          "verses": 22,
+          "globalIndex": 176
+        },
+        {
+          "chapter": 25,
+          "verses": 19,
+          "globalIndex": 177
+        },
+        {
+          "chapter": 26,
+          "verses": 19,
+          "globalIndex": 178
+        },
+        {
+          "chapter": 27,
+          "verses": 26,
+          "globalIndex": 179
+        },
+        {
+          "chapter": 28,
+          "verses": 68,
+          "globalIndex": 180
+        },
+        {
+          "chapter": 29,
+          "verses": 29,
+          "globalIndex": 181
+        },
+        {
+          "chapter": 30,
+          "verses": 20,
+          "globalIndex": 182
+        },
+        {
+          "chapter": 31,
+          "verses": 30,
+          "globalIndex": 183
+        },
+        {
+          "chapter": 32,
+          "verses": 52,
+          "globalIndex": 184
+        },
+        {
+          "chapter": 33,
+          "verses": 29,
+          "globalIndex": 185
+        },
+        {
+          "chapter": 34,
+          "verses": 12,
+          "globalIndex": 186
+        }
+      ]
+    },
+    {
+      "num": 6,
+      "name": "Joshua",
+      "abbrev": "Josh",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 24,
+      "verses": 658,
+      "chapterOffset": 187,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 18,
+          "globalIndex": 187
+        },
+        {
+          "chapter": 2,
+          "verses": 24,
+          "globalIndex": 188
+        },
+        {
+          "chapter": 3,
+          "verses": 17,
+          "globalIndex": 189
+        },
+        {
+          "chapter": 4,
+          "verses": 24,
+          "globalIndex": 190
+        },
+        {
+          "chapter": 5,
+          "verses": 15,
+          "globalIndex": 191
+        },
+        {
+          "chapter": 6,
+          "verses": 27,
+          "globalIndex": 192
+        },
+        {
+          "chapter": 7,
+          "verses": 26,
+          "globalIndex": 193
+        },
+        {
+          "chapter": 8,
+          "verses": 35,
+          "globalIndex": 194
+        },
+        {
+          "chapter": 9,
+          "verses": 27,
+          "globalIndex": 195
+        },
+        {
+          "chapter": 10,
+          "verses": 43,
+          "globalIndex": 196
+        },
+        {
+          "chapter": 11,
+          "verses": 23,
+          "globalIndex": 197
+        },
+        {
+          "chapter": 12,
+          "verses": 24,
+          "globalIndex": 198
+        },
+        {
+          "chapter": 13,
+          "verses": 33,
+          "globalIndex": 199
+        },
+        {
+          "chapter": 14,
+          "verses": 15,
+          "globalIndex": 200
+        },
+        {
+          "chapter": 15,
+          "verses": 63,
+          "globalIndex": 201
+        },
+        {
+          "chapter": 16,
+          "verses": 10,
+          "globalIndex": 202
+        },
+        {
+          "chapter": 17,
+          "verses": 18,
+          "globalIndex": 203
+        },
+        {
+          "chapter": 18,
+          "verses": 28,
+          "globalIndex": 204
+        },
+        {
+          "chapter": 19,
+          "verses": 51,
+          "globalIndex": 205
+        },
+        {
+          "chapter": 20,
+          "verses": 9,
+          "globalIndex": 206
+        },
+        {
+          "chapter": 21,
+          "verses": 45,
+          "globalIndex": 207
+        },
+        {
+          "chapter": 22,
+          "verses": 34,
+          "globalIndex": 208
+        },
+        {
+          "chapter": 23,
+          "verses": 16,
+          "globalIndex": 209
+        },
+        {
+          "chapter": 24,
+          "verses": 33,
+          "globalIndex": 210
+        }
+      ]
+    },
+    {
+      "num": 7,
+      "name": "Judges",
+      "abbrev": "Judg",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 21,
+      "verses": 618,
+      "chapterOffset": 211,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 36,
+          "globalIndex": 211
+        },
+        {
+          "chapter": 2,
+          "verses": 23,
+          "globalIndex": 212
+        },
+        {
+          "chapter": 3,
+          "verses": 31,
+          "globalIndex": 213
+        },
+        {
+          "chapter": 4,
+          "verses": 24,
+          "globalIndex": 214
+        },
+        {
+          "chapter": 5,
+          "verses": 31,
+          "globalIndex": 215
+        },
+        {
+          "chapter": 6,
+          "verses": 40,
+          "globalIndex": 216
+        },
+        {
+          "chapter": 7,
+          "verses": 25,
+          "globalIndex": 217
+        },
+        {
+          "chapter": 8,
+          "verses": 35,
+          "globalIndex": 218
+        },
+        {
+          "chapter": 9,
+          "verses": 57,
+          "globalIndex": 219
+        },
+        {
+          "chapter": 10,
+          "verses": 18,
+          "globalIndex": 220
+        },
+        {
+          "chapter": 11,
+          "verses": 40,
+          "globalIndex": 221
+        },
+        {
+          "chapter": 12,
+          "verses": 15,
+          "globalIndex": 222
+        },
+        {
+          "chapter": 13,
+          "verses": 25,
+          "globalIndex": 223
+        },
+        {
+          "chapter": 14,
+          "verses": 20,
+          "globalIndex": 224
+        },
+        {
+          "chapter": 15,
+          "verses": 20,
+          "globalIndex": 225
+        },
+        {
+          "chapter": 16,
+          "verses": 31,
+          "globalIndex": 226
+        },
+        {
+          "chapter": 17,
+          "verses": 13,
+          "globalIndex": 227
+        },
+        {
+          "chapter": 18,
+          "verses": 31,
+          "globalIndex": 228
+        },
+        {
+          "chapter": 19,
+          "verses": 30,
+          "globalIndex": 229
+        },
+        {
+          "chapter": 20,
+          "verses": 48,
+          "globalIndex": 230
+        },
+        {
+          "chapter": 21,
+          "verses": 25,
+          "globalIndex": 231
+        }
+      ]
+    },
+    {
+      "num": 8,
+      "name": "Ruth",
+      "abbrev": "Ruth",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 4,
+      "verses": 85,
+      "chapterOffset": 232,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 22,
+          "globalIndex": 232
+        },
+        {
+          "chapter": 2,
+          "verses": 23,
+          "globalIndex": 233
+        },
+        {
+          "chapter": 3,
+          "verses": 18,
+          "globalIndex": 234
+        },
+        {
+          "chapter": 4,
+          "verses": 22,
+          "globalIndex": 235
+        }
+      ]
+    },
+    {
+      "num": 9,
+      "name": "1 Samuel",
+      "abbrev": "1Sam",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 31,
+      "verses": 810,
+      "chapterOffset": 236,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 28,
+          "globalIndex": 236
+        },
+        {
+          "chapter": 2,
+          "verses": 36,
+          "globalIndex": 237
+        },
+        {
+          "chapter": 3,
+          "verses": 21,
+          "globalIndex": 238
+        },
+        {
+          "chapter": 4,
+          "verses": 22,
+          "globalIndex": 239
+        },
+        {
+          "chapter": 5,
+          "verses": 12,
+          "globalIndex": 240
+        },
+        {
+          "chapter": 6,
+          "verses": 21,
+          "globalIndex": 241
+        },
+        {
+          "chapter": 7,
+          "verses": 17,
+          "globalIndex": 242
+        },
+        {
+          "chapter": 8,
+          "verses": 22,
+          "globalIndex": 243
+        },
+        {
+          "chapter": 9,
+          "verses": 27,
+          "globalIndex": 244
+        },
+        {
+          "chapter": 10,
+          "verses": 27,
+          "globalIndex": 245
+        },
+        {
+          "chapter": 11,
+          "verses": 15,
+          "globalIndex": 246
+        },
+        {
+          "chapter": 12,
+          "verses": 25,
+          "globalIndex": 247
+        },
+        {
+          "chapter": 13,
+          "verses": 23,
+          "globalIndex": 248
+        },
+        {
+          "chapter": 14,
+          "verses": 52,
+          "globalIndex": 249
+        },
+        {
+          "chapter": 15,
+          "verses": 35,
+          "globalIndex": 250
+        },
+        {
+          "chapter": 16,
+          "verses": 23,
+          "globalIndex": 251
+        },
+        {
+          "chapter": 17,
+          "verses": 58,
+          "globalIndex": 252
+        },
+        {
+          "chapter": 18,
+          "verses": 30,
+          "globalIndex": 253
+        },
+        {
+          "chapter": 19,
+          "verses": 24,
+          "globalIndex": 254
+        },
+        {
+          "chapter": 20,
+          "verses": 42,
+          "globalIndex": 255
+        },
+        {
+          "chapter": 21,
+          "verses": 15,
+          "globalIndex": 256
+        },
+        {
+          "chapter": 22,
+          "verses": 23,
+          "globalIndex": 257
+        },
+        {
+          "chapter": 23,
+          "verses": 29,
+          "globalIndex": 258
+        },
+        {
+          "chapter": 24,
+          "verses": 22,
+          "globalIndex": 259
+        },
+        {
+          "chapter": 25,
+          "verses": 44,
+          "globalIndex": 260
+        },
+        {
+          "chapter": 26,
+          "verses": 25,
+          "globalIndex": 261
+        },
+        {
+          "chapter": 27,
+          "verses": 12,
+          "globalIndex": 262
+        },
+        {
+          "chapter": 28,
+          "verses": 25,
+          "globalIndex": 263
+        },
+        {
+          "chapter": 29,
+          "verses": 11,
+          "globalIndex": 264
+        },
+        {
+          "chapter": 30,
+          "verses": 31,
+          "globalIndex": 265
+        },
+        {
+          "chapter": 31,
+          "verses": 13,
+          "globalIndex": 266
+        }
+      ]
+    },
+    {
+      "num": 10,
+      "name": "2 Samuel",
+      "abbrev": "2Sam",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 24,
+      "verses": 695,
+      "chapterOffset": 267,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 27,
+          "globalIndex": 267
+        },
+        {
+          "chapter": 2,
+          "verses": 32,
+          "globalIndex": 268
+        },
+        {
+          "chapter": 3,
+          "verses": 39,
+          "globalIndex": 269
+        },
+        {
+          "chapter": 4,
+          "verses": 12,
+          "globalIndex": 270
+        },
+        {
+          "chapter": 5,
+          "verses": 25,
+          "globalIndex": 271
+        },
+        {
+          "chapter": 6,
+          "verses": 23,
+          "globalIndex": 272
+        },
+        {
+          "chapter": 7,
+          "verses": 29,
+          "globalIndex": 273
+        },
+        {
+          "chapter": 8,
+          "verses": 18,
+          "globalIndex": 274
+        },
+        {
+          "chapter": 9,
+          "verses": 13,
+          "globalIndex": 275
+        },
+        {
+          "chapter": 10,
+          "verses": 19,
+          "globalIndex": 276
+        },
+        {
+          "chapter": 11,
+          "verses": 27,
+          "globalIndex": 277
+        },
+        {
+          "chapter": 12,
+          "verses": 31,
+          "globalIndex": 278
+        },
+        {
+          "chapter": 13,
+          "verses": 39,
+          "globalIndex": 279
+        },
+        {
+          "chapter": 14,
+          "verses": 33,
+          "globalIndex": 280
+        },
+        {
+          "chapter": 15,
+          "verses": 37,
+          "globalIndex": 281
+        },
+        {
+          "chapter": 16,
+          "verses": 23,
+          "globalIndex": 282
+        },
+        {
+          "chapter": 17,
+          "verses": 29,
+          "globalIndex": 283
+        },
+        {
+          "chapter": 18,
+          "verses": 33,
+          "globalIndex": 284
+        },
+        {
+          "chapter": 19,
+          "verses": 43,
+          "globalIndex": 285
+        },
+        {
+          "chapter": 20,
+          "verses": 26,
+          "globalIndex": 286
+        },
+        {
+          "chapter": 21,
+          "verses": 22,
+          "globalIndex": 287
+        },
+        {
+          "chapter": 22,
+          "verses": 51,
+          "globalIndex": 288
+        },
+        {
+          "chapter": 23,
+          "verses": 39,
+          "globalIndex": 289
+        },
+        {
+          "chapter": 24,
+          "verses": 25,
+          "globalIndex": 290
+        }
+      ]
+    },
+    {
+      "num": 11,
+      "name": "1 Kings",
+      "abbrev": "1Kgs",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 22,
+      "verses": 816,
+      "chapterOffset": 291,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 53,
+          "globalIndex": 291
+        },
+        {
+          "chapter": 2,
+          "verses": 46,
+          "globalIndex": 292
+        },
+        {
+          "chapter": 3,
+          "verses": 28,
+          "globalIndex": 293
+        },
+        {
+          "chapter": 4,
+          "verses": 34,
+          "globalIndex": 294
+        },
+        {
+          "chapter": 5,
+          "verses": 18,
+          "globalIndex": 295
+        },
+        {
+          "chapter": 6,
+          "verses": 38,
+          "globalIndex": 296
+        },
+        {
+          "chapter": 7,
+          "verses": 51,
+          "globalIndex": 297
+        },
+        {
+          "chapter": 8,
+          "verses": 66,
+          "globalIndex": 298
+        },
+        {
+          "chapter": 9,
+          "verses": 28,
+          "globalIndex": 299
+        },
+        {
+          "chapter": 10,
+          "verses": 29,
+          "globalIndex": 300
+        },
+        {
+          "chapter": 11,
+          "verses": 43,
+          "globalIndex": 301
+        },
+        {
+          "chapter": 12,
+          "verses": 33,
+          "globalIndex": 302
+        },
+        {
+          "chapter": 13,
+          "verses": 34,
+          "globalIndex": 303
+        },
+        {
+          "chapter": 14,
+          "verses": 31,
+          "globalIndex": 304
+        },
+        {
+          "chapter": 15,
+          "verses": 34,
+          "globalIndex": 305
+        },
+        {
+          "chapter": 16,
+          "verses": 34,
+          "globalIndex": 306
+        },
+        {
+          "chapter": 17,
+          "verses": 24,
+          "globalIndex": 307
+        },
+        {
+          "chapter": 18,
+          "verses": 46,
+          "globalIndex": 308
+        },
+        {
+          "chapter": 19,
+          "verses": 21,
+          "globalIndex": 309
+        },
+        {
+          "chapter": 20,
+          "verses": 43,
+          "globalIndex": 310
+        },
+        {
+          "chapter": 21,
+          "verses": 29,
+          "globalIndex": 311
+        },
+        {
+          "chapter": 22,
+          "verses": 53,
+          "globalIndex": 312
+        }
+      ]
+    },
+    {
+      "num": 12,
+      "name": "2 Kings",
+      "abbrev": "2Kgs",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 25,
+      "verses": 719,
+      "chapterOffset": 313,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 18,
+          "globalIndex": 313
+        },
+        {
+          "chapter": 2,
+          "verses": 25,
+          "globalIndex": 314
+        },
+        {
+          "chapter": 3,
+          "verses": 27,
+          "globalIndex": 315
+        },
+        {
+          "chapter": 4,
+          "verses": 44,
+          "globalIndex": 316
+        },
+        {
+          "chapter": 5,
+          "verses": 27,
+          "globalIndex": 317
+        },
+        {
+          "chapter": 6,
+          "verses": 33,
+          "globalIndex": 318
+        },
+        {
+          "chapter": 7,
+          "verses": 20,
+          "globalIndex": 319
+        },
+        {
+          "chapter": 8,
+          "verses": 29,
+          "globalIndex": 320
+        },
+        {
+          "chapter": 9,
+          "verses": 37,
+          "globalIndex": 321
+        },
+        {
+          "chapter": 10,
+          "verses": 36,
+          "globalIndex": 322
+        },
+        {
+          "chapter": 11,
+          "verses": 21,
+          "globalIndex": 323
+        },
+        {
+          "chapter": 12,
+          "verses": 21,
+          "globalIndex": 324
+        },
+        {
+          "chapter": 13,
+          "verses": 25,
+          "globalIndex": 325
+        },
+        {
+          "chapter": 14,
+          "verses": 29,
+          "globalIndex": 326
+        },
+        {
+          "chapter": 15,
+          "verses": 38,
+          "globalIndex": 327
+        },
+        {
+          "chapter": 16,
+          "verses": 20,
+          "globalIndex": 328
+        },
+        {
+          "chapter": 17,
+          "verses": 41,
+          "globalIndex": 329
+        },
+        {
+          "chapter": 18,
+          "verses": 37,
+          "globalIndex": 330
+        },
+        {
+          "chapter": 19,
+          "verses": 37,
+          "globalIndex": 331
+        },
+        {
+          "chapter": 20,
+          "verses": 21,
+          "globalIndex": 332
+        },
+        {
+          "chapter": 21,
+          "verses": 26,
+          "globalIndex": 333
+        },
+        {
+          "chapter": 22,
+          "verses": 20,
+          "globalIndex": 334
+        },
+        {
+          "chapter": 23,
+          "verses": 37,
+          "globalIndex": 335
+        },
+        {
+          "chapter": 24,
+          "verses": 20,
+          "globalIndex": 336
+        },
+        {
+          "chapter": 25,
+          "verses": 30,
+          "globalIndex": 337
+        }
+      ]
+    },
+    {
+      "num": 13,
+      "name": "1 Chronicles",
+      "abbrev": "1Chr",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 29,
+      "verses": 942,
+      "chapterOffset": 338,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 54,
+          "globalIndex": 338
+        },
+        {
+          "chapter": 2,
+          "verses": 55,
+          "globalIndex": 339
+        },
+        {
+          "chapter": 3,
+          "verses": 24,
+          "globalIndex": 340
+        },
+        {
+          "chapter": 4,
+          "verses": 43,
+          "globalIndex": 341
+        },
+        {
+          "chapter": 5,
+          "verses": 26,
+          "globalIndex": 342
+        },
+        {
+          "chapter": 6,
+          "verses": 81,
+          "globalIndex": 343
+        },
+        {
+          "chapter": 7,
+          "verses": 40,
+          "globalIndex": 344
+        },
+        {
+          "chapter": 8,
+          "verses": 40,
+          "globalIndex": 345
+        },
+        {
+          "chapter": 9,
+          "verses": 44,
+          "globalIndex": 346
+        },
+        {
+          "chapter": 10,
+          "verses": 14,
+          "globalIndex": 347
+        },
+        {
+          "chapter": 11,
+          "verses": 47,
+          "globalIndex": 348
+        },
+        {
+          "chapter": 12,
+          "verses": 40,
+          "globalIndex": 349
+        },
+        {
+          "chapter": 13,
+          "verses": 14,
+          "globalIndex": 350
+        },
+        {
+          "chapter": 14,
+          "verses": 17,
+          "globalIndex": 351
+        },
+        {
+          "chapter": 15,
+          "verses": 29,
+          "globalIndex": 352
+        },
+        {
+          "chapter": 16,
+          "verses": 43,
+          "globalIndex": 353
+        },
+        {
+          "chapter": 17,
+          "verses": 27,
+          "globalIndex": 354
+        },
+        {
+          "chapter": 18,
+          "verses": 17,
+          "globalIndex": 355
+        },
+        {
+          "chapter": 19,
+          "verses": 19,
+          "globalIndex": 356
+        },
+        {
+          "chapter": 20,
+          "verses": 8,
+          "globalIndex": 357
+        },
+        {
+          "chapter": 21,
+          "verses": 30,
+          "globalIndex": 358
+        },
+        {
+          "chapter": 22,
+          "verses": 19,
+          "globalIndex": 359
+        },
+        {
+          "chapter": 23,
+          "verses": 32,
+          "globalIndex": 360
+        },
+        {
+          "chapter": 24,
+          "verses": 31,
+          "globalIndex": 361
+        },
+        {
+          "chapter": 25,
+          "verses": 31,
+          "globalIndex": 362
+        },
+        {
+          "chapter": 26,
+          "verses": 32,
+          "globalIndex": 363
+        },
+        {
+          "chapter": 27,
+          "verses": 34,
+          "globalIndex": 364
+        },
+        {
+          "chapter": 28,
+          "verses": 21,
+          "globalIndex": 365
+        },
+        {
+          "chapter": 29,
+          "verses": 30,
+          "globalIndex": 366
+        }
+      ]
+    },
+    {
+      "num": 14,
+      "name": "2 Chronicles",
+      "abbrev": "2Chr",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 36,
+      "verses": 822,
+      "chapterOffset": 367,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 17,
+          "globalIndex": 367
+        },
+        {
+          "chapter": 2,
+          "verses": 18,
+          "globalIndex": 368
+        },
+        {
+          "chapter": 3,
+          "verses": 17,
+          "globalIndex": 369
+        },
+        {
+          "chapter": 4,
+          "verses": 22,
+          "globalIndex": 370
+        },
+        {
+          "chapter": 5,
+          "verses": 14,
+          "globalIndex": 371
+        },
+        {
+          "chapter": 6,
+          "verses": 42,
+          "globalIndex": 372
+        },
+        {
+          "chapter": 7,
+          "verses": 22,
+          "globalIndex": 373
+        },
+        {
+          "chapter": 8,
+          "verses": 18,
+          "globalIndex": 374
+        },
+        {
+          "chapter": 9,
+          "verses": 31,
+          "globalIndex": 375
+        },
+        {
+          "chapter": 10,
+          "verses": 19,
+          "globalIndex": 376
+        },
+        {
+          "chapter": 11,
+          "verses": 23,
+          "globalIndex": 377
+        },
+        {
+          "chapter": 12,
+          "verses": 16,
+          "globalIndex": 378
+        },
+        {
+          "chapter": 13,
+          "verses": 22,
+          "globalIndex": 379
+        },
+        {
+          "chapter": 14,
+          "verses": 15,
+          "globalIndex": 380
+        },
+        {
+          "chapter": 15,
+          "verses": 19,
+          "globalIndex": 381
+        },
+        {
+          "chapter": 16,
+          "verses": 14,
+          "globalIndex": 382
+        },
+        {
+          "chapter": 17,
+          "verses": 19,
+          "globalIndex": 383
+        },
+        {
+          "chapter": 18,
+          "verses": 34,
+          "globalIndex": 384
+        },
+        {
+          "chapter": 19,
+          "verses": 11,
+          "globalIndex": 385
+        },
+        {
+          "chapter": 20,
+          "verses": 37,
+          "globalIndex": 386
+        },
+        {
+          "chapter": 21,
+          "verses": 20,
+          "globalIndex": 387
+        },
+        {
+          "chapter": 22,
+          "verses": 12,
+          "globalIndex": 388
+        },
+        {
+          "chapter": 23,
+          "verses": 21,
+          "globalIndex": 389
+        },
+        {
+          "chapter": 24,
+          "verses": 27,
+          "globalIndex": 390
+        },
+        {
+          "chapter": 25,
+          "verses": 28,
+          "globalIndex": 391
+        },
+        {
+          "chapter": 26,
+          "verses": 23,
+          "globalIndex": 392
+        },
+        {
+          "chapter": 27,
+          "verses": 9,
+          "globalIndex": 393
+        },
+        {
+          "chapter": 28,
+          "verses": 27,
+          "globalIndex": 394
+        },
+        {
+          "chapter": 29,
+          "verses": 36,
+          "globalIndex": 395
+        },
+        {
+          "chapter": 30,
+          "verses": 27,
+          "globalIndex": 396
+        },
+        {
+          "chapter": 31,
+          "verses": 21,
+          "globalIndex": 397
+        },
+        {
+          "chapter": 32,
+          "verses": 33,
+          "globalIndex": 398
+        },
+        {
+          "chapter": 33,
+          "verses": 25,
+          "globalIndex": 399
+        },
+        {
+          "chapter": 34,
+          "verses": 33,
+          "globalIndex": 400
+        },
+        {
+          "chapter": 35,
+          "verses": 27,
+          "globalIndex": 401
+        },
+        {
+          "chapter": 36,
+          "verses": 23,
+          "globalIndex": 402
+        }
+      ]
+    },
+    {
+      "num": 15,
+      "name": "Ezra",
+      "abbrev": "Ezra",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 10,
+      "verses": 280,
+      "chapterOffset": 403,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 11,
+          "globalIndex": 403
+        },
+        {
+          "chapter": 2,
+          "verses": 70,
+          "globalIndex": 404
+        },
+        {
+          "chapter": 3,
+          "verses": 13,
+          "globalIndex": 405
+        },
+        {
+          "chapter": 4,
+          "verses": 24,
+          "globalIndex": 406
+        },
+        {
+          "chapter": 5,
+          "verses": 17,
+          "globalIndex": 407
+        },
+        {
+          "chapter": 6,
+          "verses": 22,
+          "globalIndex": 408
+        },
+        {
+          "chapter": 7,
+          "verses": 28,
+          "globalIndex": 409
+        },
+        {
+          "chapter": 8,
+          "verses": 36,
+          "globalIndex": 410
+        },
+        {
+          "chapter": 9,
+          "verses": 15,
+          "globalIndex": 411
+        },
+        {
+          "chapter": 10,
+          "verses": 44,
+          "globalIndex": 412
+        }
+      ]
+    },
+    {
+      "num": 16,
+      "name": "Nehemiah",
+      "abbrev": "Neh",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 13,
+      "verses": 406,
+      "chapterOffset": 413,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 11,
+          "globalIndex": 413
+        },
+        {
+          "chapter": 2,
+          "verses": 20,
+          "globalIndex": 414
+        },
+        {
+          "chapter": 3,
+          "verses": 32,
+          "globalIndex": 415
+        },
+        {
+          "chapter": 4,
+          "verses": 23,
+          "globalIndex": 416
+        },
+        {
+          "chapter": 5,
+          "verses": 19,
+          "globalIndex": 417
+        },
+        {
+          "chapter": 6,
+          "verses": 19,
+          "globalIndex": 418
+        },
+        {
+          "chapter": 7,
+          "verses": 73,
+          "globalIndex": 419
+        },
+        {
+          "chapter": 8,
+          "verses": 18,
+          "globalIndex": 420
+        },
+        {
+          "chapter": 9,
+          "verses": 38,
+          "globalIndex": 421
+        },
+        {
+          "chapter": 10,
+          "verses": 39,
+          "globalIndex": 422
+        },
+        {
+          "chapter": 11,
+          "verses": 36,
+          "globalIndex": 423
+        },
+        {
+          "chapter": 12,
+          "verses": 47,
+          "globalIndex": 424
+        },
+        {
+          "chapter": 13,
+          "verses": 31,
+          "globalIndex": 425
+        }
+      ]
+    },
+    {
+      "num": 17,
+      "name": "Esther",
+      "abbrev": "Esth",
+      "testament": "OT",
+      "group": "Historical",
+      "chapters": 10,
+      "verses": 167,
+      "chapterOffset": 426,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 22,
+          "globalIndex": 426
+        },
+        {
+          "chapter": 2,
+          "verses": 23,
+          "globalIndex": 427
+        },
+        {
+          "chapter": 3,
+          "verses": 15,
+          "globalIndex": 428
+        },
+        {
+          "chapter": 4,
+          "verses": 17,
+          "globalIndex": 429
+        },
+        {
+          "chapter": 5,
+          "verses": 14,
+          "globalIndex": 430
+        },
+        {
+          "chapter": 6,
+          "verses": 14,
+          "globalIndex": 431
+        },
+        {
+          "chapter": 7,
+          "verses": 10,
+          "globalIndex": 432
+        },
+        {
+          "chapter": 8,
+          "verses": 17,
+          "globalIndex": 433
+        },
+        {
+          "chapter": 9,
+          "verses": 32,
+          "globalIndex": 434
+        },
+        {
+          "chapter": 10,
+          "verses": 3,
+          "globalIndex": 435
+        }
+      ]
+    },
+    {
+      "num": 18,
+      "name": "Job",
+      "abbrev": "Job",
+      "testament": "OT",
+      "group": "Wisdom",
+      "chapters": 42,
+      "verses": 1070,
+      "chapterOffset": 436,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 22,
+          "globalIndex": 436
+        },
+        {
+          "chapter": 2,
+          "verses": 13,
+          "globalIndex": 437
+        },
+        {
+          "chapter": 3,
+          "verses": 26,
+          "globalIndex": 438
+        },
+        {
+          "chapter": 4,
+          "verses": 21,
+          "globalIndex": 439
+        },
+        {
+          "chapter": 5,
+          "verses": 27,
+          "globalIndex": 440
+        },
+        {
+          "chapter": 6,
+          "verses": 30,
+          "globalIndex": 441
+        },
+        {
+          "chapter": 7,
+          "verses": 21,
+          "globalIndex": 442
+        },
+        {
+          "chapter": 8,
+          "verses": 22,
+          "globalIndex": 443
+        },
+        {
+          "chapter": 9,
+          "verses": 35,
+          "globalIndex": 444
+        },
+        {
+          "chapter": 10,
+          "verses": 22,
+          "globalIndex": 445
+        },
+        {
+          "chapter": 11,
+          "verses": 20,
+          "globalIndex": 446
+        },
+        {
+          "chapter": 12,
+          "verses": 25,
+          "globalIndex": 447
+        },
+        {
+          "chapter": 13,
+          "verses": 28,
+          "globalIndex": 448
+        },
+        {
+          "chapter": 14,
+          "verses": 22,
+          "globalIndex": 449
+        },
+        {
+          "chapter": 15,
+          "verses": 35,
+          "globalIndex": 450
+        },
+        {
+          "chapter": 16,
+          "verses": 22,
+          "globalIndex": 451
+        },
+        {
+          "chapter": 17,
+          "verses": 16,
+          "globalIndex": 452
+        },
+        {
+          "chapter": 18,
+          "verses": 21,
+          "globalIndex": 453
+        },
+        {
+          "chapter": 19,
+          "verses": 29,
+          "globalIndex": 454
+        },
+        {
+          "chapter": 20,
+          "verses": 29,
+          "globalIndex": 455
+        },
+        {
+          "chapter": 21,
+          "verses": 34,
+          "globalIndex": 456
+        },
+        {
+          "chapter": 22,
+          "verses": 30,
+          "globalIndex": 457
+        },
+        {
+          "chapter": 23,
+          "verses": 17,
+          "globalIndex": 458
+        },
+        {
+          "chapter": 24,
+          "verses": 25,
+          "globalIndex": 459
+        },
+        {
+          "chapter": 25,
+          "verses": 6,
+          "globalIndex": 460
+        },
+        {
+          "chapter": 26,
+          "verses": 14,
+          "globalIndex": 461
+        },
+        {
+          "chapter": 27,
+          "verses": 23,
+          "globalIndex": 462
+        },
+        {
+          "chapter": 28,
+          "verses": 28,
+          "globalIndex": 463
+        },
+        {
+          "chapter": 29,
+          "verses": 25,
+          "globalIndex": 464
+        },
+        {
+          "chapter": 30,
+          "verses": 31,
+          "globalIndex": 465
+        },
+        {
+          "chapter": 31,
+          "verses": 40,
+          "globalIndex": 466
+        },
+        {
+          "chapter": 32,
+          "verses": 22,
+          "globalIndex": 467
+        },
+        {
+          "chapter": 33,
+          "verses": 33,
+          "globalIndex": 468
+        },
+        {
+          "chapter": 34,
+          "verses": 37,
+          "globalIndex": 469
+        },
+        {
+          "chapter": 35,
+          "verses": 16,
+          "globalIndex": 470
+        },
+        {
+          "chapter": 36,
+          "verses": 33,
+          "globalIndex": 471
+        },
+        {
+          "chapter": 37,
+          "verses": 24,
+          "globalIndex": 472
+        },
+        {
+          "chapter": 38,
+          "verses": 41,
+          "globalIndex": 473
+        },
+        {
+          "chapter": 39,
+          "verses": 30,
+          "globalIndex": 474
+        },
+        {
+          "chapter": 40,
+          "verses": 24,
+          "globalIndex": 475
+        },
+        {
+          "chapter": 41,
+          "verses": 34,
+          "globalIndex": 476
+        },
+        {
+          "chapter": 42,
+          "verses": 17,
+          "globalIndex": 477
+        }
+      ]
+    },
+    {
+      "num": 19,
+      "name": "Psalms",
+      "abbrev": "Ps",
+      "testament": "OT",
+      "group": "Wisdom",
+      "chapters": 150,
+      "verses": 2461,
+      "chapterOffset": 478,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 6,
+          "globalIndex": 478
+        },
+        {
+          "chapter": 2,
+          "verses": 12,
+          "globalIndex": 479
+        },
+        {
+          "chapter": 3,
+          "verses": 8,
+          "globalIndex": 480
+        },
+        {
+          "chapter": 4,
+          "verses": 8,
+          "globalIndex": 481
+        },
+        {
+          "chapter": 5,
+          "verses": 12,
+          "globalIndex": 482
+        },
+        {
+          "chapter": 6,
+          "verses": 10,
+          "globalIndex": 483
+        },
+        {
+          "chapter": 7,
+          "verses": 17,
+          "globalIndex": 484
+        },
+        {
+          "chapter": 8,
+          "verses": 9,
+          "globalIndex": 485
+        },
+        {
+          "chapter": 9,
+          "verses": 20,
+          "globalIndex": 486
+        },
+        {
+          "chapter": 10,
+          "verses": 18,
+          "globalIndex": 487
+        },
+        {
+          "chapter": 11,
+          "verses": 7,
+          "globalIndex": 488
+        },
+        {
+          "chapter": 12,
+          "verses": 8,
+          "globalIndex": 489
+        },
+        {
+          "chapter": 13,
+          "verses": 6,
+          "globalIndex": 490
+        },
+        {
+          "chapter": 14,
+          "verses": 7,
+          "globalIndex": 491
+        },
+        {
+          "chapter": 15,
+          "verses": 5,
+          "globalIndex": 492
+        },
+        {
+          "chapter": 16,
+          "verses": 11,
+          "globalIndex": 493
+        },
+        {
+          "chapter": 17,
+          "verses": 15,
+          "globalIndex": 494
+        },
+        {
+          "chapter": 18,
+          "verses": 50,
+          "globalIndex": 495
+        },
+        {
+          "chapter": 19,
+          "verses": 14,
+          "globalIndex": 496
+        },
+        {
+          "chapter": 20,
+          "verses": 9,
+          "globalIndex": 497
+        },
+        {
+          "chapter": 21,
+          "verses": 13,
+          "globalIndex": 498
+        },
+        {
+          "chapter": 22,
+          "verses": 31,
+          "globalIndex": 499
+        },
+        {
+          "chapter": 23,
+          "verses": 6,
+          "globalIndex": 500
+        },
+        {
+          "chapter": 24,
+          "verses": 10,
+          "globalIndex": 501
+        },
+        {
+          "chapter": 25,
+          "verses": 22,
+          "globalIndex": 502
+        },
+        {
+          "chapter": 26,
+          "verses": 12,
+          "globalIndex": 503
+        },
+        {
+          "chapter": 27,
+          "verses": 14,
+          "globalIndex": 504
+        },
+        {
+          "chapter": 28,
+          "verses": 9,
+          "globalIndex": 505
+        },
+        {
+          "chapter": 29,
+          "verses": 11,
+          "globalIndex": 506
+        },
+        {
+          "chapter": 30,
+          "verses": 12,
+          "globalIndex": 507
+        },
+        {
+          "chapter": 31,
+          "verses": 24,
+          "globalIndex": 508
+        },
+        {
+          "chapter": 32,
+          "verses": 11,
+          "globalIndex": 509
+        },
+        {
+          "chapter": 33,
+          "verses": 22,
+          "globalIndex": 510
+        },
+        {
+          "chapter": 34,
+          "verses": 22,
+          "globalIndex": 511
+        },
+        {
+          "chapter": 35,
+          "verses": 28,
+          "globalIndex": 512
+        },
+        {
+          "chapter": 36,
+          "verses": 12,
+          "globalIndex": 513
+        },
+        {
+          "chapter": 37,
+          "verses": 40,
+          "globalIndex": 514
+        },
+        {
+          "chapter": 38,
+          "verses": 22,
+          "globalIndex": 515
+        },
+        {
+          "chapter": 39,
+          "verses": 13,
+          "globalIndex": 516
+        },
+        {
+          "chapter": 40,
+          "verses": 17,
+          "globalIndex": 517
+        },
+        {
+          "chapter": 41,
+          "verses": 13,
+          "globalIndex": 518
+        },
+        {
+          "chapter": 42,
+          "verses": 11,
+          "globalIndex": 519
+        },
+        {
+          "chapter": 43,
+          "verses": 5,
+          "globalIndex": 520
+        },
+        {
+          "chapter": 44,
+          "verses": 26,
+          "globalIndex": 521
+        },
+        {
+          "chapter": 45,
+          "verses": 17,
+          "globalIndex": 522
+        },
+        {
+          "chapter": 46,
+          "verses": 11,
+          "globalIndex": 523
+        },
+        {
+          "chapter": 47,
+          "verses": 9,
+          "globalIndex": 524
+        },
+        {
+          "chapter": 48,
+          "verses": 14,
+          "globalIndex": 525
+        },
+        {
+          "chapter": 49,
+          "verses": 20,
+          "globalIndex": 526
+        },
+        {
+          "chapter": 50,
+          "verses": 23,
+          "globalIndex": 527
+        },
+        {
+          "chapter": 51,
+          "verses": 19,
+          "globalIndex": 528
+        },
+        {
+          "chapter": 52,
+          "verses": 9,
+          "globalIndex": 529
+        },
+        {
+          "chapter": 53,
+          "verses": 6,
+          "globalIndex": 530
+        },
+        {
+          "chapter": 54,
+          "verses": 7,
+          "globalIndex": 531
+        },
+        {
+          "chapter": 55,
+          "verses": 23,
+          "globalIndex": 532
+        },
+        {
+          "chapter": 56,
+          "verses": 13,
+          "globalIndex": 533
+        },
+        {
+          "chapter": 57,
+          "verses": 11,
+          "globalIndex": 534
+        },
+        {
+          "chapter": 58,
+          "verses": 11,
+          "globalIndex": 535
+        },
+        {
+          "chapter": 59,
+          "verses": 17,
+          "globalIndex": 536
+        },
+        {
+          "chapter": 60,
+          "verses": 12,
+          "globalIndex": 537
+        },
+        {
+          "chapter": 61,
+          "verses": 8,
+          "globalIndex": 538
+        },
+        {
+          "chapter": 62,
+          "verses": 12,
+          "globalIndex": 539
+        },
+        {
+          "chapter": 63,
+          "verses": 11,
+          "globalIndex": 540
+        },
+        {
+          "chapter": 64,
+          "verses": 10,
+          "globalIndex": 541
+        },
+        {
+          "chapter": 65,
+          "verses": 13,
+          "globalIndex": 542
+        },
+        {
+          "chapter": 66,
+          "verses": 20,
+          "globalIndex": 543
+        },
+        {
+          "chapter": 67,
+          "verses": 7,
+          "globalIndex": 544
+        },
+        {
+          "chapter": 68,
+          "verses": 35,
+          "globalIndex": 545
+        },
+        {
+          "chapter": 69,
+          "verses": 36,
+          "globalIndex": 546
+        },
+        {
+          "chapter": 70,
+          "verses": 5,
+          "globalIndex": 547
+        },
+        {
+          "chapter": 71,
+          "verses": 24,
+          "globalIndex": 548
+        },
+        {
+          "chapter": 72,
+          "verses": 20,
+          "globalIndex": 549
+        },
+        {
+          "chapter": 73,
+          "verses": 28,
+          "globalIndex": 550
+        },
+        {
+          "chapter": 74,
+          "verses": 23,
+          "globalIndex": 551
+        },
+        {
+          "chapter": 75,
+          "verses": 10,
+          "globalIndex": 552
+        },
+        {
+          "chapter": 76,
+          "verses": 12,
+          "globalIndex": 553
+        },
+        {
+          "chapter": 77,
+          "verses": 20,
+          "globalIndex": 554
+        },
+        {
+          "chapter": 78,
+          "verses": 72,
+          "globalIndex": 555
+        },
+        {
+          "chapter": 79,
+          "verses": 13,
+          "globalIndex": 556
+        },
+        {
+          "chapter": 80,
+          "verses": 19,
+          "globalIndex": 557
+        },
+        {
+          "chapter": 81,
+          "verses": 16,
+          "globalIndex": 558
+        },
+        {
+          "chapter": 82,
+          "verses": 8,
+          "globalIndex": 559
+        },
+        {
+          "chapter": 83,
+          "verses": 18,
+          "globalIndex": 560
+        },
+        {
+          "chapter": 84,
+          "verses": 12,
+          "globalIndex": 561
+        },
+        {
+          "chapter": 85,
+          "verses": 13,
+          "globalIndex": 562
+        },
+        {
+          "chapter": 86,
+          "verses": 17,
+          "globalIndex": 563
+        },
+        {
+          "chapter": 87,
+          "verses": 7,
+          "globalIndex": 564
+        },
+        {
+          "chapter": 88,
+          "verses": 18,
+          "globalIndex": 565
+        },
+        {
+          "chapter": 89,
+          "verses": 52,
+          "globalIndex": 566
+        },
+        {
+          "chapter": 90,
+          "verses": 17,
+          "globalIndex": 567
+        },
+        {
+          "chapter": 91,
+          "verses": 16,
+          "globalIndex": 568
+        },
+        {
+          "chapter": 92,
+          "verses": 15,
+          "globalIndex": 569
+        },
+        {
+          "chapter": 93,
+          "verses": 5,
+          "globalIndex": 570
+        },
+        {
+          "chapter": 94,
+          "verses": 23,
+          "globalIndex": 571
+        },
+        {
+          "chapter": 95,
+          "verses": 11,
+          "globalIndex": 572
+        },
+        {
+          "chapter": 96,
+          "verses": 13,
+          "globalIndex": 573
+        },
+        {
+          "chapter": 97,
+          "verses": 12,
+          "globalIndex": 574
+        },
+        {
+          "chapter": 98,
+          "verses": 9,
+          "globalIndex": 575
+        },
+        {
+          "chapter": 99,
+          "verses": 9,
+          "globalIndex": 576
+        },
+        {
+          "chapter": 100,
+          "verses": 5,
+          "globalIndex": 577
+        },
+        {
+          "chapter": 101,
+          "verses": 8,
+          "globalIndex": 578
+        },
+        {
+          "chapter": 102,
+          "verses": 28,
+          "globalIndex": 579
+        },
+        {
+          "chapter": 103,
+          "verses": 22,
+          "globalIndex": 580
+        },
+        {
+          "chapter": 104,
+          "verses": 35,
+          "globalIndex": 581
+        },
+        {
+          "chapter": 105,
+          "verses": 45,
+          "globalIndex": 582
+        },
+        {
+          "chapter": 106,
+          "verses": 48,
+          "globalIndex": 583
+        },
+        {
+          "chapter": 107,
+          "verses": 43,
+          "globalIndex": 584
+        },
+        {
+          "chapter": 108,
+          "verses": 13,
+          "globalIndex": 585
+        },
+        {
+          "chapter": 109,
+          "verses": 31,
+          "globalIndex": 586
+        },
+        {
+          "chapter": 110,
+          "verses": 7,
+          "globalIndex": 587
+        },
+        {
+          "chapter": 111,
+          "verses": 10,
+          "globalIndex": 588
+        },
+        {
+          "chapter": 112,
+          "verses": 10,
+          "globalIndex": 589
+        },
+        {
+          "chapter": 113,
+          "verses": 9,
+          "globalIndex": 590
+        },
+        {
+          "chapter": 114,
+          "verses": 8,
+          "globalIndex": 591
+        },
+        {
+          "chapter": 115,
+          "verses": 18,
+          "globalIndex": 592
+        },
+        {
+          "chapter": 116,
+          "verses": 19,
+          "globalIndex": 593
+        },
+        {
+          "chapter": 117,
+          "verses": 2,
+          "globalIndex": 594
+        },
+        {
+          "chapter": 118,
+          "verses": 29,
+          "globalIndex": 595
+        },
+        {
+          "chapter": 119,
+          "verses": 176,
+          "globalIndex": 596
+        },
+        {
+          "chapter": 120,
+          "verses": 7,
+          "globalIndex": 597
+        },
+        {
+          "chapter": 121,
+          "verses": 8,
+          "globalIndex": 598
+        },
+        {
+          "chapter": 122,
+          "verses": 9,
+          "globalIndex": 599
+        },
+        {
+          "chapter": 123,
+          "verses": 4,
+          "globalIndex": 600
+        },
+        {
+          "chapter": 124,
+          "verses": 8,
+          "globalIndex": 601
+        },
+        {
+          "chapter": 125,
+          "verses": 5,
+          "globalIndex": 602
+        },
+        {
+          "chapter": 126,
+          "verses": 6,
+          "globalIndex": 603
+        },
+        {
+          "chapter": 127,
+          "verses": 5,
+          "globalIndex": 604
+        },
+        {
+          "chapter": 128,
+          "verses": 6,
+          "globalIndex": 605
+        },
+        {
+          "chapter": 129,
+          "verses": 8,
+          "globalIndex": 606
+        },
+        {
+          "chapter": 130,
+          "verses": 8,
+          "globalIndex": 607
+        },
+        {
+          "chapter": 131,
+          "verses": 3,
+          "globalIndex": 608
+        },
+        {
+          "chapter": 132,
+          "verses": 18,
+          "globalIndex": 609
+        },
+        {
+          "chapter": 133,
+          "verses": 3,
+          "globalIndex": 610
+        },
+        {
+          "chapter": 134,
+          "verses": 3,
+          "globalIndex": 611
+        },
+        {
+          "chapter": 135,
+          "verses": 21,
+          "globalIndex": 612
+        },
+        {
+          "chapter": 136,
+          "verses": 26,
+          "globalIndex": 613
+        },
+        {
+          "chapter": 137,
+          "verses": 9,
+          "globalIndex": 614
+        },
+        {
+          "chapter": 138,
+          "verses": 8,
+          "globalIndex": 615
+        },
+        {
+          "chapter": 139,
+          "verses": 24,
+          "globalIndex": 616
+        },
+        {
+          "chapter": 140,
+          "verses": 13,
+          "globalIndex": 617
+        },
+        {
+          "chapter": 141,
+          "verses": 10,
+          "globalIndex": 618
+        },
+        {
+          "chapter": 142,
+          "verses": 7,
+          "globalIndex": 619
+        },
+        {
+          "chapter": 143,
+          "verses": 12,
+          "globalIndex": 620
+        },
+        {
+          "chapter": 144,
+          "verses": 15,
+          "globalIndex": 621
+        },
+        {
+          "chapter": 145,
+          "verses": 21,
+          "globalIndex": 622
+        },
+        {
+          "chapter": 146,
+          "verses": 10,
+          "globalIndex": 623
+        },
+        {
+          "chapter": 147,
+          "verses": 20,
+          "globalIndex": 624
+        },
+        {
+          "chapter": 148,
+          "verses": 14,
+          "globalIndex": 625
+        },
+        {
+          "chapter": 149,
+          "verses": 9,
+          "globalIndex": 626
+        },
+        {
+          "chapter": 150,
+          "verses": 6,
+          "globalIndex": 627
+        }
+      ]
+    },
+    {
+      "num": 20,
+      "name": "Proverbs",
+      "abbrev": "Prov",
+      "testament": "OT",
+      "group": "Wisdom",
+      "chapters": 31,
+      "verses": 915,
+      "chapterOffset": 628,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 33,
+          "globalIndex": 628
+        },
+        {
+          "chapter": 2,
+          "verses": 22,
+          "globalIndex": 629
+        },
+        {
+          "chapter": 3,
+          "verses": 35,
+          "globalIndex": 630
+        },
+        {
+          "chapter": 4,
+          "verses": 27,
+          "globalIndex": 631
+        },
+        {
+          "chapter": 5,
+          "verses": 23,
+          "globalIndex": 632
+        },
+        {
+          "chapter": 6,
+          "verses": 35,
+          "globalIndex": 633
+        },
+        {
+          "chapter": 7,
+          "verses": 27,
+          "globalIndex": 634
+        },
+        {
+          "chapter": 8,
+          "verses": 36,
+          "globalIndex": 635
+        },
+        {
+          "chapter": 9,
+          "verses": 18,
+          "globalIndex": 636
+        },
+        {
+          "chapter": 10,
+          "verses": 32,
+          "globalIndex": 637
+        },
+        {
+          "chapter": 11,
+          "verses": 31,
+          "globalIndex": 638
+        },
+        {
+          "chapter": 12,
+          "verses": 28,
+          "globalIndex": 639
+        },
+        {
+          "chapter": 13,
+          "verses": 25,
+          "globalIndex": 640
+        },
+        {
+          "chapter": 14,
+          "verses": 35,
+          "globalIndex": 641
+        },
+        {
+          "chapter": 15,
+          "verses": 33,
+          "globalIndex": 642
+        },
+        {
+          "chapter": 16,
+          "verses": 33,
+          "globalIndex": 643
+        },
+        {
+          "chapter": 17,
+          "verses": 28,
+          "globalIndex": 644
+        },
+        {
+          "chapter": 18,
+          "verses": 24,
+          "globalIndex": 645
+        },
+        {
+          "chapter": 19,
+          "verses": 29,
+          "globalIndex": 646
+        },
+        {
+          "chapter": 20,
+          "verses": 30,
+          "globalIndex": 647
+        },
+        {
+          "chapter": 21,
+          "verses": 31,
+          "globalIndex": 648
+        },
+        {
+          "chapter": 22,
+          "verses": 29,
+          "globalIndex": 649
+        },
+        {
+          "chapter": 23,
+          "verses": 35,
+          "globalIndex": 650
+        },
+        {
+          "chapter": 24,
+          "verses": 34,
+          "globalIndex": 651
+        },
+        {
+          "chapter": 25,
+          "verses": 28,
+          "globalIndex": 652
+        },
+        {
+          "chapter": 26,
+          "verses": 28,
+          "globalIndex": 653
+        },
+        {
+          "chapter": 27,
+          "verses": 27,
+          "globalIndex": 654
+        },
+        {
+          "chapter": 28,
+          "verses": 28,
+          "globalIndex": 655
+        },
+        {
+          "chapter": 29,
+          "verses": 27,
+          "globalIndex": 656
+        },
+        {
+          "chapter": 30,
+          "verses": 33,
+          "globalIndex": 657
+        },
+        {
+          "chapter": 31,
+          "verses": 31,
+          "globalIndex": 658
+        }
+      ]
+    },
+    {
+      "num": 21,
+      "name": "Ecclesiastes",
+      "abbrev": "Eccl",
+      "testament": "OT",
+      "group": "Wisdom",
+      "chapters": 12,
+      "verses": 222,
+      "chapterOffset": 659,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 18,
+          "globalIndex": 659
+        },
+        {
+          "chapter": 2,
+          "verses": 26,
+          "globalIndex": 660
+        },
+        {
+          "chapter": 3,
+          "verses": 22,
+          "globalIndex": 661
+        },
+        {
+          "chapter": 4,
+          "verses": 16,
+          "globalIndex": 662
+        },
+        {
+          "chapter": 5,
+          "verses": 20,
+          "globalIndex": 663
+        },
+        {
+          "chapter": 6,
+          "verses": 12,
+          "globalIndex": 664
+        },
+        {
+          "chapter": 7,
+          "verses": 29,
+          "globalIndex": 665
+        },
+        {
+          "chapter": 8,
+          "verses": 17,
+          "globalIndex": 666
+        },
+        {
+          "chapter": 9,
+          "verses": 18,
+          "globalIndex": 667
+        },
+        {
+          "chapter": 10,
+          "verses": 20,
+          "globalIndex": 668
+        },
+        {
+          "chapter": 11,
+          "verses": 10,
+          "globalIndex": 669
+        },
+        {
+          "chapter": 12,
+          "verses": 14,
+          "globalIndex": 670
+        }
+      ]
+    },
+    {
+      "num": 22,
+      "name": "Song of Solomon",
+      "abbrev": "Song",
+      "testament": "OT",
+      "group": "Wisdom",
+      "chapters": 8,
+      "verses": 117,
+      "chapterOffset": 671,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 17,
+          "globalIndex": 671
+        },
+        {
+          "chapter": 2,
+          "verses": 17,
+          "globalIndex": 672
+        },
+        {
+          "chapter": 3,
+          "verses": 11,
+          "globalIndex": 673
+        },
+        {
+          "chapter": 4,
+          "verses": 16,
+          "globalIndex": 674
+        },
+        {
+          "chapter": 5,
+          "verses": 16,
+          "globalIndex": 675
+        },
+        {
+          "chapter": 6,
+          "verses": 13,
+          "globalIndex": 676
+        },
+        {
+          "chapter": 7,
+          "verses": 13,
+          "globalIndex": 677
+        },
+        {
+          "chapter": 8,
+          "verses": 14,
+          "globalIndex": 678
+        }
+      ]
+    },
+    {
+      "num": 23,
+      "name": "Isaiah",
+      "abbrev": "Isa",
+      "testament": "OT",
+      "group": "Major Prophets",
+      "chapters": 66,
+      "verses": 1292,
+      "chapterOffset": 679,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 31,
+          "globalIndex": 679
+        },
+        {
+          "chapter": 2,
+          "verses": 22,
+          "globalIndex": 680
+        },
+        {
+          "chapter": 3,
+          "verses": 26,
+          "globalIndex": 681
+        },
+        {
+          "chapter": 4,
+          "verses": 6,
+          "globalIndex": 682
+        },
+        {
+          "chapter": 5,
+          "verses": 30,
+          "globalIndex": 683
+        },
+        {
+          "chapter": 6,
+          "verses": 13,
+          "globalIndex": 684
+        },
+        {
+          "chapter": 7,
+          "verses": 25,
+          "globalIndex": 685
+        },
+        {
+          "chapter": 8,
+          "verses": 22,
+          "globalIndex": 686
+        },
+        {
+          "chapter": 9,
+          "verses": 21,
+          "globalIndex": 687
+        },
+        {
+          "chapter": 10,
+          "verses": 34,
+          "globalIndex": 688
+        },
+        {
+          "chapter": 11,
+          "verses": 16,
+          "globalIndex": 689
+        },
+        {
+          "chapter": 12,
+          "verses": 6,
+          "globalIndex": 690
+        },
+        {
+          "chapter": 13,
+          "verses": 22,
+          "globalIndex": 691
+        },
+        {
+          "chapter": 14,
+          "verses": 32,
+          "globalIndex": 692
+        },
+        {
+          "chapter": 15,
+          "verses": 9,
+          "globalIndex": 693
+        },
+        {
+          "chapter": 16,
+          "verses": 14,
+          "globalIndex": 694
+        },
+        {
+          "chapter": 17,
+          "verses": 14,
+          "globalIndex": 695
+        },
+        {
+          "chapter": 18,
+          "verses": 7,
+          "globalIndex": 696
+        },
+        {
+          "chapter": 19,
+          "verses": 25,
+          "globalIndex": 697
+        },
+        {
+          "chapter": 20,
+          "verses": 6,
+          "globalIndex": 698
+        },
+        {
+          "chapter": 21,
+          "verses": 17,
+          "globalIndex": 699
+        },
+        {
+          "chapter": 22,
+          "verses": 25,
+          "globalIndex": 700
+        },
+        {
+          "chapter": 23,
+          "verses": 18,
+          "globalIndex": 701
+        },
+        {
+          "chapter": 24,
+          "verses": 23,
+          "globalIndex": 702
+        },
+        {
+          "chapter": 25,
+          "verses": 12,
+          "globalIndex": 703
+        },
+        {
+          "chapter": 26,
+          "verses": 21,
+          "globalIndex": 704
+        },
+        {
+          "chapter": 27,
+          "verses": 13,
+          "globalIndex": 705
+        },
+        {
+          "chapter": 28,
+          "verses": 29,
+          "globalIndex": 706
+        },
+        {
+          "chapter": 29,
+          "verses": 24,
+          "globalIndex": 707
+        },
+        {
+          "chapter": 30,
+          "verses": 33,
+          "globalIndex": 708
+        },
+        {
+          "chapter": 31,
+          "verses": 9,
+          "globalIndex": 709
+        },
+        {
+          "chapter": 32,
+          "verses": 20,
+          "globalIndex": 710
+        },
+        {
+          "chapter": 33,
+          "verses": 24,
+          "globalIndex": 711
+        },
+        {
+          "chapter": 34,
+          "verses": 17,
+          "globalIndex": 712
+        },
+        {
+          "chapter": 35,
+          "verses": 10,
+          "globalIndex": 713
+        },
+        {
+          "chapter": 36,
+          "verses": 22,
+          "globalIndex": 714
+        },
+        {
+          "chapter": 37,
+          "verses": 38,
+          "globalIndex": 715
+        },
+        {
+          "chapter": 38,
+          "verses": 22,
+          "globalIndex": 716
+        },
+        {
+          "chapter": 39,
+          "verses": 8,
+          "globalIndex": 717
+        },
+        {
+          "chapter": 40,
+          "verses": 31,
+          "globalIndex": 718
+        },
+        {
+          "chapter": 41,
+          "verses": 29,
+          "globalIndex": 719
+        },
+        {
+          "chapter": 42,
+          "verses": 25,
+          "globalIndex": 720
+        },
+        {
+          "chapter": 43,
+          "verses": 28,
+          "globalIndex": 721
+        },
+        {
+          "chapter": 44,
+          "verses": 28,
+          "globalIndex": 722
+        },
+        {
+          "chapter": 45,
+          "verses": 25,
+          "globalIndex": 723
+        },
+        {
+          "chapter": 46,
+          "verses": 13,
+          "globalIndex": 724
+        },
+        {
+          "chapter": 47,
+          "verses": 15,
+          "globalIndex": 725
+        },
+        {
+          "chapter": 48,
+          "verses": 22,
+          "globalIndex": 726
+        },
+        {
+          "chapter": 49,
+          "verses": 26,
+          "globalIndex": 727
+        },
+        {
+          "chapter": 50,
+          "verses": 11,
+          "globalIndex": 728
+        },
+        {
+          "chapter": 51,
+          "verses": 23,
+          "globalIndex": 729
+        },
+        {
+          "chapter": 52,
+          "verses": 15,
+          "globalIndex": 730
+        },
+        {
+          "chapter": 53,
+          "verses": 12,
+          "globalIndex": 731
+        },
+        {
+          "chapter": 54,
+          "verses": 17,
+          "globalIndex": 732
+        },
+        {
+          "chapter": 55,
+          "verses": 13,
+          "globalIndex": 733
+        },
+        {
+          "chapter": 56,
+          "verses": 12,
+          "globalIndex": 734
+        },
+        {
+          "chapter": 57,
+          "verses": 21,
+          "globalIndex": 735
+        },
+        {
+          "chapter": 58,
+          "verses": 14,
+          "globalIndex": 736
+        },
+        {
+          "chapter": 59,
+          "verses": 21,
+          "globalIndex": 737
+        },
+        {
+          "chapter": 60,
+          "verses": 22,
+          "globalIndex": 738
+        },
+        {
+          "chapter": 61,
+          "verses": 11,
+          "globalIndex": 739
+        },
+        {
+          "chapter": 62,
+          "verses": 12,
+          "globalIndex": 740
+        },
+        {
+          "chapter": 63,
+          "verses": 19,
+          "globalIndex": 741
+        },
+        {
+          "chapter": 64,
+          "verses": 12,
+          "globalIndex": 742
+        },
+        {
+          "chapter": 65,
+          "verses": 25,
+          "globalIndex": 743
+        },
+        {
+          "chapter": 66,
+          "verses": 24,
+          "globalIndex": 744
+        }
+      ]
+    },
+    {
+      "num": 24,
+      "name": "Jeremiah",
+      "abbrev": "Jer",
+      "testament": "OT",
+      "group": "Major Prophets",
+      "chapters": 52,
+      "verses": 1364,
+      "chapterOffset": 745,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 19,
+          "globalIndex": 745
+        },
+        {
+          "chapter": 2,
+          "verses": 37,
+          "globalIndex": 746
+        },
+        {
+          "chapter": 3,
+          "verses": 25,
+          "globalIndex": 747
+        },
+        {
+          "chapter": 4,
+          "verses": 31,
+          "globalIndex": 748
+        },
+        {
+          "chapter": 5,
+          "verses": 31,
+          "globalIndex": 749
+        },
+        {
+          "chapter": 6,
+          "verses": 30,
+          "globalIndex": 750
+        },
+        {
+          "chapter": 7,
+          "verses": 34,
+          "globalIndex": 751
+        },
+        {
+          "chapter": 8,
+          "verses": 22,
+          "globalIndex": 752
+        },
+        {
+          "chapter": 9,
+          "verses": 26,
+          "globalIndex": 753
+        },
+        {
+          "chapter": 10,
+          "verses": 25,
+          "globalIndex": 754
+        },
+        {
+          "chapter": 11,
+          "verses": 23,
+          "globalIndex": 755
+        },
+        {
+          "chapter": 12,
+          "verses": 17,
+          "globalIndex": 756
+        },
+        {
+          "chapter": 13,
+          "verses": 27,
+          "globalIndex": 757
+        },
+        {
+          "chapter": 14,
+          "verses": 22,
+          "globalIndex": 758
+        },
+        {
+          "chapter": 15,
+          "verses": 21,
+          "globalIndex": 759
+        },
+        {
+          "chapter": 16,
+          "verses": 21,
+          "globalIndex": 760
+        },
+        {
+          "chapter": 17,
+          "verses": 27,
+          "globalIndex": 761
+        },
+        {
+          "chapter": 18,
+          "verses": 23,
+          "globalIndex": 762
+        },
+        {
+          "chapter": 19,
+          "verses": 15,
+          "globalIndex": 763
+        },
+        {
+          "chapter": 20,
+          "verses": 18,
+          "globalIndex": 764
+        },
+        {
+          "chapter": 21,
+          "verses": 14,
+          "globalIndex": 765
+        },
+        {
+          "chapter": 22,
+          "verses": 30,
+          "globalIndex": 766
+        },
+        {
+          "chapter": 23,
+          "verses": 40,
+          "globalIndex": 767
+        },
+        {
+          "chapter": 24,
+          "verses": 10,
+          "globalIndex": 768
+        },
+        {
+          "chapter": 25,
+          "verses": 38,
+          "globalIndex": 769
+        },
+        {
+          "chapter": 26,
+          "verses": 24,
+          "globalIndex": 770
+        },
+        {
+          "chapter": 27,
+          "verses": 22,
+          "globalIndex": 771
+        },
+        {
+          "chapter": 28,
+          "verses": 17,
+          "globalIndex": 772
+        },
+        {
+          "chapter": 29,
+          "verses": 32,
+          "globalIndex": 773
+        },
+        {
+          "chapter": 30,
+          "verses": 24,
+          "globalIndex": 774
+        },
+        {
+          "chapter": 31,
+          "verses": 40,
+          "globalIndex": 775
+        },
+        {
+          "chapter": 32,
+          "verses": 44,
+          "globalIndex": 776
+        },
+        {
+          "chapter": 33,
+          "verses": 26,
+          "globalIndex": 777
+        },
+        {
+          "chapter": 34,
+          "verses": 22,
+          "globalIndex": 778
+        },
+        {
+          "chapter": 35,
+          "verses": 19,
+          "globalIndex": 779
+        },
+        {
+          "chapter": 36,
+          "verses": 32,
+          "globalIndex": 780
+        },
+        {
+          "chapter": 37,
+          "verses": 21,
+          "globalIndex": 781
+        },
+        {
+          "chapter": 38,
+          "verses": 28,
+          "globalIndex": 782
+        },
+        {
+          "chapter": 39,
+          "verses": 18,
+          "globalIndex": 783
+        },
+        {
+          "chapter": 40,
+          "verses": 16,
+          "globalIndex": 784
+        },
+        {
+          "chapter": 41,
+          "verses": 18,
+          "globalIndex": 785
+        },
+        {
+          "chapter": 42,
+          "verses": 22,
+          "globalIndex": 786
+        },
+        {
+          "chapter": 43,
+          "verses": 13,
+          "globalIndex": 787
+        },
+        {
+          "chapter": 44,
+          "verses": 30,
+          "globalIndex": 788
+        },
+        {
+          "chapter": 45,
+          "verses": 5,
+          "globalIndex": 789
+        },
+        {
+          "chapter": 46,
+          "verses": 28,
+          "globalIndex": 790
+        },
+        {
+          "chapter": 47,
+          "verses": 7,
+          "globalIndex": 791
+        },
+        {
+          "chapter": 48,
+          "verses": 47,
+          "globalIndex": 792
+        },
+        {
+          "chapter": 49,
+          "verses": 39,
+          "globalIndex": 793
+        },
+        {
+          "chapter": 50,
+          "verses": 46,
+          "globalIndex": 794
+        },
+        {
+          "chapter": 51,
+          "verses": 64,
+          "globalIndex": 795
+        },
+        {
+          "chapter": 52,
+          "verses": 34,
+          "globalIndex": 796
+        }
+      ]
+    },
+    {
+      "num": 25,
+      "name": "Lamentations",
+      "abbrev": "Lam",
+      "testament": "OT",
+      "group": "Major Prophets",
+      "chapters": 5,
+      "verses": 154,
+      "chapterOffset": 797,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 22,
+          "globalIndex": 797
+        },
+        {
+          "chapter": 2,
+          "verses": 22,
+          "globalIndex": 798
+        },
+        {
+          "chapter": 3,
+          "verses": 66,
+          "globalIndex": 799
+        },
+        {
+          "chapter": 4,
+          "verses": 22,
+          "globalIndex": 800
+        },
+        {
+          "chapter": 5,
+          "verses": 22,
+          "globalIndex": 801
+        }
+      ]
+    },
+    {
+      "num": 26,
+      "name": "Ezekiel",
+      "abbrev": "Ezek",
+      "testament": "OT",
+      "group": "Major Prophets",
+      "chapters": 48,
+      "verses": 1273,
+      "chapterOffset": 802,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 28,
+          "globalIndex": 802
+        },
+        {
+          "chapter": 2,
+          "verses": 10,
+          "globalIndex": 803
+        },
+        {
+          "chapter": 3,
+          "verses": 27,
+          "globalIndex": 804
+        },
+        {
+          "chapter": 4,
+          "verses": 17,
+          "globalIndex": 805
+        },
+        {
+          "chapter": 5,
+          "verses": 17,
+          "globalIndex": 806
+        },
+        {
+          "chapter": 6,
+          "verses": 14,
+          "globalIndex": 807
+        },
+        {
+          "chapter": 7,
+          "verses": 27,
+          "globalIndex": 808
+        },
+        {
+          "chapter": 8,
+          "verses": 18,
+          "globalIndex": 809
+        },
+        {
+          "chapter": 9,
+          "verses": 11,
+          "globalIndex": 810
+        },
+        {
+          "chapter": 10,
+          "verses": 22,
+          "globalIndex": 811
+        },
+        {
+          "chapter": 11,
+          "verses": 25,
+          "globalIndex": 812
+        },
+        {
+          "chapter": 12,
+          "verses": 28,
+          "globalIndex": 813
+        },
+        {
+          "chapter": 13,
+          "verses": 23,
+          "globalIndex": 814
+        },
+        {
+          "chapter": 14,
+          "verses": 23,
+          "globalIndex": 815
+        },
+        {
+          "chapter": 15,
+          "verses": 8,
+          "globalIndex": 816
+        },
+        {
+          "chapter": 16,
+          "verses": 63,
+          "globalIndex": 817
+        },
+        {
+          "chapter": 17,
+          "verses": 24,
+          "globalIndex": 818
+        },
+        {
+          "chapter": 18,
+          "verses": 32,
+          "globalIndex": 819
+        },
+        {
+          "chapter": 19,
+          "verses": 14,
+          "globalIndex": 820
+        },
+        {
+          "chapter": 20,
+          "verses": 49,
+          "globalIndex": 821
+        },
+        {
+          "chapter": 21,
+          "verses": 32,
+          "globalIndex": 822
+        },
+        {
+          "chapter": 22,
+          "verses": 31,
+          "globalIndex": 823
+        },
+        {
+          "chapter": 23,
+          "verses": 49,
+          "globalIndex": 824
+        },
+        {
+          "chapter": 24,
+          "verses": 27,
+          "globalIndex": 825
+        },
+        {
+          "chapter": 25,
+          "verses": 17,
+          "globalIndex": 826
+        },
+        {
+          "chapter": 26,
+          "verses": 21,
+          "globalIndex": 827
+        },
+        {
+          "chapter": 27,
+          "verses": 36,
+          "globalIndex": 828
+        },
+        {
+          "chapter": 28,
+          "verses": 26,
+          "globalIndex": 829
+        },
+        {
+          "chapter": 29,
+          "verses": 21,
+          "globalIndex": 830
+        },
+        {
+          "chapter": 30,
+          "verses": 26,
+          "globalIndex": 831
+        },
+        {
+          "chapter": 31,
+          "verses": 18,
+          "globalIndex": 832
+        },
+        {
+          "chapter": 32,
+          "verses": 32,
+          "globalIndex": 833
+        },
+        {
+          "chapter": 33,
+          "verses": 33,
+          "globalIndex": 834
+        },
+        {
+          "chapter": 34,
+          "verses": 31,
+          "globalIndex": 835
+        },
+        {
+          "chapter": 35,
+          "verses": 15,
+          "globalIndex": 836
+        },
+        {
+          "chapter": 36,
+          "verses": 38,
+          "globalIndex": 837
+        },
+        {
+          "chapter": 37,
+          "verses": 28,
+          "globalIndex": 838
+        },
+        {
+          "chapter": 38,
+          "verses": 23,
+          "globalIndex": 839
+        },
+        {
+          "chapter": 39,
+          "verses": 29,
+          "globalIndex": 840
+        },
+        {
+          "chapter": 40,
+          "verses": 49,
+          "globalIndex": 841
+        },
+        {
+          "chapter": 41,
+          "verses": 26,
+          "globalIndex": 842
+        },
+        {
+          "chapter": 42,
+          "verses": 20,
+          "globalIndex": 843
+        },
+        {
+          "chapter": 43,
+          "verses": 27,
+          "globalIndex": 844
+        },
+        {
+          "chapter": 44,
+          "verses": 31,
+          "globalIndex": 845
+        },
+        {
+          "chapter": 45,
+          "verses": 25,
+          "globalIndex": 846
+        },
+        {
+          "chapter": 46,
+          "verses": 24,
+          "globalIndex": 847
+        },
+        {
+          "chapter": 47,
+          "verses": 23,
+          "globalIndex": 848
+        },
+        {
+          "chapter": 48,
+          "verses": 35,
+          "globalIndex": 849
+        }
+      ]
+    },
+    {
+      "num": 27,
+      "name": "Daniel",
+      "abbrev": "Dan",
+      "testament": "OT",
+      "group": "Major Prophets",
+      "chapters": 12,
+      "verses": 357,
+      "chapterOffset": 850,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 21,
+          "globalIndex": 850
+        },
+        {
+          "chapter": 2,
+          "verses": 49,
+          "globalIndex": 851
+        },
+        {
+          "chapter": 3,
+          "verses": 30,
+          "globalIndex": 852
+        },
+        {
+          "chapter": 4,
+          "verses": 37,
+          "globalIndex": 853
+        },
+        {
+          "chapter": 5,
+          "verses": 31,
+          "globalIndex": 854
+        },
+        {
+          "chapter": 6,
+          "verses": 28,
+          "globalIndex": 855
+        },
+        {
+          "chapter": 7,
+          "verses": 28,
+          "globalIndex": 856
+        },
+        {
+          "chapter": 8,
+          "verses": 27,
+          "globalIndex": 857
+        },
+        {
+          "chapter": 9,
+          "verses": 27,
+          "globalIndex": 858
+        },
+        {
+          "chapter": 10,
+          "verses": 21,
+          "globalIndex": 859
+        },
+        {
+          "chapter": 11,
+          "verses": 45,
+          "globalIndex": 860
+        },
+        {
+          "chapter": 12,
+          "verses": 13,
+          "globalIndex": 861
+        }
+      ]
+    },
+    {
+      "num": 28,
+      "name": "Hosea",
+      "abbrev": "Hos",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 14,
+      "verses": 197,
+      "chapterOffset": 862,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 11,
+          "globalIndex": 862
+        },
+        {
+          "chapter": 2,
+          "verses": 23,
+          "globalIndex": 863
+        },
+        {
+          "chapter": 3,
+          "verses": 5,
+          "globalIndex": 864
+        },
+        {
+          "chapter": 4,
+          "verses": 19,
+          "globalIndex": 865
+        },
+        {
+          "chapter": 5,
+          "verses": 15,
+          "globalIndex": 866
+        },
+        {
+          "chapter": 6,
+          "verses": 11,
+          "globalIndex": 867
+        },
+        {
+          "chapter": 7,
+          "verses": 16,
+          "globalIndex": 868
+        },
+        {
+          "chapter": 8,
+          "verses": 14,
+          "globalIndex": 869
+        },
+        {
+          "chapter": 9,
+          "verses": 17,
+          "globalIndex": 870
+        },
+        {
+          "chapter": 10,
+          "verses": 15,
+          "globalIndex": 871
+        },
+        {
+          "chapter": 11,
+          "verses": 12,
+          "globalIndex": 872
+        },
+        {
+          "chapter": 12,
+          "verses": 14,
+          "globalIndex": 873
+        },
+        {
+          "chapter": 13,
+          "verses": 16,
+          "globalIndex": 874
+        },
+        {
+          "chapter": 14,
+          "verses": 9,
+          "globalIndex": 875
+        }
+      ]
+    },
+    {
+      "num": 29,
+      "name": "Joel",
+      "abbrev": "Joel",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 3,
+      "verses": 73,
+      "chapterOffset": 876,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 20,
+          "globalIndex": 876
+        },
+        {
+          "chapter": 2,
+          "verses": 32,
+          "globalIndex": 877
+        },
+        {
+          "chapter": 3,
+          "verses": 21,
+          "globalIndex": 878
+        }
+      ]
+    },
+    {
+      "num": 30,
+      "name": "Amos",
+      "abbrev": "Amos",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 9,
+      "verses": 146,
+      "chapterOffset": 879,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 15,
+          "globalIndex": 879
+        },
+        {
+          "chapter": 2,
+          "verses": 16,
+          "globalIndex": 880
+        },
+        {
+          "chapter": 3,
+          "verses": 15,
+          "globalIndex": 881
+        },
+        {
+          "chapter": 4,
+          "verses": 13,
+          "globalIndex": 882
+        },
+        {
+          "chapter": 5,
+          "verses": 27,
+          "globalIndex": 883
+        },
+        {
+          "chapter": 6,
+          "verses": 14,
+          "globalIndex": 884
+        },
+        {
+          "chapter": 7,
+          "verses": 17,
+          "globalIndex": 885
+        },
+        {
+          "chapter": 8,
+          "verses": 14,
+          "globalIndex": 886
+        },
+        {
+          "chapter": 9,
+          "verses": 15,
+          "globalIndex": 887
+        }
+      ]
+    },
+    {
+      "num": 31,
+      "name": "Obadiah",
+      "abbrev": "Obad",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 1,
+      "verses": 21,
+      "chapterOffset": 888,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 21,
+          "globalIndex": 888
+        }
+      ]
+    },
+    {
+      "num": 32,
+      "name": "Jonah",
+      "abbrev": "Jonah",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 4,
+      "verses": 48,
+      "chapterOffset": 889,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 17,
+          "globalIndex": 889
+        },
+        {
+          "chapter": 2,
+          "verses": 10,
+          "globalIndex": 890
+        },
+        {
+          "chapter": 3,
+          "verses": 10,
+          "globalIndex": 891
+        },
+        {
+          "chapter": 4,
+          "verses": 11,
+          "globalIndex": 892
+        }
+      ]
+    },
+    {
+      "num": 33,
+      "name": "Micah",
+      "abbrev": "Mic",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 7,
+      "verses": 105,
+      "chapterOffset": 893,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 16,
+          "globalIndex": 893
+        },
+        {
+          "chapter": 2,
+          "verses": 13,
+          "globalIndex": 894
+        },
+        {
+          "chapter": 3,
+          "verses": 12,
+          "globalIndex": 895
+        },
+        {
+          "chapter": 4,
+          "verses": 13,
+          "globalIndex": 896
+        },
+        {
+          "chapter": 5,
+          "verses": 15,
+          "globalIndex": 897
+        },
+        {
+          "chapter": 6,
+          "verses": 16,
+          "globalIndex": 898
+        },
+        {
+          "chapter": 7,
+          "verses": 20,
+          "globalIndex": 899
+        }
+      ]
+    },
+    {
+      "num": 34,
+      "name": "Nahum",
+      "abbrev": "Nah",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 3,
+      "verses": 47,
+      "chapterOffset": 900,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 15,
+          "globalIndex": 900
+        },
+        {
+          "chapter": 2,
+          "verses": 13,
+          "globalIndex": 901
+        },
+        {
+          "chapter": 3,
+          "verses": 19,
+          "globalIndex": 902
+        }
+      ]
+    },
+    {
+      "num": 35,
+      "name": "Habakkuk",
+      "abbrev": "Hab",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 3,
+      "verses": 56,
+      "chapterOffset": 903,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 17,
+          "globalIndex": 903
+        },
+        {
+          "chapter": 2,
+          "verses": 20,
+          "globalIndex": 904
+        },
+        {
+          "chapter": 3,
+          "verses": 19,
+          "globalIndex": 905
+        }
+      ]
+    },
+    {
+      "num": 36,
+      "name": "Zephaniah",
+      "abbrev": "Zeph",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 3,
+      "verses": 53,
+      "chapterOffset": 906,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 18,
+          "globalIndex": 906
+        },
+        {
+          "chapter": 2,
+          "verses": 15,
+          "globalIndex": 907
+        },
+        {
+          "chapter": 3,
+          "verses": 20,
+          "globalIndex": 908
+        }
+      ]
+    },
+    {
+      "num": 37,
+      "name": "Haggai",
+      "abbrev": "Hag",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 2,
+      "verses": 38,
+      "chapterOffset": 909,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 15,
+          "globalIndex": 909
+        },
+        {
+          "chapter": 2,
+          "verses": 23,
+          "globalIndex": 910
+        }
+      ]
+    },
+    {
+      "num": 38,
+      "name": "Zechariah",
+      "abbrev": "Zech",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 14,
+      "verses": 211,
+      "chapterOffset": 911,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 21,
+          "globalIndex": 911
+        },
+        {
+          "chapter": 2,
+          "verses": 13,
+          "globalIndex": 912
+        },
+        {
+          "chapter": 3,
+          "verses": 10,
+          "globalIndex": 913
+        },
+        {
+          "chapter": 4,
+          "verses": 14,
+          "globalIndex": 914
+        },
+        {
+          "chapter": 5,
+          "verses": 11,
+          "globalIndex": 915
+        },
+        {
+          "chapter": 6,
+          "verses": 15,
+          "globalIndex": 916
+        },
+        {
+          "chapter": 7,
+          "verses": 14,
+          "globalIndex": 917
+        },
+        {
+          "chapter": 8,
+          "verses": 23,
+          "globalIndex": 918
+        },
+        {
+          "chapter": 9,
+          "verses": 17,
+          "globalIndex": 919
+        },
+        {
+          "chapter": 10,
+          "verses": 12,
+          "globalIndex": 920
+        },
+        {
+          "chapter": 11,
+          "verses": 17,
+          "globalIndex": 921
+        },
+        {
+          "chapter": 12,
+          "verses": 14,
+          "globalIndex": 922
+        },
+        {
+          "chapter": 13,
+          "verses": 9,
+          "globalIndex": 923
+        },
+        {
+          "chapter": 14,
+          "verses": 21,
+          "globalIndex": 924
+        }
+      ]
+    },
+    {
+      "num": 39,
+      "name": "Malachi",
+      "abbrev": "Mal",
+      "testament": "OT",
+      "group": "Minor Prophets",
+      "chapters": 4,
+      "verses": 55,
+      "chapterOffset": 925,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 14,
+          "globalIndex": 925
+        },
+        {
+          "chapter": 2,
+          "verses": 17,
+          "globalIndex": 926
+        },
+        {
+          "chapter": 3,
+          "verses": 18,
+          "globalIndex": 927
+        },
+        {
+          "chapter": 4,
+          "verses": 6,
+          "globalIndex": 928
+        }
+      ]
+    },
+    {
+      "num": 40,
+      "name": "Matthew",
+      "abbrev": "Matt",
+      "testament": "NT",
+      "group": "Gospels",
+      "chapters": 28,
+      "verses": 1071,
+      "chapterOffset": 929,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 25,
+          "globalIndex": 929
+        },
+        {
+          "chapter": 2,
+          "verses": 23,
+          "globalIndex": 930
+        },
+        {
+          "chapter": 3,
+          "verses": 17,
+          "globalIndex": 931
+        },
+        {
+          "chapter": 4,
+          "verses": 25,
+          "globalIndex": 932
+        },
+        {
+          "chapter": 5,
+          "verses": 48,
+          "globalIndex": 933
+        },
+        {
+          "chapter": 6,
+          "verses": 34,
+          "globalIndex": 934
+        },
+        {
+          "chapter": 7,
+          "verses": 29,
+          "globalIndex": 935
+        },
+        {
+          "chapter": 8,
+          "verses": 34,
+          "globalIndex": 936
+        },
+        {
+          "chapter": 9,
+          "verses": 38,
+          "globalIndex": 937
+        },
+        {
+          "chapter": 10,
+          "verses": 42,
+          "globalIndex": 938
+        },
+        {
+          "chapter": 11,
+          "verses": 30,
+          "globalIndex": 939
+        },
+        {
+          "chapter": 12,
+          "verses": 50,
+          "globalIndex": 940
+        },
+        {
+          "chapter": 13,
+          "verses": 58,
+          "globalIndex": 941
+        },
+        {
+          "chapter": 14,
+          "verses": 36,
+          "globalIndex": 942
+        },
+        {
+          "chapter": 15,
+          "verses": 39,
+          "globalIndex": 943
+        },
+        {
+          "chapter": 16,
+          "verses": 28,
+          "globalIndex": 944
+        },
+        {
+          "chapter": 17,
+          "verses": 27,
+          "globalIndex": 945
+        },
+        {
+          "chapter": 18,
+          "verses": 35,
+          "globalIndex": 946
+        },
+        {
+          "chapter": 19,
+          "verses": 30,
+          "globalIndex": 947
+        },
+        {
+          "chapter": 20,
+          "verses": 34,
+          "globalIndex": 948
+        },
+        {
+          "chapter": 21,
+          "verses": 46,
+          "globalIndex": 949
+        },
+        {
+          "chapter": 22,
+          "verses": 46,
+          "globalIndex": 950
+        },
+        {
+          "chapter": 23,
+          "verses": 39,
+          "globalIndex": 951
+        },
+        {
+          "chapter": 24,
+          "verses": 51,
+          "globalIndex": 952
+        },
+        {
+          "chapter": 25,
+          "verses": 46,
+          "globalIndex": 953
+        },
+        {
+          "chapter": 26,
+          "verses": 75,
+          "globalIndex": 954
+        },
+        {
+          "chapter": 27,
+          "verses": 66,
+          "globalIndex": 955
+        },
+        {
+          "chapter": 28,
+          "verses": 20,
+          "globalIndex": 956
+        }
+      ]
+    },
+    {
+      "num": 41,
+      "name": "Mark",
+      "abbrev": "Mark",
+      "testament": "NT",
+      "group": "Gospels",
+      "chapters": 16,
+      "verses": 678,
+      "chapterOffset": 957,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 45,
+          "globalIndex": 957
+        },
+        {
+          "chapter": 2,
+          "verses": 28,
+          "globalIndex": 958
+        },
+        {
+          "chapter": 3,
+          "verses": 35,
+          "globalIndex": 959
+        },
+        {
+          "chapter": 4,
+          "verses": 41,
+          "globalIndex": 960
+        },
+        {
+          "chapter": 5,
+          "verses": 43,
+          "globalIndex": 961
+        },
+        {
+          "chapter": 6,
+          "verses": 56,
+          "globalIndex": 962
+        },
+        {
+          "chapter": 7,
+          "verses": 37,
+          "globalIndex": 963
+        },
+        {
+          "chapter": 8,
+          "verses": 38,
+          "globalIndex": 964
+        },
+        {
+          "chapter": 9,
+          "verses": 50,
+          "globalIndex": 965
+        },
+        {
+          "chapter": 10,
+          "verses": 52,
+          "globalIndex": 966
+        },
+        {
+          "chapter": 11,
+          "verses": 33,
+          "globalIndex": 967
+        },
+        {
+          "chapter": 12,
+          "verses": 44,
+          "globalIndex": 968
+        },
+        {
+          "chapter": 13,
+          "verses": 37,
+          "globalIndex": 969
+        },
+        {
+          "chapter": 14,
+          "verses": 72,
+          "globalIndex": 970
+        },
+        {
+          "chapter": 15,
+          "verses": 47,
+          "globalIndex": 971
+        },
+        {
+          "chapter": 16,
+          "verses": 20,
+          "globalIndex": 972
+        }
+      ]
+    },
+    {
+      "num": 42,
+      "name": "Luke",
+      "abbrev": "Luke",
+      "testament": "NT",
+      "group": "Gospels",
+      "chapters": 24,
+      "verses": 1151,
+      "chapterOffset": 973,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 80,
+          "globalIndex": 973
+        },
+        {
+          "chapter": 2,
+          "verses": 52,
+          "globalIndex": 974
+        },
+        {
+          "chapter": 3,
+          "verses": 38,
+          "globalIndex": 975
+        },
+        {
+          "chapter": 4,
+          "verses": 44,
+          "globalIndex": 976
+        },
+        {
+          "chapter": 5,
+          "verses": 39,
+          "globalIndex": 977
+        },
+        {
+          "chapter": 6,
+          "verses": 49,
+          "globalIndex": 978
+        },
+        {
+          "chapter": 7,
+          "verses": 50,
+          "globalIndex": 979
+        },
+        {
+          "chapter": 8,
+          "verses": 56,
+          "globalIndex": 980
+        },
+        {
+          "chapter": 9,
+          "verses": 62,
+          "globalIndex": 981
+        },
+        {
+          "chapter": 10,
+          "verses": 42,
+          "globalIndex": 982
+        },
+        {
+          "chapter": 11,
+          "verses": 54,
+          "globalIndex": 983
+        },
+        {
+          "chapter": 12,
+          "verses": 59,
+          "globalIndex": 984
+        },
+        {
+          "chapter": 13,
+          "verses": 35,
+          "globalIndex": 985
+        },
+        {
+          "chapter": 14,
+          "verses": 35,
+          "globalIndex": 986
+        },
+        {
+          "chapter": 15,
+          "verses": 32,
+          "globalIndex": 987
+        },
+        {
+          "chapter": 16,
+          "verses": 31,
+          "globalIndex": 988
+        },
+        {
+          "chapter": 17,
+          "verses": 37,
+          "globalIndex": 989
+        },
+        {
+          "chapter": 18,
+          "verses": 43,
+          "globalIndex": 990
+        },
+        {
+          "chapter": 19,
+          "verses": 48,
+          "globalIndex": 991
+        },
+        {
+          "chapter": 20,
+          "verses": 47,
+          "globalIndex": 992
+        },
+        {
+          "chapter": 21,
+          "verses": 38,
+          "globalIndex": 993
+        },
+        {
+          "chapter": 22,
+          "verses": 71,
+          "globalIndex": 994
+        },
+        {
+          "chapter": 23,
+          "verses": 56,
+          "globalIndex": 995
+        },
+        {
+          "chapter": 24,
+          "verses": 53,
+          "globalIndex": 996
+        }
+      ]
+    },
+    {
+      "num": 43,
+      "name": "John",
+      "abbrev": "John",
+      "testament": "NT",
+      "group": "Gospels",
+      "chapters": 21,
+      "verses": 879,
+      "chapterOffset": 997,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 51,
+          "globalIndex": 997
+        },
+        {
+          "chapter": 2,
+          "verses": 25,
+          "globalIndex": 998
+        },
+        {
+          "chapter": 3,
+          "verses": 36,
+          "globalIndex": 999
+        },
+        {
+          "chapter": 4,
+          "verses": 54,
+          "globalIndex": 1000
+        },
+        {
+          "chapter": 5,
+          "verses": 47,
+          "globalIndex": 1001
+        },
+        {
+          "chapter": 6,
+          "verses": 71,
+          "globalIndex": 1002
+        },
+        {
+          "chapter": 7,
+          "verses": 53,
+          "globalIndex": 1003
+        },
+        {
+          "chapter": 8,
+          "verses": 59,
+          "globalIndex": 1004
+        },
+        {
+          "chapter": 9,
+          "verses": 41,
+          "globalIndex": 1005
+        },
+        {
+          "chapter": 10,
+          "verses": 42,
+          "globalIndex": 1006
+        },
+        {
+          "chapter": 11,
+          "verses": 57,
+          "globalIndex": 1007
+        },
+        {
+          "chapter": 12,
+          "verses": 50,
+          "globalIndex": 1008
+        },
+        {
+          "chapter": 13,
+          "verses": 38,
+          "globalIndex": 1009
+        },
+        {
+          "chapter": 14,
+          "verses": 31,
+          "globalIndex": 1010
+        },
+        {
+          "chapter": 15,
+          "verses": 27,
+          "globalIndex": 1011
+        },
+        {
+          "chapter": 16,
+          "verses": 33,
+          "globalIndex": 1012
+        },
+        {
+          "chapter": 17,
+          "verses": 26,
+          "globalIndex": 1013
+        },
+        {
+          "chapter": 18,
+          "verses": 40,
+          "globalIndex": 1014
+        },
+        {
+          "chapter": 19,
+          "verses": 42,
+          "globalIndex": 1015
+        },
+        {
+          "chapter": 20,
+          "verses": 31,
+          "globalIndex": 1016
+        },
+        {
+          "chapter": 21,
+          "verses": 25,
+          "globalIndex": 1017
+        }
+      ]
+    },
+    {
+      "num": 44,
+      "name": "Acts",
+      "abbrev": "Acts",
+      "testament": "NT",
+      "group": "Acts",
+      "chapters": 28,
+      "verses": 1007,
+      "chapterOffset": 1018,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 26,
+          "globalIndex": 1018
+        },
+        {
+          "chapter": 2,
+          "verses": 47,
+          "globalIndex": 1019
+        },
+        {
+          "chapter": 3,
+          "verses": 26,
+          "globalIndex": 1020
+        },
+        {
+          "chapter": 4,
+          "verses": 37,
+          "globalIndex": 1021
+        },
+        {
+          "chapter": 5,
+          "verses": 42,
+          "globalIndex": 1022
+        },
+        {
+          "chapter": 6,
+          "verses": 15,
+          "globalIndex": 1023
+        },
+        {
+          "chapter": 7,
+          "verses": 60,
+          "globalIndex": 1024
+        },
+        {
+          "chapter": 8,
+          "verses": 40,
+          "globalIndex": 1025
+        },
+        {
+          "chapter": 9,
+          "verses": 43,
+          "globalIndex": 1026
+        },
+        {
+          "chapter": 10,
+          "verses": 48,
+          "globalIndex": 1027
+        },
+        {
+          "chapter": 11,
+          "verses": 30,
+          "globalIndex": 1028
+        },
+        {
+          "chapter": 12,
+          "verses": 25,
+          "globalIndex": 1029
+        },
+        {
+          "chapter": 13,
+          "verses": 52,
+          "globalIndex": 1030
+        },
+        {
+          "chapter": 14,
+          "verses": 28,
+          "globalIndex": 1031
+        },
+        {
+          "chapter": 15,
+          "verses": 41,
+          "globalIndex": 1032
+        },
+        {
+          "chapter": 16,
+          "verses": 40,
+          "globalIndex": 1033
+        },
+        {
+          "chapter": 17,
+          "verses": 34,
+          "globalIndex": 1034
+        },
+        {
+          "chapter": 18,
+          "verses": 28,
+          "globalIndex": 1035
+        },
+        {
+          "chapter": 19,
+          "verses": 41,
+          "globalIndex": 1036
+        },
+        {
+          "chapter": 20,
+          "verses": 38,
+          "globalIndex": 1037
+        },
+        {
+          "chapter": 21,
+          "verses": 40,
+          "globalIndex": 1038
+        },
+        {
+          "chapter": 22,
+          "verses": 30,
+          "globalIndex": 1039
+        },
+        {
+          "chapter": 23,
+          "verses": 35,
+          "globalIndex": 1040
+        },
+        {
+          "chapter": 24,
+          "verses": 27,
+          "globalIndex": 1041
+        },
+        {
+          "chapter": 25,
+          "verses": 27,
+          "globalIndex": 1042
+        },
+        {
+          "chapter": 26,
+          "verses": 32,
+          "globalIndex": 1043
+        },
+        {
+          "chapter": 27,
+          "verses": 44,
+          "globalIndex": 1044
+        },
+        {
+          "chapter": 28,
+          "verses": 31,
+          "globalIndex": 1045
+        }
+      ]
+    },
+    {
+      "num": 45,
+      "name": "Romans",
+      "abbrev": "Rom",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 16,
+      "verses": 433,
+      "chapterOffset": 1046,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 32,
+          "globalIndex": 1046
+        },
+        {
+          "chapter": 2,
+          "verses": 29,
+          "globalIndex": 1047
+        },
+        {
+          "chapter": 3,
+          "verses": 31,
+          "globalIndex": 1048
+        },
+        {
+          "chapter": 4,
+          "verses": 25,
+          "globalIndex": 1049
+        },
+        {
+          "chapter": 5,
+          "verses": 21,
+          "globalIndex": 1050
+        },
+        {
+          "chapter": 6,
+          "verses": 23,
+          "globalIndex": 1051
+        },
+        {
+          "chapter": 7,
+          "verses": 25,
+          "globalIndex": 1052
+        },
+        {
+          "chapter": 8,
+          "verses": 39,
+          "globalIndex": 1053
+        },
+        {
+          "chapter": 9,
+          "verses": 33,
+          "globalIndex": 1054
+        },
+        {
+          "chapter": 10,
+          "verses": 21,
+          "globalIndex": 1055
+        },
+        {
+          "chapter": 11,
+          "verses": 36,
+          "globalIndex": 1056
+        },
+        {
+          "chapter": 12,
+          "verses": 21,
+          "globalIndex": 1057
+        },
+        {
+          "chapter": 13,
+          "verses": 14,
+          "globalIndex": 1058
+        },
+        {
+          "chapter": 14,
+          "verses": 23,
+          "globalIndex": 1059
+        },
+        {
+          "chapter": 15,
+          "verses": 33,
+          "globalIndex": 1060
+        },
+        {
+          "chapter": 16,
+          "verses": 27,
+          "globalIndex": 1061
+        }
+      ]
+    },
+    {
+      "num": 46,
+      "name": "1 Corinthians",
+      "abbrev": "1Cor",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 16,
+      "verses": 437,
+      "chapterOffset": 1062,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 31,
+          "globalIndex": 1062
+        },
+        {
+          "chapter": 2,
+          "verses": 16,
+          "globalIndex": 1063
+        },
+        {
+          "chapter": 3,
+          "verses": 23,
+          "globalIndex": 1064
+        },
+        {
+          "chapter": 4,
+          "verses": 21,
+          "globalIndex": 1065
+        },
+        {
+          "chapter": 5,
+          "verses": 13,
+          "globalIndex": 1066
+        },
+        {
+          "chapter": 6,
+          "verses": 20,
+          "globalIndex": 1067
+        },
+        {
+          "chapter": 7,
+          "verses": 40,
+          "globalIndex": 1068
+        },
+        {
+          "chapter": 8,
+          "verses": 13,
+          "globalIndex": 1069
+        },
+        {
+          "chapter": 9,
+          "verses": 27,
+          "globalIndex": 1070
+        },
+        {
+          "chapter": 10,
+          "verses": 33,
+          "globalIndex": 1071
+        },
+        {
+          "chapter": 11,
+          "verses": 34,
+          "globalIndex": 1072
+        },
+        {
+          "chapter": 12,
+          "verses": 31,
+          "globalIndex": 1073
+        },
+        {
+          "chapter": 13,
+          "verses": 13,
+          "globalIndex": 1074
+        },
+        {
+          "chapter": 14,
+          "verses": 40,
+          "globalIndex": 1075
+        },
+        {
+          "chapter": 15,
+          "verses": 58,
+          "globalIndex": 1076
+        },
+        {
+          "chapter": 16,
+          "verses": 24,
+          "globalIndex": 1077
+        }
+      ]
+    },
+    {
+      "num": 47,
+      "name": "2 Corinthians",
+      "abbrev": "2Cor",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 13,
+      "verses": 257,
+      "chapterOffset": 1078,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 24,
+          "globalIndex": 1078
+        },
+        {
+          "chapter": 2,
+          "verses": 17,
+          "globalIndex": 1079
+        },
+        {
+          "chapter": 3,
+          "verses": 18,
+          "globalIndex": 1080
+        },
+        {
+          "chapter": 4,
+          "verses": 18,
+          "globalIndex": 1081
+        },
+        {
+          "chapter": 5,
+          "verses": 21,
+          "globalIndex": 1082
+        },
+        {
+          "chapter": 6,
+          "verses": 18,
+          "globalIndex": 1083
+        },
+        {
+          "chapter": 7,
+          "verses": 16,
+          "globalIndex": 1084
+        },
+        {
+          "chapter": 8,
+          "verses": 24,
+          "globalIndex": 1085
+        },
+        {
+          "chapter": 9,
+          "verses": 15,
+          "globalIndex": 1086
+        },
+        {
+          "chapter": 10,
+          "verses": 18,
+          "globalIndex": 1087
+        },
+        {
+          "chapter": 11,
+          "verses": 33,
+          "globalIndex": 1088
+        },
+        {
+          "chapter": 12,
+          "verses": 21,
+          "globalIndex": 1089
+        },
+        {
+          "chapter": 13,
+          "verses": 14,
+          "globalIndex": 1090
+        }
+      ]
+    },
+    {
+      "num": 48,
+      "name": "Galatians",
+      "abbrev": "Gal",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 6,
+      "verses": 149,
+      "chapterOffset": 1091,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 24,
+          "globalIndex": 1091
+        },
+        {
+          "chapter": 2,
+          "verses": 21,
+          "globalIndex": 1092
+        },
+        {
+          "chapter": 3,
+          "verses": 29,
+          "globalIndex": 1093
+        },
+        {
+          "chapter": 4,
+          "verses": 31,
+          "globalIndex": 1094
+        },
+        {
+          "chapter": 5,
+          "verses": 26,
+          "globalIndex": 1095
+        },
+        {
+          "chapter": 6,
+          "verses": 18,
+          "globalIndex": 1096
+        }
+      ]
+    },
+    {
+      "num": 49,
+      "name": "Ephesians",
+      "abbrev": "Eph",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 6,
+      "verses": 155,
+      "chapterOffset": 1097,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 23,
+          "globalIndex": 1097
+        },
+        {
+          "chapter": 2,
+          "verses": 22,
+          "globalIndex": 1098
+        },
+        {
+          "chapter": 3,
+          "verses": 21,
+          "globalIndex": 1099
+        },
+        {
+          "chapter": 4,
+          "verses": 32,
+          "globalIndex": 1100
+        },
+        {
+          "chapter": 5,
+          "verses": 33,
+          "globalIndex": 1101
+        },
+        {
+          "chapter": 6,
+          "verses": 24,
+          "globalIndex": 1102
+        }
+      ]
+    },
+    {
+      "num": 50,
+      "name": "Philippians",
+      "abbrev": "Phil",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 4,
+      "verses": 104,
+      "chapterOffset": 1103,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 30,
+          "globalIndex": 1103
+        },
+        {
+          "chapter": 2,
+          "verses": 30,
+          "globalIndex": 1104
+        },
+        {
+          "chapter": 3,
+          "verses": 21,
+          "globalIndex": 1105
+        },
+        {
+          "chapter": 4,
+          "verses": 23,
+          "globalIndex": 1106
+        }
+      ]
+    },
+    {
+      "num": 51,
+      "name": "Colossians",
+      "abbrev": "Col",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 4,
+      "verses": 95,
+      "chapterOffset": 1107,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 29,
+          "globalIndex": 1107
+        },
+        {
+          "chapter": 2,
+          "verses": 23,
+          "globalIndex": 1108
+        },
+        {
+          "chapter": 3,
+          "verses": 25,
+          "globalIndex": 1109
+        },
+        {
+          "chapter": 4,
+          "verses": 18,
+          "globalIndex": 1110
+        }
+      ]
+    },
+    {
+      "num": 52,
+      "name": "1 Thessalonians",
+      "abbrev": "1Thess",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 5,
+      "verses": 89,
+      "chapterOffset": 1111,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 10,
+          "globalIndex": 1111
+        },
+        {
+          "chapter": 2,
+          "verses": 20,
+          "globalIndex": 1112
+        },
+        {
+          "chapter": 3,
+          "verses": 13,
+          "globalIndex": 1113
+        },
+        {
+          "chapter": 4,
+          "verses": 18,
+          "globalIndex": 1114
+        },
+        {
+          "chapter": 5,
+          "verses": 28,
+          "globalIndex": 1115
+        }
+      ]
+    },
+    {
+      "num": 53,
+      "name": "2 Thessalonians",
+      "abbrev": "2Thess",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 3,
+      "verses": 47,
+      "chapterOffset": 1116,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 12,
+          "globalIndex": 1116
+        },
+        {
+          "chapter": 2,
+          "verses": 17,
+          "globalIndex": 1117
+        },
+        {
+          "chapter": 3,
+          "verses": 18,
+          "globalIndex": 1118
+        }
+      ]
+    },
+    {
+      "num": 54,
+      "name": "1 Timothy",
+      "abbrev": "1Tim",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 6,
+      "verses": 113,
+      "chapterOffset": 1119,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 20,
+          "globalIndex": 1119
+        },
+        {
+          "chapter": 2,
+          "verses": 15,
+          "globalIndex": 1120
+        },
+        {
+          "chapter": 3,
+          "verses": 16,
+          "globalIndex": 1121
+        },
+        {
+          "chapter": 4,
+          "verses": 16,
+          "globalIndex": 1122
+        },
+        {
+          "chapter": 5,
+          "verses": 25,
+          "globalIndex": 1123
+        },
+        {
+          "chapter": 6,
+          "verses": 21,
+          "globalIndex": 1124
+        }
+      ]
+    },
+    {
+      "num": 55,
+      "name": "2 Timothy",
+      "abbrev": "2Tim",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 4,
+      "verses": 83,
+      "chapterOffset": 1125,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 18,
+          "globalIndex": 1125
+        },
+        {
+          "chapter": 2,
+          "verses": 26,
+          "globalIndex": 1126
+        },
+        {
+          "chapter": 3,
+          "verses": 17,
+          "globalIndex": 1127
+        },
+        {
+          "chapter": 4,
+          "verses": 22,
+          "globalIndex": 1128
+        }
+      ]
+    },
+    {
+      "num": 56,
+      "name": "Titus",
+      "abbrev": "Titus",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 3,
+      "verses": 46,
+      "chapterOffset": 1129,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 16,
+          "globalIndex": 1129
+        },
+        {
+          "chapter": 2,
+          "verses": 15,
+          "globalIndex": 1130
+        },
+        {
+          "chapter": 3,
+          "verses": 15,
+          "globalIndex": 1131
+        }
+      ]
+    },
+    {
+      "num": 57,
+      "name": "Philemon",
+      "abbrev": "Phlm",
+      "testament": "NT",
+      "group": "Pauline",
+      "chapters": 1,
+      "verses": 25,
+      "chapterOffset": 1132,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 25,
+          "globalIndex": 1132
+        }
+      ]
+    },
+    {
+      "num": 58,
+      "name": "Hebrews",
+      "abbrev": "Heb",
+      "testament": "NT",
+      "group": "General",
+      "chapters": 13,
+      "verses": 303,
+      "chapterOffset": 1133,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 14,
+          "globalIndex": 1133
+        },
+        {
+          "chapter": 2,
+          "verses": 18,
+          "globalIndex": 1134
+        },
+        {
+          "chapter": 3,
+          "verses": 19,
+          "globalIndex": 1135
+        },
+        {
+          "chapter": 4,
+          "verses": 16,
+          "globalIndex": 1136
+        },
+        {
+          "chapter": 5,
+          "verses": 14,
+          "globalIndex": 1137
+        },
+        {
+          "chapter": 6,
+          "verses": 20,
+          "globalIndex": 1138
+        },
+        {
+          "chapter": 7,
+          "verses": 28,
+          "globalIndex": 1139
+        },
+        {
+          "chapter": 8,
+          "verses": 13,
+          "globalIndex": 1140
+        },
+        {
+          "chapter": 9,
+          "verses": 28,
+          "globalIndex": 1141
+        },
+        {
+          "chapter": 10,
+          "verses": 39,
+          "globalIndex": 1142
+        },
+        {
+          "chapter": 11,
+          "verses": 40,
+          "globalIndex": 1143
+        },
+        {
+          "chapter": 12,
+          "verses": 29,
+          "globalIndex": 1144
+        },
+        {
+          "chapter": 13,
+          "verses": 25,
+          "globalIndex": 1145
+        }
+      ]
+    },
+    {
+      "num": 59,
+      "name": "James",
+      "abbrev": "Jas",
+      "testament": "NT",
+      "group": "General",
+      "chapters": 5,
+      "verses": 108,
+      "chapterOffset": 1146,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 27,
+          "globalIndex": 1146
+        },
+        {
+          "chapter": 2,
+          "verses": 26,
+          "globalIndex": 1147
+        },
+        {
+          "chapter": 3,
+          "verses": 18,
+          "globalIndex": 1148
+        },
+        {
+          "chapter": 4,
+          "verses": 17,
+          "globalIndex": 1149
+        },
+        {
+          "chapter": 5,
+          "verses": 20,
+          "globalIndex": 1150
+        }
+      ]
+    },
+    {
+      "num": 60,
+      "name": "1 Peter",
+      "abbrev": "1Pet",
+      "testament": "NT",
+      "group": "General",
+      "chapters": 5,
+      "verses": 105,
+      "chapterOffset": 1151,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 25,
+          "globalIndex": 1151
+        },
+        {
+          "chapter": 2,
+          "verses": 25,
+          "globalIndex": 1152
+        },
+        {
+          "chapter": 3,
+          "verses": 22,
+          "globalIndex": 1153
+        },
+        {
+          "chapter": 4,
+          "verses": 19,
+          "globalIndex": 1154
+        },
+        {
+          "chapter": 5,
+          "verses": 14,
+          "globalIndex": 1155
+        }
+      ]
+    },
+    {
+      "num": 61,
+      "name": "2 Peter",
+      "abbrev": "2Pet",
+      "testament": "NT",
+      "group": "General",
+      "chapters": 3,
+      "verses": 61,
+      "chapterOffset": 1156,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 21,
+          "globalIndex": 1156
+        },
+        {
+          "chapter": 2,
+          "verses": 22,
+          "globalIndex": 1157
+        },
+        {
+          "chapter": 3,
+          "verses": 18,
+          "globalIndex": 1158
+        }
+      ]
+    },
+    {
+      "num": 62,
+      "name": "1 John",
+      "abbrev": "1John",
+      "testament": "NT",
+      "group": "General",
+      "chapters": 5,
+      "verses": 105,
+      "chapterOffset": 1159,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 10,
+          "globalIndex": 1159
+        },
+        {
+          "chapter": 2,
+          "verses": 29,
+          "globalIndex": 1160
+        },
+        {
+          "chapter": 3,
+          "verses": 24,
+          "globalIndex": 1161
+        },
+        {
+          "chapter": 4,
+          "verses": 21,
+          "globalIndex": 1162
+        },
+        {
+          "chapter": 5,
+          "verses": 21,
+          "globalIndex": 1163
+        }
+      ]
+    },
+    {
+      "num": 63,
+      "name": "2 John",
+      "abbrev": "2John",
+      "testament": "NT",
+      "group": "General",
+      "chapters": 1,
+      "verses": 13,
+      "chapterOffset": 1164,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 13,
+          "globalIndex": 1164
+        }
+      ]
+    },
+    {
+      "num": 64,
+      "name": "3 John",
+      "abbrev": "3John",
+      "testament": "NT",
+      "group": "General",
+      "chapters": 1,
+      "verses": 14,
+      "chapterOffset": 1165,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 14,
+          "globalIndex": 1165
+        }
+      ]
+    },
+    {
+      "num": 65,
+      "name": "Jude",
+      "abbrev": "Jude",
+      "testament": "NT",
+      "group": "General",
+      "chapters": 1,
+      "verses": 25,
+      "chapterOffset": 1166,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 25,
+          "globalIndex": 1166
+        }
+      ]
+    },
+    {
+      "num": 66,
+      "name": "Revelation",
+      "abbrev": "Rev",
+      "testament": "NT",
+      "group": "Revelation",
+      "chapters": 22,
+      "verses": 404,
+      "chapterOffset": 1167,
+      "chapterDetails": [
+        {
+          "chapter": 1,
+          "verses": 20,
+          "globalIndex": 1167
+        },
+        {
+          "chapter": 2,
+          "verses": 29,
+          "globalIndex": 1168
+        },
+        {
+          "chapter": 3,
+          "verses": 22,
+          "globalIndex": 1169
+        },
+        {
+          "chapter": 4,
+          "verses": 11,
+          "globalIndex": 1170
+        },
+        {
+          "chapter": 5,
+          "verses": 14,
+          "globalIndex": 1171
+        },
+        {
+          "chapter": 6,
+          "verses": 17,
+          "globalIndex": 1172
+        },
+        {
+          "chapter": 7,
+          "verses": 17,
+          "globalIndex": 1173
+        },
+        {
+          "chapter": 8,
+          "verses": 13,
+          "globalIndex": 1174
+        },
+        {
+          "chapter": 9,
+          "verses": 21,
+          "globalIndex": 1175
+        },
+        {
+          "chapter": 10,
+          "verses": 11,
+          "globalIndex": 1176
+        },
+        {
+          "chapter": 11,
+          "verses": 19,
+          "globalIndex": 1177
+        },
+        {
+          "chapter": 12,
+          "verses": 17,
+          "globalIndex": 1178
+        },
+        {
+          "chapter": 13,
+          "verses": 18,
+          "globalIndex": 1179
+        },
+        {
+          "chapter": 14,
+          "verses": 20,
+          "globalIndex": 1180
+        },
+        {
+          "chapter": 15,
+          "verses": 8,
+          "globalIndex": 1181
+        },
+        {
+          "chapter": 16,
+          "verses": 21,
+          "globalIndex": 1182
+        },
+        {
+          "chapter": 17,
+          "verses": 18,
+          "globalIndex": 1183
+        },
+        {
+          "chapter": 18,
+          "verses": 24,
+          "globalIndex": 1184
+        },
+        {
+          "chapter": 19,
+          "verses": 21,
+          "globalIndex": 1185
+        },
+        {
+          "chapter": 20,
+          "verses": 15,
+          "globalIndex": 1186
+        },
+        {
+          "chapter": 21,
+          "verses": 27,
+          "globalIndex": 1187
+        },
+        {
+          "chapter": 22,
+          "verses": 21,
+          "globalIndex": 1188
+        }
+      ]
+    }
+  ],
+  "totalChapters": 1189,
+  "totalVerses": 31102,
+  "otChapters": 929,
+  "ntChapters": 260
+}

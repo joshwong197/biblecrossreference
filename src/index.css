@@ -1,0 +1,136 @@
+/* === CSS Custom Properties: Theme System === */
+:root {
+  /* Dark mode (default) */
+  --bg-primary: #0D1117;
+  --bg-secondary: #161B22;
+  --bg-tertiary: #21262D;
+  --tier-1: #FFD700;
+  --tier-2: #FF6B35;
+  --tier-3: #4ECDC4;
+  --tier-4: #9B8EC4;
+  --tier-5: #555555;
+  --ot-ot: #4A90D9;
+  --nt-nt: #E8675A;
+  --cross-testament: #C8A2E8;
+  --text-primary: #E0E0E0;
+  --text-secondary: #8B949E;
+  --text-muted: #6E7681;
+  --divider: #333333;
+  --border: #30363D;
+  --arc-base-opacity: 0.25;
+  --bar-fill: #58A6FF;
+  --bar-fill-opacity: 0.6;
+  --header-bg: #161B22;
+  --panel-bg: #161B22;
+  --button-bg: #21262D;
+  --button-hover: #30363D;
+  --button-active: #388BFD26;
+  --button-active-border: #388BFD;
+  --accent: #58A6FF;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] {
+  --bg-primary: #FAFAFA;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F0F0F0;
+  --tier-1: #B8860B;
+  --tier-2: #CC4E1B;
+  --tier-3: #1A8A7D;
+  --tier-4: #6B5B95;
+  --tier-5: #AAAAAA;
+  --ot-ot: #2B5C8A;
+  --nt-nt: #B84A3E;
+  --cross-testament: #8B5DAA;
+  --text-primary: #2D2D2D;
+  --text-secondary: #57606A;
+  --text-muted: #8C959F;
+  --divider: #DDDDDD;
+  --border: #D0D7DE;
+  --arc-base-opacity: 0.35;
+  --bar-fill: #2B5C8A;
+  --bar-fill-opacity: 0.5;
+  --header-bg: #FFFFFF;
+  --panel-bg: #FFFFFF;
+  --button-bg: #F0F0F0;
+  --button-hover: #E0E0E0;
+  --button-active: #ddf4ff;
+  --button-active-border: #54AEFF;
+  --accent: #0969DA;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* === Reset & Base === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* === Typography === */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* === Utility === */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
