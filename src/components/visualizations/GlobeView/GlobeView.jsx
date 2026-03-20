@@ -4,12 +4,13 @@ import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import useAppStore from '../../../stores/useAppStore';
 import { TIER_COLORS_DARK, TIER_COLORS_LIGHT, TESTAMENT_COLORS_DARK, TESTAMENT_COLORS_LIGHT, getTestamentPairKey } from '../../../utils/colorScales';
+import BookLabels from './BookLabels';
 
 const GLOBE_RADIUS = 5;
 const ARC_SEGMENTS = 32;
 const SPIRAL_TURNS = 4.5;
 
-function getChapterPosition(index, totalChapters, otChapters, radius) {
+export function getChapterPosition(index, totalChapters, otChapters, radius) {
   const t = index / (totalChapters - 1);
 
   // OT: north pole (+80°) → equator (0°)
@@ -260,6 +261,7 @@ export default function GlobeView() {
         <SphereGrid />
         <ChapterPoints metadata={metadata} />
         <ArcLines references={references} metadata={metadata} />
+        <BookLabels metadata={metadata} getPosition={getChapterPosition} radius={GLOBE_RADIUS} />
         <AutoRotate />
         <OrbitControls
           enableDamping
