@@ -1,11 +1,15 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import useAppStore from '../../stores/useAppStore';
+import VerseTooltip from '../shared/VerseTooltip';
 
 export default function SearchBar() {
   const metadata = useAppStore((s) => s.metadata);
   const setSelectedChapter = useAppStore((s) => s.setSelectedChapter);
   const [query, setQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+  const [hoveredSuggestion, setHoveredSuggestion] = useState(null);
+  const [suggestionAnchor, setSuggestionAnchor] = useState(null);
+  const hoverTimer = useRef(null);
   const inputRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -133,12 +137,34 @@ export default function SearchBar() {
               onClick={() => handleSelect(entry)}
               style={styles.suggestion}
               onMouseDown={(e) => e.preventDefault()}
+              onMouseEnter={(e) => {
+                clearTimeout(hoverTimer.current);
+                const rect = e.currentTarget.getBoundingClientRect();
+                hoverTimer.current = setTimeout(() => {
+                  setHoveredSuggestion(entry);
+                  setSuggestionAnchor(rect);
+                }, 300);
+              }}
+              onMouseLeave={() => {
+                clearTimeout(hoverTimer.current);
+                setHoveredSuggestion(null);
+                setSuggestionAnchor(null);
+              }}
             >
               <span style={styles.suggestionLabel}>{entry.label}</span>
               <span style={styles.suggestionAbbrev}>{entry.shortLabel}</span>
             </button>
           ))}
         </div>
+      )}
+      {hoveredSuggestion && suggestionAnchor && (
+        <VerseTooltip
+          bookAbbrev={hoveredSuggestion.shortLabel.split(' ')[0]}
+          bookName={hoveredSuggestion.label.replace(/\s+\d+.*$/, '')}
+          chapter={hoveredSuggestion.chapter || 1}
+          verse={hoveredSuggestion.verse || 1}
+          anchorRect={suggestionAnchor}
+        />
       )}
     </div>
   );

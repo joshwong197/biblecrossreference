@@ -46,6 +46,23 @@ const useAppStore = create((set, get) => ({
   setData: (references, metadata) => set({ references, metadata, loading: false }),
   setLoading: (loading) => set({ loading }),
   setLoadingProgress: (loadingProgress) => set({ loadingProgress }),
+
+  // KJV verse text cache
+  verseText: null,
+  verseTextLoading: false,
+  loadVerseText: async () => {
+    const state = get();
+    if (state.verseText || state.verseTextLoading) return;
+    set({ verseTextLoading: true });
+    try {
+      const res = await fetch('/data/kjv.json');
+      const data = await res.json();
+      set({ verseText: data, verseTextLoading: false });
+    } catch (err) {
+      console.error('Failed to load KJV text:', err);
+      set({ verseTextLoading: false });
+    }
+  },
 }));
 
 export default useAppStore;

@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef, useCallback } from 'react';
 import useAppStore from '../../stores/useAppStore';
 import { TIERS } from '../../constants/tiers';
+import VerseTooltip from '../shared/VerseTooltip';
 
 export default function ReferencePanel() {
   const selectedChapter = useAppStore((s) => s.selectedChapter);
@@ -72,6 +73,23 @@ export default function ReferencePanel() {
 function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
   const [expanded, setExpanded] = useState(true);
   const [showAll, setShowAll] = useState(false);
+  const [hoveredRef, setHoveredRef] = useState(null);
+  const [anchorRect, setAnchorRect] = useState(null);
+  const hoverTimer = useRef(null);
+
+  const handleMouseEnter = useCallback((targetInfo, e) => {
+    clearTimeout(hoverTimer.current);
+    hoverTimer.current = setTimeout(() => {
+      setHoveredRef(targetInfo);
+      setAnchorRect(e.currentTarget.getBoundingClientRect());
+    }, 300);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    clearTimeout(hoverTimer.current);
+    setHoveredRef(null);
+    setAnchorRect(null);
+  }, []);
 
   // Group by tier
   const byTier = useMemo(() => {
@@ -123,6 +141,8 @@ function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
                     <button
                       key={`${ref.from}-${ref.to}`}
                       onClick={() => onSelect(target)}
+                      onMouseEnter={(e) => handleMouseEnter(targetInfo, e)}
+                      onMouseLeave={handleMouseLeave}
                       style={styles.refItem}
                     >
                       <span>{targetInfo.bookAbbrev} {targetInfo.chapter}</span>
@@ -139,6 +159,15 @@ function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
             </button>
           )}
         </div>
+      )}
+      {hoveredRef && anchorRect && (
+        <VerseTooltip
+          bookAbbrev={hoveredRef.bookAbbrev}
+          bookName={hoveredRef.bookName}
+          chapter={hoveredRef.chapter}
+          verse={1}
+          anchorRect={anchorRect}
+        />
       )}
     </div>
   );

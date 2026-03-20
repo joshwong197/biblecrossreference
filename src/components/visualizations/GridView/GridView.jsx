@@ -1,14 +1,18 @@
 import { useRef, useEffect, useMemo, useState, useCallback } from 'react';
+import * as d3 from 'd3';
 import useAppStore from '../../../stores/useAppStore';
 import useCanvasSize from '../../../hooks/useCanvasSize';
 import { BOOKS } from '../../../constants/books';
-import { TESTAMENT_COLORS_DARK, TESTAMENT_COLORS_LIGHT, hexToRgba, getTestamentPairKey } from '../../../utils/colorScales';
+import useForceLayout from './useForceLayout';
+import BookNode, { NODE_WIDTH, NODE_HEIGHT } from './BookNode';
+import ConnectionLines from './ConnectionLines';
 
-const BASE_MARGIN = { top: 80, right: 20, bottom: 20, left: 80 };
+const MIN_COUNT_OPTIONS = [1, 5, 10, 25, 50];
 
 export default function GridView() {
   const outerRef = useRef(null);
-  const canvasRef = useRef(null);
+  const svgRef = useRef(null);
+  const gRef = useRef(null);
   const { width: containerWidth, height: containerHeight } = useCanvasSize(outerRef);
 
   const references = useAppStore((s) => s.references);
@@ -16,10 +20,14 @@ export default function GridView() {
   const tierVisibility = useAppStore((s) => s.tierVisibility);
   const colorMode = useAppStore((s) => s.colorMode);
   const theme = useAppStore((s) => s.theme);
-  const [tooltip, setTooltip] = useState(null);
-  const [zoomLevel, setZoomLevel] = useState(1);
+  const setSelectedChapter = useAppStore((s) => s.setSelectedChapter);
 
-  // Build 66x66 matrix
+  const [minCount, setMinCount] = useState(5);
+  const [hoveredNode, setHoveredNode] = useState(null);
+  const [selectedNode, setSelectedNode] = useState(null);
+  const [tooltip, setTooltip] = useState(null);
+
+  // Build 66x66 matrix (same as before)
   const matrix = useMemo(() => {
     if (!references || !metadata) return null;
 
@@ -45,193 +53,172 @@ export default function GridView() {
     return mat;
   }, [references, metadata, tierVisibility]);
 
-  const maxVal = useMemo(() => {
-    if (!matrix) return 1;
-    let max = 0;
-    for (let i = 0; i < 66; i++) {
-      for (let j = 0; j < 66; j++) {
-        if (matrix[i][j] > max) max = matrix[i][j];
-      }
-    }
-    return max || 1;
-  }, [matrix]);
+  const { nodes, edges, tick, dragHandlers } = useForceLayout(
+    matrix, containerWidth, containerHeight, minCount
+  );
 
-  // Canvas dimensions scale with zoom
-  const canvasW = containerWidth * zoomLevel;
-  const canvasH = containerHeight * zoomLevel;
-
-  // Render
+  // Set up zoom/pan on SVG
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || !matrix || canvasW === 0 || canvasH === 0) return;
+    const svg = svgRef.current;
+    const g = gRef.current;
+    if (!svg || !g) return;
 
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = canvasW * dpr;
-    canvas.height = canvasH * dpr;
-    const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
+    const zoom = d3.zoom()
+      .scaleExtent([0.3, 3])
+      .on('zoom', (event) => {
+        g.setAttribute('transform', event.transform);
+      });
 
-    const margin = {
-      top: BASE_MARGIN.top * zoomLevel,
-      right: BASE_MARGIN.right * zoomLevel,
-      bottom: BASE_MARGIN.bottom * zoomLevel,
-      left: BASE_MARGIN.left * zoomLevel,
+    d3.select(svg).call(zoom);
+
+    return () => {
+      d3.select(svg).on('.zoom', null);
     };
+  }, [containerWidth, containerHeight]);
 
-    const gridW = canvasW - margin.left - margin.right;
-    const gridH = canvasH - margin.top - margin.bottom;
-    const cellW = gridW / 66;
-    const cellH = gridH / 66;
+  // Get connected edges for hovered node (for tooltip)
+  const hoveredConnections = useMemo(() => {
+    if (hoveredNode === null) return [];
+    return edges.filter(
+      (e) => e.source?.id === hoveredNode || e.target?.id === hoveredNode
+    ).sort((a, b) => b.count - a.count);
+  }, [edges, hoveredNode, tick]);
 
-    ctx.clearRect(0, 0, canvasW, canvasH);
-
-    const accentColor = theme === 'dark' ? '#58A6FF' : '#0969DA';
-    const testamentColors = theme === 'dark' ? TESTAMENT_COLORS_DARK : TESTAMENT_COLORS_LIGHT;
-
-    // Draw cells
-    for (let i = 0; i < 66; i++) {
-      for (let j = 0; j < 66; j++) {
-        const val = matrix[i][j];
-        if (val === 0) continue;
-
-        const intensity = Math.pow(val / maxVal, 0.4);
-        const x = margin.left + j * cellW;
-        const y = margin.top + i * cellH;
-
-        if (colorMode === 'testament') {
-          const key = getTestamentPairKey(i + 1, j + 1);
-          ctx.fillStyle = hexToRgba(testamentColors[key], intensity * 0.9);
-        } else {
-          ctx.fillStyle = hexToRgba(accentColor, intensity * 0.9);
-        }
-        ctx.fillRect(x, y, cellW, cellH);
-      }
-    }
-
-    // OT/NT boundary
-    const textColor = theme === 'dark' ? '#8B949E' : '#57606A';
-    const otEnd = 39;
-    const ntX = margin.left + otEnd * cellW;
-    const ntY = margin.top + otEnd * cellH;
-    ctx.strokeStyle = accentColor;
-    ctx.lineWidth = 1.5 * zoomLevel;
-    ctx.beginPath();
-    ctx.moveTo(ntX, margin.top);
-    ctx.lineTo(ntX, margin.top + gridH);
-    ctx.moveTo(margin.left, ntY);
-    ctx.lineTo(margin.left + gridW, ntY);
-    ctx.stroke();
-
-    // Book labels
-    ctx.fillStyle = textColor;
-    const fontSize = Math.max(Math.min(cellW * 0.8, 12 * zoomLevel), 7);
-    ctx.font = `${fontSize}px -apple-system, sans-serif`;
-
-    // Top labels (rotated)
-    for (let i = 0; i < 66; i++) {
-      const x = margin.left + i * cellW + cellW / 2;
-      ctx.save();
-      ctx.translate(x, margin.top - 4 * zoomLevel);
-      ctx.rotate(-Math.PI / 3);
-      ctx.textAlign = 'left';
-      ctx.fillText(zoomLevel >= 2 ? BOOKS[i].name : BOOKS[i].abbrev, 0, 0);
-      ctx.restore();
-    }
-
-    // Left labels
-    ctx.textAlign = 'right';
-    ctx.textBaseline = 'middle';
-    for (let i = 0; i < 66; i++) {
-      const y = margin.top + i * cellH + cellH / 2;
-      ctx.fillText(zoomLevel >= 2 ? BOOKS[i].name : BOOKS[i].abbrev, margin.left - 4 * zoomLevel, y);
-    }
-  }, [matrix, maxVal, canvasW, canvasH, theme, colorMode, zoomLevel]);
-
-  // Wheel zoom
-  useEffect(() => {
-    const outer = outerRef.current;
-    if (!outer) return;
-
-    const handleWheel = (e) => {
-      if (e.ctrlKey || e.metaKey) {
-        e.preventDefault();
-        const delta = e.deltaY > 0 ? -0.3 : 0.3;
-        setZoomLevel((prev) => Math.min(Math.max(prev + delta, 1), 5));
-      }
-    };
-
-    outer.addEventListener('wheel', handleWheel, { passive: false });
-    return () => outer.removeEventListener('wheel', handleWheel);
-  }, []);
-
-  // Tooltip
-  const handleMouseMove = useCallback((e) => {
-    if (!matrix || canvasW === 0) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const scrollEl = outerRef.current;
-    const x = e.clientX - rect.left + (scrollEl?.scrollLeft || 0);
-    const y = e.clientY - rect.top + (scrollEl?.scrollTop || 0);
-
-    const margin = {
-      top: BASE_MARGIN.top * zoomLevel,
-      left: BASE_MARGIN.left * zoomLevel,
-    };
-    const gridW = canvasW - margin.left - BASE_MARGIN.right * zoomLevel;
-    const gridH = canvasH - margin.top - BASE_MARGIN.bottom * zoomLevel;
-    const cellW = gridW / 66;
-    const cellH = gridH / 66;
-
-    const col = Math.floor((x - margin.left) / cellW);
-    const row = Math.floor((y - margin.top) / cellH);
-
-    if (col >= 0 && col < 66 && row >= 0 && row < 66) {
-      const val = matrix[row][col];
-      if (val > 0) {
+  const handleNodeHover = useCallback((nodeId) => {
+    setHoveredNode(nodeId);
+    if (nodeId !== null) {
+      const node = nodes.find((n) => n.id === nodeId);
+      if (node) {
+        const connectedEdges = edges
+          .filter((e) => e.source?.id === nodeId || e.target?.id === nodeId)
+          .sort((a, b) => b.count - a.count);
+        const topConnections = connectedEdges.slice(0, 5);
         setTooltip({
-          x: e.clientX - rect.left + 10,
-          y: e.clientY - rect.top - 10,
-          from: BOOKS[row].name,
-          to: BOOKS[col].name,
-          count: val,
+          node,
+          connections: topConnections,
+          total: connectedEdges.length,
+          totalRefs: connectedEdges.reduce((sum, e) => sum + e.count, 0),
         });
-        return;
+      }
+    } else {
+      setTooltip(null);
+    }
+  }, [nodes, edges, tick]);
+
+  const handleNodeSelect = useCallback((nodeId) => {
+    setSelectedNode((prev) => (prev === nodeId ? null : nodeId));
+    // Open ReferencePanel for first chapter of book
+    if (metadata) {
+      const book = metadata.books.find((b) => b.num === nodeId + 1);
+      if (book?.chapterDetails?.length) {
+        setSelectedChapter(book.chapterDetails[0].globalIndex);
       }
     }
-    setTooltip(null);
-  }, [matrix, canvasW, canvasH, zoomLevel]);
+  }, [metadata, setSelectedChapter]);
 
   if (!references || !metadata) {
-    return <div style={styles.loading}>Loading grid view...</div>;
+    return <div style={styles.loading}>Loading connections view...</div>;
   }
 
   return (
-    <div ref={outerRef} style={{ ...styles.container, overflow: zoomLevel > 1 ? 'auto' : 'hidden' }}>
-      {zoomLevel > 1 && (
-        <div style={styles.zoomBadge}>
-          <span>{zoomLevel.toFixed(1)}x</span>
-          <button onClick={() => setZoomLevel(1)} style={styles.resetBtn}>Reset</button>
-        </div>
-      )}
-      <canvas
-        ref={canvasRef}
-        style={{
-          width: canvasW,
-          height: canvasH,
-          display: 'block',
-        }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => setTooltip(null)}
-      />
+    <div ref={outerRef} style={styles.container}>
+      {/* Min count filter */}
+      <div style={styles.controls}>
+        <span style={styles.controlLabel}>Min refs:</span>
+        {MIN_COUNT_OPTIONS.map((n) => (
+          <button
+            key={n}
+            onClick={() => setMinCount(n)}
+            style={{
+              ...styles.filterBtn,
+              backgroundColor: minCount === n
+                ? (theme === 'dark' ? '#58A6FF' : '#0969DA')
+                : (theme === 'dark' ? '#21262D' : '#F6F8FA'),
+              color: minCount === n
+                ? '#fff'
+                : (theme === 'dark' ? '#8B949E' : '#57606A'),
+            }}
+          >
+            {n}
+          </button>
+        ))}
+        <span style={styles.edgeCount}>
+          {edges.length} connections
+        </span>
+      </div>
+
+      <svg
+        ref={svgRef}
+        width={containerWidth}
+        height={containerHeight - 36}
+        style={{ display: 'block' }}
+      >
+        <g ref={gRef}>
+          <ConnectionLines
+            edges={edges}
+            theme={theme}
+            colorMode={colorMode}
+            hoveredNode={hoveredNode}
+            selectedNode={selectedNode}
+          />
+          {nodes.map((node) => (
+            <BookNode
+              key={node.id}
+              node={node}
+              metadata={metadata}
+              theme={theme}
+              isHovered={hoveredNode === node.id}
+              isSelected={selectedNode === node.id}
+              isDimmed={
+                (hoveredNode !== null && hoveredNode !== node.id &&
+                  !edges.some(
+                    (e) =>
+                      (e.source?.id === hoveredNode && e.target?.id === node.id) ||
+                      (e.target?.id === hoveredNode && e.source?.id === node.id)
+                  ))
+              }
+              onHover={handleNodeHover}
+              onSelect={handleNodeSelect}
+              dragHandlers={dragHandlers}
+            />
+          ))}
+        </g>
+      </svg>
+
+      {/* Tooltip */}
       {tooltip && (
-        <div style={{ ...styles.tooltip, left: tooltip.x, top: tooltip.y, position: 'fixed' }}>
-          <strong>{tooltip.from}</strong> &harr; <strong>{tooltip.to}</strong>
-          <br />
-          {tooltip.count.toLocaleString()} references
+        <div style={{
+          ...styles.tooltip,
+          backgroundColor: theme === 'dark' ? '#161B22' : '#fff',
+          borderColor: theme === 'dark' ? '#30363D' : '#D0D7DE',
+          color: theme === 'dark' ? '#C9D1D9' : '#24292F',
+        }}>
+          <div style={styles.tooltipTitle}>{tooltip.node.name}</div>
+          <div style={styles.tooltipSubtitle}>
+            {tooltip.total} connections &middot; {tooltip.totalRefs.toLocaleString()} total refs
+          </div>
+          {tooltip.connections.length > 0 && (
+            <div style={styles.tooltipList}>
+              {tooltip.connections.map((edge, i) => {
+                const other = edge.source?.id === tooltip.node.id ? edge.target : edge.source;
+                return (
+                  <div key={i} style={styles.tooltipItem}>
+                    <span>{other?.name}</span>
+                    <span style={styles.tooltipCount}>{edge.count}</span>
+                  </div>
+                );
+              })}
+              {tooltip.total > 5 && (
+                <div style={styles.tooltipMore}>+{tooltip.total - 5} more</div>
+              )}
+            </div>
+          )}
         </div>
       )}
-      {zoomLevel <= 1 && (
-        <div style={styles.hint}>Ctrl+scroll to zoom</div>
-      )}
+
+      <div style={styles.hint}>
+        Drag books to rearrange &middot; Scroll to zoom &middot; Click book for details
+      </div>
     </div>
   );
 }
@@ -241,18 +228,7 @@ const styles = {
     width: '100%',
     height: '100%',
     position: 'relative',
-  },
-  tooltip: {
-    padding: '6px 10px',
-    backgroundColor: 'var(--bg-tertiary)',
-    border: '1px solid var(--border)',
-    borderRadius: 6,
-    fontSize: 12,
-    color: 'var(--text-primary)',
-    pointerEvents: 'none',
-    zIndex: 10,
-    whiteSpace: 'nowrap',
-    boxShadow: '0 2px 8px var(--shadow)',
+    overflow: 'hidden',
   },
   loading: {
     display: 'flex',
@@ -261,33 +237,77 @@ const styles = {
     height: '100%',
     color: 'var(--text-muted)',
   },
-  zoomBadge: {
-    position: 'sticky',
-    top: 8,
-    left: '100%',
-    transform: 'translateX(-100%)',
-    display: 'inline-flex',
+  controls: {
+    display: 'flex',
     alignItems: 'center',
-    gap: 6,
-    padding: '4px 10px',
-    fontSize: 12,
+    gap: 4,
+    padding: '6px 12px',
+    borderBottom: '1px solid var(--border)',
+    height: 36,
+    boxSizing: 'border-box',
+  },
+  controlLabel: {
+    fontSize: 11,
     fontWeight: 600,
-    color: 'var(--text-primary)',
-    backgroundColor: 'var(--bg-secondary)',
+    color: 'var(--text-muted)',
+    marginRight: 2,
+  },
+  filterBtn: {
+    padding: '2px 8px',
+    fontSize: 11,
+    fontWeight: 600,
     border: '1px solid var(--border)',
     borderRadius: 4,
-    zIndex: 10,
-    marginRight: 8,
-    marginTop: 8,
-  },
-  resetBtn: {
-    padding: '2px 6px',
-    fontSize: 10,
-    border: '1px solid var(--border)',
-    borderRadius: 3,
-    backgroundColor: 'var(--button-bg)',
-    color: 'var(--text-secondary)',
     cursor: 'pointer',
+    transition: 'all 0.15s',
+  },
+  edgeCount: {
+    fontSize: 11,
+    color: 'var(--text-muted)',
+    marginLeft: 'auto',
+  },
+  tooltip: {
+    position: 'absolute',
+    top: 48,
+    right: 12,
+    padding: '10px 14px',
+    border: '1px solid',
+    borderRadius: 8,
+    fontSize: 12,
+    boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+    zIndex: 10,
+    minWidth: 180,
+    maxWidth: 240,
+  },
+  tooltipTitle: {
+    fontWeight: 700,
+    fontSize: 13,
+    marginBottom: 2,
+  },
+  tooltipSubtitle: {
+    fontSize: 11,
+    color: 'var(--text-muted)',
+    marginBottom: 8,
+  },
+  tooltipList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 3,
+  },
+  tooltipItem: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    fontSize: 11,
+  },
+  tooltipCount: {
+    color: 'var(--text-muted)',
+    fontWeight: 600,
+  },
+  tooltipMore: {
+    fontSize: 10,
+    color: 'var(--text-muted)',
+    fontStyle: 'italic',
+    marginTop: 2,
   },
   hint: {
     position: 'absolute',
@@ -301,5 +321,6 @@ const styles = {
     borderRadius: 4,
     border: '1px solid var(--border)',
     opacity: 0.8,
+    whiteSpace: 'nowrap',
   },
 };

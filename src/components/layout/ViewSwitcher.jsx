@@ -2,7 +2,7 @@ import useAppStore from '../../stores/useAppStore';
 
 const VIEWS = [
   { id: 'arc', label: 'Arc Diagram' },
-  { id: 'grid', label: 'Grid View' },
+  { id: 'grid', label: 'Connections' },
   { id: 'globe', label: 'Globe View' },
 ];
 
