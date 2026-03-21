@@ -48,6 +48,8 @@ def convert_references(df, chapter_lookup):
             "v": int(row['votes']),
             "fb": int(row['from_book']),
             "tb": int(row['to_book']),
+            "fv": int(row['from_verse']),
+            "tv": int(row['to_verse']),
         })
 
     return records

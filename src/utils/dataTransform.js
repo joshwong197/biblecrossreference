@@ -12,5 +12,7 @@ export function normalizeReferences(compactRefs) {
     votes: r.v,
     fromBook: r.fb,
     toBook: r.tb,
+    fromVerse: r.fv,
+    toVerse: r.tv,
   }));
 }
