@@ -8,15 +8,22 @@ export default function ReferencePanel() {
   const selectedVerse = useAppStore((s) => s.selectedVerse);
   const references = useAppStore((s) => s.references);
   const metadata = useAppStore((s) => s.metadata);
+  const bibleText = useAppStore((s) => s.bibleText);
   const setSelectedChapter = useAppStore((s) => s.setSelectedChapter);
 
-  // Build O(1) chapter lookup
+  // Build O(1) chapter lookup with bookNum for bible_text key construction
   const chapterLookup = useMemo(() => {
     if (!metadata) return null;
     const lookup = new Array(metadata.totalChapters);
     for (const book of metadata.books) {
       for (const ch of book.chapterDetails) {
-        lookup[ch.globalIndex] = { bookName: book.name, bookAbbrev: book.abbrev, chapter: ch.chapter };
+        lookup[ch.globalIndex] = {
+          bookName: book.name,
+          bookAbbrev: book.abbrev,
+          bookNum: book.num,
+          chapter: ch.chapter,
+          verses: ch.verses,
+        };
       }
     }
     return lookup;
@@ -32,6 +39,15 @@ export default function ReferencePanel() {
     return { refsFrom: from, refsTo: to, totalCount: from.length + to.length };
   }, [selectedChapter, references]);
 
+  // Get selected verse text from bible_text.json
+  const verseText = useMemo(() => {
+    if (!selectedVerse || !bibleText || selectedChapter === null || !chapterLookup) return null;
+    const info = chapterLookup[selectedChapter];
+    if (!info) return null;
+    const key = `${info.bookNum}.${info.chapter}.${selectedVerse}`;
+    return bibleText[key] || null;
+  }, [selectedVerse, bibleText, selectedChapter, chapterLookup]);
+
   if (selectedChapter === null || !chapterLookup) return null;
 
   const info = chapterLookup[selectedChapter];
@@ -43,6 +59,13 @@ export default function ReferencePanel() {
         <span style={styles.title}>{info.bookName} {info.chapter}{selectedVerse ? `:${selectedVerse}` : ''}</span>
         <button onClick={() => setSelectedChapter(null)} style={styles.closeBtn}>&times;</button>
       </div>
+
+      {verseText && (
+        <div style={styles.verseText}>
+          <span style={styles.verseNum}>{selectedVerse}</span> {verseText}
+        </div>
+      )}
+
       <div style={styles.count}>
         {totalCount.toLocaleString()} cross-references
         {selectedVerse ? <span style={styles.chapterNote}> (chapter-level)</span> : ''}
@@ -50,7 +73,7 @@ export default function ReferencePanel() {
 
       {refsFrom.length > 0 && (
         <RefSection
-          label={`From (${refsFrom.length})`}
+          label={`References from here (${refsFrom.length})`}
           refs={refsFrom}
           chapterLookup={chapterLookup}
           getTarget={(r) => r.to}
@@ -59,7 +82,7 @@ export default function ReferencePanel() {
       )}
       {refsTo.length > 0 && (
         <RefSection
-          label={`To (${refsTo.length})`}
+          label={`Referenced by (${refsTo.length})`}
           refs={refsTo}
           chapterLookup={chapterLookup}
           getTarget={(r) => r.from}
@@ -98,7 +121,6 @@ function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
       if (!groups[ref.tier]) groups[ref.tier] = [];
       groups[ref.tier].push(ref);
     }
-    // Sort tiers
     return Object.entries(groups)
       .sort(([a], [b]) => Number(a) - Number(b))
       .map(([tier, items]) => ({
@@ -146,7 +168,7 @@ function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
                       style={styles.refItem}
                     >
                       <span>{targetInfo.bookAbbrev} {targetInfo.chapter}</span>
-                      <span style={styles.votes}>{ref.votes}v</span>
+                      <span style={styles.votes}>{ref.votes} votes</span>
                     </button>
                   );
                 })}
@@ -197,6 +219,22 @@ const styles = {
     cursor: 'pointer',
     padding: '0 4px',
     lineHeight: 1,
+  },
+  verseText: {
+    fontSize: 11,
+    color: 'var(--text-primary)',
+    padding: '6px 12px',
+    backgroundColor: 'var(--button-bg)',
+    borderRadius: 4,
+    margin: '4px 12px',
+    lineHeight: 1.5,
+    fontStyle: 'italic',
+  },
+  verseNum: {
+    fontWeight: 700,
+    fontStyle: 'normal',
+    color: 'var(--accent)',
+    fontSize: 10,
   },
   count: {
     fontSize: 11,

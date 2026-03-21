@@ -13,21 +13,21 @@ export default function useDataLoader() {
     async function loadData() {
       try {
         setLoadingProgress('Loading Bible metadata...');
-        const metaRes = await fetch('/data/bible_metadata.json');
+        const [metaRes, refsRes, textRes] = await Promise.all([
+          fetch('/data/bible_metadata.json'),
+          fetch('/data/references_t1t2t3.json'),
+          fetch('/data/bible_text.json'),
+        ]);
         if (!metaRes.ok) throw new Error('Failed to load metadata');
-        const metadata = await metaRes.json();
-
-        if (cancelled) return;
-
-        setLoadingProgress('Loading cross-references (Tiers 1-3)...');
-        const refsRes = await fetch('/data/references_t1t2t3.json');
         if (!refsRes.ok) throw new Error('Failed to load references');
+        const metadata = await metaRes.json();
         const refsHigh = normalizeReferences(await refsRes.json());
+        const bibleText = textRes.ok ? await textRes.json() : null;
 
         if (cancelled) return;
 
         // Set initial data — app becomes interactive
-        setData(refsHigh, metadata);
+        setData(refsHigh, metadata, bibleText);
 
         // Load remaining tiers in background
         try {

@@ -41,9 +41,15 @@ const useAppStore = create((set, get) => ({
   // Data (loaded at startup)
   references: null,
   metadata: null,
+  bibleText: null,
   loading: true,
   loadingProgress: '',
-  setData: (references, metadata) => set({ references, metadata, loading: false }),
+  setData: (references, metadata, bibleText) => set((state) => ({
+    references,
+    metadata,
+    bibleText: bibleText !== undefined ? bibleText : state.bibleText,
+    loading: false,
+  })),
   setLoading: (loading) => set({ loading }),
   setLoadingProgress: (loadingProgress) => set({ loadingProgress }),
 
