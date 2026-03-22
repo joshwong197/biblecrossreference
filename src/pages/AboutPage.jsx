@@ -79,6 +79,19 @@ export default function AboutPage() {
         <section style={styles.section}>
           <h2 style={styles.h2}>Why Do Cross-References Matter?</h2>
 
+          <p style={styles.p}>
+            We believe the Bible is the inspired Word of God &mdash; that its human authors, writing
+            across 1,500 years, three languages, and multiple continents, were guided by a single
+            divine Author. This project exists because we think the cross-reference data bears
+            witness to that belief. We are not hiding behind neutrality: we built this because the
+            interconnectedness of Scripture amazed us, and we wanted others to see it too.
+          </p>
+          <p style={styles.p}>
+            That said, we have no interest in rigging the presentation. The data is open. The tier
+            system lets you filter by connection strength. Every statistic below is verifiable. We
+            trust the text to speak for itself &mdash; and we think it speaks powerfully.
+          </p>
+
           <h3 style={styles.h3}>The Scale of the Network</h3>
           <p style={styles.p}>
             The Bible contains 31,102 verses. Of these, 97.4% are connected to at least one other
@@ -92,15 +105,17 @@ export default function AboutPage() {
             The 343,609 cross-references connect 1,316 distinct book pairs out of a possible 2,145
             (61.4% connectivity). This means the majority of the Bible&rsquo;s 66 books are directly
             connected to most other books, despite being written by approximately 40 different authors
-            over roughly 1,500 years, in three languages, across multiple continents.
+            over roughly 1,500 years, in three languages, across multiple continents. That kind of
+            coherence across such a span of history is, to us, evidence of a mind behind the text
+            that transcends any single human author.
           </p>
 
           <h3 style={styles.h3}>Not All Connections Are Equal</h3>
           <p style={styles.p}>
             A common objection is that cross-references are simply a cataloguing exercise &mdash; that
             any sufficiently large text, given enough human effort, could be mapped into a web of
-            connections the same way a fan wiki links together fictional universes. This is a fair
-            challenge, and our five-tier system was designed in part to address it.
+            connections the same way a fan wiki links together fictional universes. We take this
+            objection seriously, and our five-tier system was designed in part to address it.
           </p>
           <p style={styles.p}>
             Tier 5 (&ldquo;Shared Vocabulary&rdquo;) connections &mdash; where two verses merely share
@@ -114,8 +129,9 @@ export default function AboutPage() {
             are not imposed by modern editors &mdash; they are embedded in the text itself. 31 of the
             39 Old Testament books are directly quoted in the New Testament. The 419 Tier 2 references
             mark prophetic fulfillment claims, where a New Testament author states that a specific Old
-            Testament passage has been fulfilled. Regardless of whether one accepts these claims
-            theologically, their existence as authorial intent is textually verifiable.
+            Testament passage has been fulfilled. These are not editorial opinions &mdash; they are
+            claims made by the biblical authors themselves, and their existence is textually verifiable
+            regardless of one&rsquo;s theological position.
           </p>
 
           <h3 style={styles.h3}>Structure, Not Just Surface</h3>
@@ -138,22 +154,25 @@ export default function AboutPage() {
             the only two instances in the Gospels where Jesus is recorded weeping.
           </p>
 
-          <h3 style={styles.h3}>What You Can Conclude</h3>
+          <h3 style={styles.h3}>What We Believe This Shows</h3>
           <p style={styles.p}>
-            This visualization does not prove divine authorship, and it is not designed to. What it
-            does show is that the Bible is not a loose anthology of unrelated texts. It is a deeply
-            interconnected library in which later authors demonstrably engaged with earlier ones &mdash;
-            quoting them, interpreting them, recording the same events from different perspectives,
-            and building theological arguments that span centuries. Whether you attribute this
-            coherence to divine orchestration, to a sustained literary tradition, or to both, the
-            density of the web itself is a remarkable fact worth seeing.
+            We believe the cross-reference web testifies to what Scripture claims about itself: that
+            it is God-breathed (2 Timothy 3:16), that the Holy Spirit carried along its human authors
+            (2 Peter 1:21), and that its unity reflects a single divine mind working across centuries.
+            Forty authors who never met, writing in different languages and cultures, produced a
+            library where 61% of all possible book pairs are directly connected and 97% of verses
+            participate in a single interconnected network. To us, that is not coincidence &mdash; it
+            is the fingerprint of a God who is sovereign over history and over his Word.
           </p>
           <p style={styles.p}>
-            The tier system lets you decide for yourself which connections are meaningful. Filter to
-            Tiers 1&ndash;3 and you see only the connections that are textually verifiable &mdash;
-            direct quotes, fulfilled prophecies, and parallel accounts. Include Tier 4 and you add
-            the thematic echoes that generations of scholars have identified. Include Tier 5 and you
-            see the full, unfiltered web. The data is the same; the interpretation is yours.
+            We also recognize that data alone does not compel faith. You may look at the same network
+            and see a remarkable literary tradition sustained by human communities over millennia. We
+            respect that reading, even as we disagree with it. What we ask is that you engage with
+            the data honestly &mdash; filter to Tiers 1&ndash;3 and see only the connections that are
+            textually undeniable: direct quotes, fulfilled prophecies, and parallel accounts. Include
+            Tier 4 for the thematic echoes that generations of scholars have identified. Include
+            Tier 5 for the full, unfiltered web. The data is open; explore it for yourself and see
+            what the Bible reveals.
           </p>
         </section>
 
