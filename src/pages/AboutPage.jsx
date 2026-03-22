@@ -78,16 +78,82 @@ export default function AboutPage() {
 
         <section style={styles.section}>
           <h2 style={styles.h2}>Why Do Cross-References Matter?</h2>
+
+          <h3 style={styles.h3}>The Scale of the Network</h3>
           <p style={styles.p}>
-            The Bible was written by approximately 40 different authors over roughly 1,500 years,
-            in three languages, across multiple continents. Despite this, the cross-reference web
-            shows that later authors consistently engage with earlier texts &mdash; quoting them,
-            fulfilling their predictions, echoing their imagery, and recording the same events.
+            The Bible contains 31,102 verses. Of these, 97.4% are connected to at least one other
+            verse through a cross-reference &mdash; only 805 verses in the entire text sit in
+            isolation with no connection at all. Those isolated verses are almost exclusively
+            genealogical records, census lists, and administrative details (1 Chronicles alone
+            accounts for 142 of them). When you filter to only the strongest connections
+            (Tiers 1&ndash;4), 22,422 verses &mdash; over 72% &mdash; remain linked.
           </p>
           <p style={styles.p}>
-            This density of intentional, verifiable internal cross-referencing is a distinguishing
-            feature of the Bible compared to other compiled anthologies. The visualization makes
-            this pattern visible in a way that text alone cannot.
+            The 343,609 cross-references connect 1,316 distinct book pairs out of a possible 2,145
+            (61.4% connectivity). This means the majority of the Bible&rsquo;s 66 books are directly
+            connected to most other books, despite being written by approximately 40 different authors
+            over roughly 1,500 years, in three languages, across multiple continents.
+          </p>
+
+          <h3 style={styles.h3}>Not All Connections Are Equal</h3>
+          <p style={styles.p}>
+            A common objection is that cross-references are simply a cataloguing exercise &mdash; that
+            any sufficiently large text, given enough human effort, could be mapped into a web of
+            connections the same way a fan wiki links together fictional universes. This is a fair
+            challenge, and our five-tier system was designed in part to address it.
+          </p>
+          <p style={styles.p}>
+            Tier 5 (&ldquo;Shared Vocabulary&rdquo;) connections &mdash; where two verses merely share
+            a place name or common word &mdash; account for 85.8% of all cross-references. These are
+            indeed the kind of link that any compiled text might produce, and you can filter them out
+            entirely in the visualization. What remains is more significant.
+          </p>
+          <p style={styles.p}>
+            The 2,794 Tier 1 references are direct quotations: a later author explicitly citing an
+            earlier text, often with an introductory formula like &ldquo;it is written.&rdquo; These
+            are not imposed by modern editors &mdash; they are embedded in the text itself. 31 of the
+            39 Old Testament books are directly quoted in the New Testament. The 419 Tier 2 references
+            mark prophetic fulfillment claims, where a New Testament author states that a specific Old
+            Testament passage has been fulfilled. Regardless of whether one accepts these claims
+            theologically, their existence as authorial intent is textually verifiable.
+          </p>
+
+          <h3 style={styles.h3}>Structure, Not Just Surface</h3>
+          <p style={styles.p}>
+            The cross-reference network reveals structural patterns that go beyond shared vocabulary.
+            The Psalms are the most internally interconnected book (3,005 intra-book connections in
+            Tiers 1&ndash;4), reflecting their liturgical structure where psalms reference and build
+            upon each other. Matthew and Luke share 925 connections and Matthew and Mark share 889,
+            mapping the well-documented Synoptic parallels with precision. The highest-voted
+            community connection &mdash; Jeremiah 29:11 to Isaiah 55:8 (314 votes) &mdash; links
+            &ldquo;I know the plans I have for you&rdquo; to &ldquo;my thoughts are not your
+            thoughts,&rdquo; a theological pairing that requires understanding of both passages, not
+            just keyword overlap.
+          </p>
+          <p style={styles.p}>
+            Even the shortest verse in the Bible &mdash; &ldquo;Jesus wept&rdquo; (John 11:35), just
+            two words &mdash; has 29 cross-references. Most are Tier 5, as expected for a verse with
+            almost no vocabulary to match on. But the Tier 4 connection to Luke 19:41 (&ldquo;he
+            beheld the city, and wept over it&rdquo;) reflects genuine thematic awareness: these are
+            the only two instances in the Gospels where Jesus is recorded weeping.
+          </p>
+
+          <h3 style={styles.h3}>What You Can Conclude</h3>
+          <p style={styles.p}>
+            This visualization does not prove divine authorship, and it is not designed to. What it
+            does show is that the Bible is not a loose anthology of unrelated texts. It is a deeply
+            interconnected library in which later authors demonstrably engaged with earlier ones &mdash;
+            quoting them, interpreting them, recording the same events from different perspectives,
+            and building theological arguments that span centuries. Whether you attribute this
+            coherence to divine orchestration, to a sustained literary tradition, or to both, the
+            density of the web itself is a remarkable fact worth seeing.
+          </p>
+          <p style={styles.p}>
+            The tier system lets you decide for yourself which connections are meaningful. Filter to
+            Tiers 1&ndash;3 and you see only the connections that are textually verifiable &mdash;
+            direct quotes, fulfilled prophecies, and parallel accounts. Include Tier 4 and you add
+            the thematic echoes that generations of scholars have identified. Include Tier 5 and you
+            see the full, unfiltered web. The data is the same; the interpretation is yours.
           </p>
         </section>
 
