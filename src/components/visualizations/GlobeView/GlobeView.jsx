@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import useAppStore from '../../../stores/useAppStore';
-import { TIER_COLORS_DARK, TIER_COLORS_LIGHT, TESTAMENT_COLORS_DARK, TESTAMENT_COLORS_LIGHT, getTestamentPairKey } from '../../../utils/colorScales';
+import { TIER_COLORS_DARK, TIER_COLORS_LIGHT, TESTAMENT_COLORS_DARK, TESTAMENT_COLORS_LIGHT, GROUP_COLORS_DARK, GROUP_COLORS_LIGHT, getTestamentPairKey, getBookGroupKey } from '../../../utils/colorScales';
 import BookLabels from './BookLabels';
 
 const GLOBE_RADIUS = 5;
@@ -81,13 +81,14 @@ function ArcLines({ references, metadata }) {
   const theme = useAppStore((s) => s.theme);
   const tierColors = theme === 'dark' ? TIER_COLORS_DARK : TIER_COLORS_LIGHT;
   const testamentColors = theme === 'dark' ? TESTAMENT_COLORS_DARK : TESTAMENT_COLORS_LIGHT;
+  const groupColors = theme === 'dark' ? GROUP_COLORS_DARK : GROUP_COLORS_LIGHT;
   const groupRef = useRef();
 
   const lineGeometries = useMemo(() => {
     if (!references || !metadata) return [];
 
     const visibleRefs = references.filter(
-      (r) => tierVisibility[r.tier] && r.tier <= 3
+      (r) => tierVisibility[r.tier]
     );
 
     const maxArcs = 5000;
@@ -95,17 +96,68 @@ function ArcLines({ references, metadata }) {
       ? visibleRefs.sort((a, b) => b.votes - a.votes).slice(0, maxArcs)
       : visibleRefs;
 
-    // Group by color mode
-    let groups;
+    // Helper: build arc segments for a single reference
+    function buildArcSegments(ref) {
+      const p1 = getChapterPosition(ref.from, metadata.totalChapters, metadata.otChapters, GLOBE_RADIUS);
+      const p2 = getChapterPosition(ref.to, metadata.totalChapters, metadata.otChapters, GLOBE_RADIUS);
+      const distance = Math.abs(ref.to - ref.from);
+      const heightFactor = (distance / metadata.totalChapters) * 2 + 0.3;
+      const midPoint = new THREE.Vector3()
+        .addVectors(p1, p2)
+        .multiplyScalar(0.5)
+        .normalize()
+        .multiplyScalar(GLOBE_RADIUS + heightFactor);
+
+      const positions = [];
+      for (let s = 0; s < ARC_SEGMENTS; s++) {
+        const t1 = s / ARC_SEGMENTS;
+        const t2 = (s + 1) / ARC_SEGMENTS;
+        const pt1 = quadBezier(p1, midPoint, p2, t1);
+        const pt2 = quadBezier(p1, midPoint, p2, t2);
+        positions.push(pt1.x, pt1.y, pt1.z, pt2.x, pt2.y, pt2.z);
+      }
+      return positions;
+    }
+
+    // Group mode: single geometry with per-vertex colors for gradient arcs
+    if (colorMode === 'group') {
+      const allPositions = [];
+      const allColors = [];
+
+      for (const ref of refs) {
+        const fromColor = new THREE.Color(groupColors[getBookGroupKey(ref.fromBook)]);
+        const toColor = new THREE.Color(groupColors[getBookGroupKey(ref.toBook)]);
+        const positions = buildArcSegments(ref);
+
+        for (let s = 0; s < ARC_SEGMENTS; s++) {
+          const t1 = s / ARC_SEGMENTS;
+          const t2 = (s + 1) / ARC_SEGMENTS;
+          const c1 = new THREE.Color().lerpColors(fromColor, toColor, t1);
+          const c2 = new THREE.Color().lerpColors(fromColor, toColor, t2);
+          allColors.push(c1.r, c1.g, c1.b, c2.r, c2.g, c2.b);
+        }
+
+        allPositions.push(...positions);
+      }
+
+      if (allPositions.length > 0) {
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(allPositions, 3));
+        geo.setAttribute('color', new THREE.Float32BufferAttribute(allColors, 3));
+        return [{ geometry: geo, vertexColors: true }];
+      }
+      return [];
+    }
+
+    // Tier and testament modes: group by solid color
+    const groups = {};
     if (colorMode === 'testament') {
-      groups = {};
       for (const ref of refs) {
         const key = getTestamentPairKey(ref.fromBook, ref.toBook);
         if (!groups[key]) groups[key] = { refs: [], color: new THREE.Color(testamentColors[key]) };
         groups[key].refs.push(ref);
       }
     } else {
-      groups = {};
       for (const ref of refs) {
         const tier = ref.tier;
         if (!groups[tier]) groups[tier] = { refs: [], color: new THREE.Color(tierColors[tier]), tier };
@@ -114,59 +166,39 @@ function ArcLines({ references, metadata }) {
     }
 
     const result = [];
-
     for (const [key, group] of Object.entries(groups)) {
       const positions = [];
-
       for (const ref of group.refs) {
-        const p1 = getChapterPosition(ref.from, metadata.totalChapters, metadata.otChapters, GLOBE_RADIUS);
-        const p2 = getChapterPosition(ref.to, metadata.totalChapters, metadata.otChapters, GLOBE_RADIUS);
-
-        const distance = Math.abs(ref.to - ref.from);
-        const heightFactor = (distance / metadata.totalChapters) * 2 + 0.3;
-        const midPoint = new THREE.Vector3()
-          .addVectors(p1, p2)
-          .multiplyScalar(0.5)
-          .normalize()
-          .multiplyScalar(GLOBE_RADIUS + heightFactor);
-
-        for (let s = 0; s < ARC_SEGMENTS; s++) {
-          const t1 = s / ARC_SEGMENTS;
-          const t2 = (s + 1) / ARC_SEGMENTS;
-
-          const pt1 = quadBezier(p1, midPoint, p2, t1);
-          const pt2 = quadBezier(p1, midPoint, p2, t2);
-
-          positions.push(pt1.x, pt1.y, pt1.z, pt2.x, pt2.y, pt2.z);
-        }
+        positions.push(...buildArcSegments(ref));
       }
-
       if (positions.length > 0) {
         const geo = new THREE.BufferGeometry();
-        geo.setAttribute(
-          'position',
-          new THREE.Float32BufferAttribute(positions, 3)
-        );
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
         const tier = group.tier || 2;
         result.push({ geometry: geo, color: group.color, tier });
       }
     }
-
     return result;
-  }, [references, metadata, tierVisibility, colorMode, tierColors, testamentColors]);
+  }, [references, metadata, tierVisibility, colorMode, tierColors, testamentColors, groupColors]);
 
   return (
     <group ref={groupRef}>
-      {lineGeometries.map((item, idx) => (
-        <lineSegments key={idx} geometry={item.geometry}>
-          <lineBasicMaterial
-            color={item.color}
-            transparent
-            opacity={item.tier === 1 ? 0.6 : item.tier === 2 ? 0.4 : 0.25}
-            linewidth={1}
-          />
-        </lineSegments>
-      ))}
+      {lineGeometries.map((item, idx) =>
+        item.vertexColors ? (
+          <lineSegments key={idx} geometry={item.geometry}>
+            <lineBasicMaterial vertexColors transparent opacity={0.35} linewidth={1} />
+          </lineSegments>
+        ) : (
+          <lineSegments key={idx} geometry={item.geometry}>
+            <lineBasicMaterial
+              color={item.color}
+              transparent
+              opacity={item.tier === 1 ? 0.6 : item.tier === 2 ? 0.4 : 0.25}
+              linewidth={1}
+            />
+          </lineSegments>
+        )
+      )}
     </group>
   );
 }

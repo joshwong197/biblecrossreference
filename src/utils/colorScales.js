@@ -61,3 +61,63 @@ export function getTestamentPairKey(fromBook, toBook) {
   if (!fromOT && !toOT) return 'NT-NT';
   return 'cross';
 }
+
+// Book group color mode (10 groups)
+const BOOK_GROUP_RANGES = [
+  { key: 'pentateuch',     min: 1,  max: 5  },
+  { key: 'historical',     min: 6,  max: 17 },
+  { key: 'wisdom',         min: 18, max: 22 },
+  { key: 'major-prophets', min: 23, max: 27 },
+  { key: 'minor-prophets', min: 28, max: 39 },
+  { key: 'gospels',        min: 40, max: 43 },
+  { key: 'acts',           min: 44, max: 44 },
+  { key: 'pauline',        min: 45, max: 57 },
+  { key: 'general',        min: 58, max: 65 },
+  { key: 'revelation',     min: 66, max: 66 },
+];
+
+export function getBookGroupKey(bookNum) {
+  for (const range of BOOK_GROUP_RANGES) {
+    if (bookNum >= range.min && bookNum <= range.max) return range.key;
+  }
+  return 'pentateuch';
+}
+
+export const GROUP_COLORS_DARK = {
+  'pentateuch':     '#3A7CB8',
+  'historical':     '#38A090',
+  'wisdom':         '#B8A03A',
+  'major-prophets': '#A050A0',
+  'minor-prophets': '#A05078',
+  'gospels':        '#B84A38',
+  'acts':           '#B88A38',
+  'pauline':        '#4A70B0',
+  'general':        '#4A8888',
+  'revelation':     '#B03850',
+};
+
+export const GROUP_COLORS_LIGHT = {
+  'pentateuch':     '#2D5F8A',
+  'historical':     '#2A8A72',
+  'wisdom':         '#8A7A2D',
+  'major-prophets': '#7A3D7A',
+  'minor-prophets': '#7A3D5A',
+  'gospels':        '#B84A38',
+  'acts':           '#8A6A2D',
+  'pauline':        '#3A5A8A',
+  'general':        '#3A6A6A',
+  'revelation':     '#A03050',
+};
+
+export const GROUP_LABELS = {
+  'pentateuch':     'Pentateuch',
+  'historical':     'Historical',
+  'wisdom':         'Wisdom & Poetry',
+  'major-prophets': 'Major Prophets',
+  'minor-prophets': 'Minor Prophets',
+  'gospels':        'Gospels',
+  'acts':           'Acts',
+  'pauline':        'Pauline Epistles',
+  'general':        'General Epistles',
+  'revelation':     'Revelation',
+};

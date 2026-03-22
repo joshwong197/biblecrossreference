@@ -26,6 +26,15 @@ export default function ColorModeToggle() {
         >
           Testament
         </button>
+        <button
+          onClick={() => setColorMode('group')}
+          style={{
+            ...styles.button,
+            ...(colorMode === 'group' ? styles.active : {}),
+          }}
+        >
+          Book Group
+        </button>
       </div>
     </div>
   );

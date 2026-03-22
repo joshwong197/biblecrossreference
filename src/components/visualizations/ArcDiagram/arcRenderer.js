@@ -1,4 +1,4 @@
-import { TIER_COLORS_DARK, TIER_COLORS_LIGHT, TESTAMENT_COLORS_DARK, TESTAMENT_COLORS_LIGHT, hexToRgba, getTestamentPairKey } from '../../../utils/colorScales';
+import { TIER_COLORS_DARK, TIER_COLORS_LIGHT, TESTAMENT_COLORS_DARK, TESTAMENT_COLORS_LIGHT, GROUP_COLORS_DARK, GROUP_COLORS_LIGHT, hexToRgba, getTestamentPairKey, getBookGroupKey } from '../../../utils/colorScales';
 
 export function renderArcs(ctx, arcs, config) {
   const {
@@ -37,6 +37,8 @@ export function renderArcs(ctx, arcs, config) {
 
   if (colorMode === 'testament') {
     renderByTestament(ctx, viewportArcs, { width, baseline, maxArcHeight, baseOpacity, theme, highlightChapter, totalChapters, viewStart, visibleChapters });
+  } else if (colorMode === 'group') {
+    renderByBookGroup(ctx, viewportArcs, { width, baseline, maxArcHeight, baseOpacity, theme, highlightChapter, totalChapters, viewStart, visibleChapters });
   } else {
     renderByTier(ctx, viewportArcs, { width, baseline, maxArcHeight, baseOpacity, theme, highlightChapter, totalChapters, viewStart, visibleChapters });
   }
@@ -71,6 +73,25 @@ function renderByTestament(ctx, arcs, config) {
   for (const key of ['cross', 'OT-OT', 'NT-NT']) {
     if (groups[key].length === 0) continue;
     renderArcGroup(ctx, groups[key], testamentColors[key], { width, baseline, maxArcHeight, baseOpacity, highlightChapter, totalChapters, viewStart, visibleChapters });
+  }
+}
+
+function renderByBookGroup(ctx, arcs, config) {
+  const { width, baseline, maxArcHeight, baseOpacity, theme, highlightChapter, totalChapters, viewStart, visibleChapters } = config;
+  const groupColors = theme === 'dark' ? GROUP_COLORS_DARK : GROUP_COLORS_LIGHT;
+
+  // Group arcs by the "from" book's group
+  const groups = {};
+  for (const arc of arcs) {
+    const key = getBookGroupKey(arc.fromBook);
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(arc);
+  }
+
+  for (const [key, groupArcs] of Object.entries(groups)) {
+    const color = groupColors[key];
+    if (!color) continue;
+    renderArcGroup(ctx, groupArcs, color, { width, baseline, maxArcHeight, baseOpacity, highlightChapter, totalChapters, viewStart, visibleChapters });
   }
 }
 

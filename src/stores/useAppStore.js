@@ -26,7 +26,7 @@ const useAppStore = create((set, get) => ({
   setTierVisibility: (tierVisibility) => set({ tierVisibility }),
 
   // Color mode for arcs
-  colorMode: 'tier', // 'tier' | 'testament'
+  colorMode: 'tier', // 'tier' | 'testament' | 'group'
   setColorMode: (colorMode) => set({ colorMode }),
 
   // Selection & hover state

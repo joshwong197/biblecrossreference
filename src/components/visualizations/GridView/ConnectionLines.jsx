@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import * as d3 from 'd3';
-import { TESTAMENT_COLORS_DARK, TESTAMENT_COLORS_LIGHT, getTestamentPairKey } from '../../../utils/colorScales';
+import { TESTAMENT_COLORS_DARK, TESTAMENT_COLORS_LIGHT, GROUP_COLORS_DARK, GROUP_COLORS_LIGHT, getTestamentPairKey, getBookGroupKey } from '../../../utils/colorScales';
 
 export default function ConnectionLines({
   edges,
@@ -10,6 +10,7 @@ export default function ConnectionLines({
   selectedNode,
 }) {
   const testamentColors = theme === 'dark' ? TESTAMENT_COLORS_DARK : TESTAMENT_COLORS_LIGHT;
+  const groupColors = theme === 'dark' ? GROUP_COLORS_DARK : GROUP_COLORS_LIGHT;
   const accentColor = theme === 'dark' ? '#58A6FF' : '#0969DA';
 
   const { widthScale, maxCount } = useMemo(() => {
@@ -21,8 +22,38 @@ export default function ConnectionLines({
     };
   }, [edges]);
 
+  // Collect gradient defs needed for group mode cross-group connections
+  const gradientDefs = useMemo(() => {
+    if (colorMode !== 'group') return [];
+    const seen = new Set();
+    const defs = [];
+    for (const edge of edges) {
+      const s = edge.source;
+      const t = edge.target;
+      if (!s || !t) continue;
+      const fromGroup = getBookGroupKey(s.num);
+      const toGroup = getBookGroupKey(t.num);
+      if (fromGroup === toGroup) continue;
+      const pairKey = `${fromGroup}-${toGroup}`;
+      if (seen.has(pairKey)) continue;
+      seen.add(pairKey);
+      defs.push({ id: `grad-${pairKey}`, from: groupColors[fromGroup], to: groupColors[toGroup] });
+    }
+    return defs;
+  }, [edges, colorMode, groupColors]);
+
   return (
     <g>
+      {colorMode === 'group' && (
+        <defs>
+          {gradientDefs.map((d) => (
+            <linearGradient key={d.id} id={d.id} gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor={d.from} />
+              <stop offset="100%" stopColor={d.to} />
+            </linearGradient>
+          ))}
+        </defs>
+      )}
       {edges.map((edge, i) => {
         const source = edge.source;
         const target = edge.target;
@@ -46,6 +77,14 @@ export default function ConnectionLines({
         if (colorMode === 'testament') {
           const key = getTestamentPairKey(source.num, target.num);
           color = testamentColors[key];
+        } else if (colorMode === 'group') {
+          const fromGroup = getBookGroupKey(source.num);
+          const toGroup = getBookGroupKey(target.num);
+          if (fromGroup === toGroup) {
+            color = groupColors[fromGroup];
+          } else {
+            color = `url(#grad-${fromGroup}-${toGroup})`;
+          }
         } else {
           color = accentColor;
         }
