@@ -185,11 +185,11 @@ function ArcLines({ references, metadata }) {
     <group ref={groupRef}>
       {lineGeometries.map((item, idx) =>
         item.vertexColors ? (
-          <lineSegments key={idx} geometry={item.geometry}>
-            <lineBasicMaterial vertexColors transparent opacity={0.35} linewidth={1} />
+          <lineSegments key={`${colorMode}-${idx}`} geometry={item.geometry}>
+            <lineBasicMaterial vertexColors={true} transparent opacity={0.35} linewidth={1} />
           </lineSegments>
         ) : (
-          <lineSegments key={idx} geometry={item.geometry}>
+          <lineSegments key={`${colorMode}-${idx}`} geometry={item.geometry}>
             <lineBasicMaterial
               color={item.color}
               transparent
