@@ -362,3 +362,124 @@
     transition: border-color 0.15s ease;
   }
 }
+
+/* --- Book page: commentary sections + data sections --- */
+
+.book-page .about-h2 {
+  margin-top: 36px;
+}
+
+.book-outline {
+  margin: 0 0 8px;
+  padding-left: 20px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.book-partners {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.book-partners__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+}
+
+.book-partners__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  min-width: 148px;
+}
+
+.book-partners__books {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.book-partners__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-raised);
+  color: var(--ink);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.book-partners__chip:hover {
+  border-color: var(--accent-reader);
+}
+
+.book-partners__arrow {
+  color: var(--ink-3);
+}
+
+.book-partners__count {
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+}
+
+.book-data-sub {
+  margin: 18px 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.book-top-verses {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.book-top-verses li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+
+.book-top-verses__link {
+  color: var(--accent-reader);
+  text-decoration: none;
+}
+
+.book-top-verses__link:hover {
+  text-decoration: underline;
+}
+
+.book-top-verses__count {
+  color: var(--ink-2);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.book-data-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.book-data-note a {
+  color: var(--accent-reader);
+}
