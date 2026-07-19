@@ -1,4 +1,8 @@
 import useAppStore from '../../stores/useAppStore';
+// ThemeToggle renders in the app-wide Header (every route), not just the viz
+// page, so it imports the chrome stylesheet itself — same reason LoadingScreen
+// and VerseTooltip do. Vite dedupes the duplicate import.
+import '../../viz-chrome.css';
 
 export default function ThemeToggle() {
   const theme = useAppStore((s) => s.theme);
@@ -6,8 +10,9 @@ export default function ThemeToggle() {
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
-      style={styles.button}
+      className="theme-toggle"
       title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
@@ -31,19 +36,3 @@ export default function ThemeToggle() {
     </button>
   );
 }
-
-const styles = {
-  button: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 32,
-    height: 32,
-    border: '1px solid var(--border)',
-    borderRadius: 6,
-    backgroundColor: 'var(--button-bg)',
-    color: 'var(--text-secondary)',
-    cursor: 'pointer',
-    transition: 'all 0.15s ease',
-  },
-};

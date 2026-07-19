@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import useVerseText from '../../hooks/useVerseText';
+// VerseTooltip renders from the viz page and (via SearchBar/ReferencePanel) is
+// reachable outside it, so it imports the chrome stylesheet itself. Vite dedupes.
+import '../../viz-chrome.css';
 
 export default function VerseTooltip({ bookAbbrev, bookName, chapter, verse, anchorRect }) {
-  const { getText, loading, loaded, ensureLoaded } = useVerseText();
+  const { getText, loading, loaded } = useVerseText(bookAbbrev);
   const tooltipRef = useRef(null);
   const [position, setPosition] = useState({ top: 0, left: 0 });
-
-  useEffect(() => {
-    ensureLoaded();
-  }, [ensureLoaded]);
 
   useEffect(() => {
     if (!anchorRect || !tooltipRef.current) return;
@@ -31,7 +30,7 @@ export default function VerseTooltip({ bookAbbrev, bookName, chapter, verse, anc
     setPosition({ top, left });
   }, [anchorRect, loaded]);
 
-  const text = loaded ? getText(bookAbbrev, chapter, verse) : null;
+  const text = loaded ? getText(chapter, verse) : null;
   const reference = verse
     ? `${bookName || bookAbbrev} ${chapter}:${verse}`
     : `${bookName || bookAbbrev} ${chapter}:1`;
@@ -39,49 +38,15 @@ export default function VerseTooltip({ bookAbbrev, bookName, chapter, verse, anc
   return (
     <div
       ref={tooltipRef}
-      style={{
-        ...styles.tooltip,
-        top: position.top,
-        left: position.left,
-      }}
+      className="verse-tooltip"
+      style={{ top: position.top, left: position.left }}
     >
-      <div style={styles.reference}>{reference}</div>
-      {loading && <div style={styles.loading}>Loading verse text...</div>}
-      {!loading && text && <div style={styles.text}>{text}</div>}
+      <div className="verse-tooltip__ref">{reference}</div>
+      {loading && <div className="verse-tooltip__loading">Loading verse text...</div>}
+      {!loading && text && <div className="verse-tooltip__text">{text}</div>}
       {!loading && !text && loaded && (
-        <div style={styles.loading}>Verse text not available</div>
+        <div className="verse-tooltip__loading">Verse text not available</div>
       )}
     </div>
   );
 }
-
-const styles = {
-  tooltip: {
-    position: 'fixed',
-    zIndex: 1000,
-    maxWidth: 340,
-    padding: '10px 14px',
-    backgroundColor: 'var(--bg-tertiary)',
-    border: '1px solid var(--border)',
-    borderRadius: 8,
-    boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
-    pointerEvents: 'none',
-  },
-  reference: {
-    fontSize: 11,
-    fontWeight: 700,
-    color: 'var(--accent)',
-    marginBottom: 6,
-  },
-  text: {
-    fontSize: 12,
-    lineHeight: 1.5,
-    color: 'var(--text-primary)',
-    fontStyle: 'italic',
-  },
-  loading: {
-    fontSize: 11,
-    color: 'var(--text-muted)',
-    fontStyle: 'italic',
-  },
-};

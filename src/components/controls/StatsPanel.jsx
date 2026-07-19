@@ -43,70 +43,28 @@ export default function StatsPanel() {
   if (!stats) return null;
 
   return (
-    <div style={styles.container}>
-      <div style={styles.label}>Statistics</div>
+    <div className="stats-panel">
+      <div className="viz-label">Statistics</div>
 
-      <div style={styles.stat}>
-        <span style={styles.statLabel}>Visible refs</span>
-        <span style={styles.statValue}>{stats.total.toLocaleString()}</span>
+      <div className="stats-panel__stat">
+        <span className="stats-panel__stat-label">Visible refs</span>
+        <span className="stats-panel__stat-value">{stats.total.toLocaleString()}</span>
       </div>
 
-      <div style={styles.stat}>
-        <span style={styles.statLabel}>Cross-testament</span>
-        <span style={styles.statValue}>{stats.crossTestament.toLocaleString()}</span>
+      <div className="stats-panel__stat">
+        <span className="stats-panel__stat-label">Cross-testament</span>
+        <span className="stats-panel__stat-value">{stats.crossTestament.toLocaleString()}</span>
       </div>
 
-      <div style={styles.divider} />
+      <div className="stats-panel__divider" />
 
-      <div style={styles.subLabel}>Most Connected</div>
+      <div className="stats-panel__sublabel">Most Connected</div>
       {stats.topBooks.map((book) => (
-        <div key={book.name} style={styles.stat}>
-          <span style={styles.statLabel}>{book.name}</span>
-          <span style={styles.statValue}>{book.count.toLocaleString()}</span>
+        <div key={book.name} className="stats-panel__stat">
+          <span className="stats-panel__stat-label">{book.name}</span>
+          <span className="stats-panel__stat-value">{book.count.toLocaleString()}</span>
         </div>
       ))}
     </div>
   );
 }
-
-const styles = {
-  container: {
-    padding: '8px 12px',
-    borderTop: '1px solid var(--border)',
-  },
-  label: {
-    fontSize: 11,
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px',
-    color: 'var(--text-muted)',
-    marginBottom: 6,
-  },
-  subLabel: {
-    fontSize: 11,
-    fontWeight: 600,
-    color: 'var(--text-muted)',
-    marginBottom: 4,
-    marginTop: 4,
-  },
-  stat: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '2px 0',
-    fontSize: 12,
-  },
-  statLabel: {
-    color: 'var(--text-secondary)',
-  },
-  statValue: {
-    color: 'var(--text-primary)',
-    fontFamily: 'monospace',
-    fontSize: 12,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: 'var(--border)',
-    margin: '6px 0',
-  },
-};

@@ -1,30 +1,37 @@
-import { useEffect, useCallback } from 'react';
-import useAppStore from '../stores/useAppStore';
+import { useCallback, useEffect, useState } from 'react';
+import { loadBookText } from '../utils/readerCache';
 
-export default function useVerseText() {
-  const verseText = useAppStore((s) => s.verseText);
-  const verseTextLoading = useAppStore((s) => s.verseTextLoading);
-  const loadVerseText = useAppStore((s) => s.loadVerseText);
+/**
+ * Verse text for one book, loaded lazily from the per-book text shard
+ * (shares readerCache with the Reader, so nothing is fetched twice).
+ */
+export default function useVerseText(bookAbbrev) {
+  // Keyed by abbrev so stale state is derived away, not reset in the effect
+  const [loadedBook, setLoadedBook] = useState({ abbrev: null, data: null });
 
-  const getText = useCallback((bookAbbrev, chapter, verse) => {
-    if (!verseText) return null;
-    const book = verseText[bookAbbrev];
-    if (!book) return null;
-    const ch = book[String(chapter)];
+  useEffect(() => {
+    if (!bookAbbrev) return undefined;
+    let cancelled = false;
+    loadBookText(bookAbbrev)
+      .then((data) => {
+        if (!cancelled) setLoadedBook({ abbrev: bookAbbrev, data });
+      })
+      .catch(() => {
+        if (!cancelled) setLoadedBook({ abbrev: bookAbbrev, data: null });
+      });
+    return () => { cancelled = true; };
+  }, [bookAbbrev]);
+
+  const book = loadedBook.abbrev === bookAbbrev ? loadedBook.data : null;
+  const loading = !!bookAbbrev && loadedBook.abbrev !== bookAbbrev;
+
+  const getText = useCallback((chapter, verse) => {
+    const ch = book?.[String(chapter)];
     if (!ch) return null;
-    if (verse) {
-      return ch[String(verse)] || null;
-    }
-    // Return first verse as preview if no specific verse
+    if (verse) return ch[String(verse)] || null;
     const firstKey = Object.keys(ch)[0];
     return firstKey ? ch[firstKey] : null;
-  }, [verseText]);
+  }, [book]);
 
-  const ensureLoaded = useCallback(() => {
-    if (!verseText && !verseTextLoading) {
-      loadVerseText();
-    }
-  }, [verseText, verseTextLoading, loadVerseText]);
-
-  return { getText, loading: verseTextLoading, loaded: !!verseText, ensureLoaded };
+  return { getText, loading, loaded: !!book };
 }

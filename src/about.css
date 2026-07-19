@@ -1,0 +1,364 @@
+/* === About / Methodology page — "register 3" of the Quiet Study system ===
+   Document typography: serif for quoted scripture, sans for UI/body copy,
+   real tables with tabular-nums, uppercase eyebrow labels. No terminal chrome.
+   See DESIGN.md. Both themes via the shared [data-theme] tokens in index.css. */
+
+.about-page {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--bg);
+  color: var(--ink);
+  padding: 24px 16px calc(72px + 16px);
+}
+
+.about-content {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.about-back {
+  display: inline-block;
+  font-size: 14px;
+  color: var(--accent-reader);
+  margin-bottom: 24px;
+}
+
+.about-h1 {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+
+.about-h2 {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.about-h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+.about-section {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+
+.about-section:last-child {
+  border-bottom: none;
+}
+
+.about-p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin-bottom: 12px;
+}
+
+.about-p:last-child {
+  margin-bottom: 0;
+}
+
+.about-p strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.about-p em {
+  font-family: var(--font-scripture);
+  font-style: italic;
+  color: var(--ink);
+}
+
+.about-list {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-2);
+  padding-left: 20px;
+}
+
+/* === Tier cards === */
+
+.tier-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.tier-card {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+}
+
+.tier-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--ink);
+  flex-wrap: wrap;
+}
+
+.tier-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.tier-card-name {
+  font-weight: 600;
+}
+
+.tier-card-count {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.tier-card-count-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tier-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+.tier-example {
+  font-family: var(--font-scripture);
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+.tier-ambig {
+  margin-top: 6px;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+}
+
+/* === Honesty notes === */
+
+.honesty-note {
+  margin-bottom: 20px;
+}
+
+.honesty-note:last-child {
+  margin-bottom: 0;
+}
+
+/* === Rules definition list (methodology, verbatim from rules JSON) === */
+
+.rules-list {
+  margin-top: 16px;
+}
+
+.rules-row {
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.rules-row:first-child {
+  border-top: none;
+}
+
+.rules-row dt {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+.rules-row dd {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-unavailable {
+  margin-top: 16px;
+  font-size: 13.5px;
+  font-style: italic;
+  color: var(--ink-3);
+}
+
+/* === Views table === */
+
+.views-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+.views-table tr {
+  border-top: 1px solid var(--line);
+}
+
+.views-table tr:first-child {
+  border-top: none;
+}
+
+.views-table th,
+.views-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 0;
+}
+
+.views-table th {
+  width: 30%;
+  padding-right: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.views-table td {
+  color: var(--ink-2);
+}
+
+/* === Mobile-first breakpoints === */
+
+@media (min-width: 640px) {
+  .about-page {
+    padding: 40px 24px calc(72px + 24px);
+  }
+
+  .about-h1 {
+    font-size: 30px;
+  }
+
+  .views-table th {
+    white-space: normal;
+  }
+}
+
+@media (min-width: 900px) {
+  .about-page {
+    padding: 56px 32px 56px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .about-back {
+    transition: opacity 0.15s ease;
+  }
+}
+
+/* === Book page (/book/:slug) — same document register as About, plus a
+   handful of book-specific pieces: hero art (optional), a stats line, and
+   a prominent way back into the Reader. See BookPage.jsx. === */
+
+/* Full artwork (public/art/{Abbrev}-full.webp): ~4:3 per the README. */
+.book-art {
+  margin: 4px 0 24px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg-raised);
+  aspect-ratio: 4 / 3;
+}
+
+.book-art__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fallback to the banner crop (~1600x500) when no full artwork exists yet. */
+.book-art--banner {
+  aspect-ratio: 3.2 / 1;
+}
+
+.book-title {
+  margin-bottom: 10px;
+}
+
+.book-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.book-stats__item {
+  white-space: nowrap;
+}
+
+.book-stats__item:not(:last-child)::after {
+  content: '\00b7';
+  margin-left: 16px;
+  color: var(--ink-3);
+}
+
+.book-blurb {
+  margin-top: 4px;
+  margin-bottom: 28px;
+}
+
+.book-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  color: var(--accent-reader);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.book-cta:hover {
+  border-color: var(--accent-reader);
+  text-decoration: none;
+}
+
+.book-cta:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .book-cta {
+    transition: border-color 0.15s ease;
+  }
+}

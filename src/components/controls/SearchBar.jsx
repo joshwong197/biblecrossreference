@@ -114,8 +114,8 @@ export default function SearchBar() {
   if (!metadata) return null;
 
   return (
-    <div style={styles.container} ref={containerRef}>
-      <div style={styles.label}>Search</div>
+    <div className="viz-search" ref={containerRef}>
+      <div className="viz-label">Search</div>
       <input
         ref={inputRef}
         type="text"
@@ -127,15 +127,15 @@ export default function SearchBar() {
         onFocus={() => setShowDropdown(true)}
         onKeyDown={handleKeyDown}
         placeholder="e.g. John 3:16, Gen 1..."
-        style={styles.input}
+        className="viz-search__input"
       />
       {showDropdown && suggestions.length > 0 && (
-        <div style={styles.dropdown}>
+        <div className="viz-search__dropdown">
           {suggestions.map((entry) => (
             <button
               key={entry.globalIndex}
               onClick={() => handleSelect(entry)}
-              style={styles.suggestion}
+              className="viz-search__suggestion"
               onMouseDown={(e) => e.preventDefault()}
               onMouseEnter={(e) => {
                 clearTimeout(hoverTimer.current);
@@ -151,8 +151,8 @@ export default function SearchBar() {
                 setSuggestionAnchor(null);
               }}
             >
-              <span style={styles.suggestionLabel}>{entry.label}</span>
-              <span style={styles.suggestionAbbrev}>{entry.shortLabel}</span>
+              <span className="viz-search__suggestion-label">{entry.label}</span>
+              <span className="viz-search__suggestion-abbrev">{entry.shortLabel}</span>
             </button>
           ))}
         </div>
@@ -169,64 +169,3 @@ export default function SearchBar() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    padding: '8px 12px',
-    borderBottom: '1px solid var(--border)',
-    position: 'relative',
-  },
-  label: {
-    fontSize: 11,
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px',
-    color: 'var(--text-muted)',
-    marginBottom: 6,
-  },
-  input: {
-    width: '100%',
-    padding: '5px 8px',
-    fontSize: 12,
-    border: '1px solid var(--border)',
-    borderRadius: 4,
-    backgroundColor: 'var(--button-bg)',
-    color: 'var(--text-primary)',
-    outline: 'none',
-    boxSizing: 'border-box',
-  },
-  dropdown: {
-    position: 'absolute',
-    left: 12,
-    right: 12,
-    top: '100%',
-    backgroundColor: 'var(--panel-bg)',
-    border: '1px solid var(--border)',
-    borderRadius: 4,
-    boxShadow: '0 4px 12px var(--shadow)',
-    zIndex: 100,
-    maxHeight: 240,
-    overflowY: 'auto',
-  },
-  suggestion: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    padding: '6px 10px',
-    fontSize: 12,
-    border: 'none',
-    borderBottom: '1px solid var(--border)',
-    backgroundColor: 'transparent',
-    color: 'var(--text-primary)',
-    cursor: 'pointer',
-    textAlign: 'left',
-  },
-  suggestionLabel: {
-    fontWeight: 500,
-  },
-  suggestionAbbrev: {
-    fontSize: 10,
-    color: 'var(--text-muted)',
-  },
-};

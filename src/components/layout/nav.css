@@ -1,0 +1,171 @@
+/* === Navigation shell: desktop Header nav links + mobile bottom tab bar === */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  height: 52px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.app-header__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.app-header__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.app-header__logo {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-header__logo:hover {
+  text-decoration: none;
+}
+
+/* Quiet Study wordmark: the one serif element in the chrome. */
+.app-header__title {
+  font-family: var(--font-scripture);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.app-header__nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.app-header__nav-link:hover {
+  background: var(--button-bg);
+  text-decoration: none;
+}
+
+.app-header__nav-link.is-active {
+  color: var(--text-primary);
+  font-weight: 600;
+  background: var(--button-active);
+}
+
+.app-header__info-btn {
+  display: none;
+}
+
+.bottom-tab-bar {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .app-header__nav-link:not(.app-header__nav-link--info) {
+    display: none;
+  }
+
+  .app-header__info-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--button-bg);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 700;
+    font-style: italic;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .bottom-tab-bar {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    background: var(--bg-raised, var(--bg-secondary));
+    border-top: 1px solid var(--line, var(--border));
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  /* Reserve space so page content isn't hidden behind the fixed tab bar */
+  #root {
+    padding-bottom: 0;
+  }
+}
+
+.bottom-tab-bar__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 56px;
+  padding: 6px 4px;
+  text-decoration: none;
+  color: var(--ink-2, var(--text-secondary));
+  font-size: 10px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  transition: color 0.15s ease;
+}
+
+.bottom-tab-bar__item.is-active {
+  color: var(--ink, var(--text-primary));
+  font-weight: 600;
+}
+
+.bottom-tab-bar__item svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.15s ease;
+}
+
+.bottom-tab-bar__item.is-active svg {
+  transform: scale(1.06);
+}
+
+.bottom-tab-bar__item:focus-visible {
+  outline: 2px solid var(--accent-reader, var(--accent));
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-header__nav-link,
+  .bottom-tab-bar__item,
+  .bottom-tab-bar__item svg {
+    transition: none;
+  }
+
+  .bottom-tab-bar__item.is-active svg {
+    transform: none;
+  }
+}

@@ -1,0 +1,626 @@
+/* === Explore — Quiet Study register (feed mechanic, calm serif cards) ===
+   Tokens only (see DESIGN.md). Card-per-insight feed on paper/ink grounds;
+   tier color is the only strong color. NOT the OLED-social look. */
+
+.explore-page {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+}
+
+.explore-page__inner {
+  max-width: 65ch;
+  margin: 0 auto;
+  padding: 8px 20px 96px;
+}
+
+/* Desktop: the feed becomes a grid instead of a single mobile-width column
+   (the container has to widen past the 65ch prose measure for that — the
+   header/lede below stay narrow via their own max-width). */
+@media (min-width: 900px) {
+  .explore-page__inner {
+    max-width: 1100px;
+    padding: 8px 32px 96px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .explore-page__inner {
+    max-width: 1400px;
+  }
+}
+
+/* --- Header --- */
+.explore-head {
+  padding: 20px 0 8px;
+}
+
+.explore-head__title {
+  font-family: var(--font-scripture);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.explore-head__sub {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+
+.explore-note {
+  padding: 32px 0;
+  color: var(--ink-2);
+  font-family: var(--font-scripture);
+  font-size: 17px;
+}
+
+/* --- Feed --- */
+.explore-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* Entrance fade-up, staggered ~40ms per card for the first 8; cards beyond
+   that (including ones revealed by "Show more") appear instantly. */
+.explore-feed__item {
+  opacity: 0;
+  animation: xcard-in 0.2s ease-out forwards;
+}
+
+@keyframes xcard-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.explore-feed__item:nth-child(1) { animation-delay: 0ms; }
+.explore-feed__item:nth-child(2) { animation-delay: 40ms; }
+.explore-feed__item:nth-child(3) { animation-delay: 80ms; }
+.explore-feed__item:nth-child(4) { animation-delay: 120ms; }
+.explore-feed__item:nth-child(5) { animation-delay: 160ms; }
+.explore-feed__item:nth-child(6) { animation-delay: 200ms; }
+.explore-feed__item:nth-child(7) { animation-delay: 240ms; }
+.explore-feed__item:nth-child(8) { animation-delay: 280ms; }
+
+.explore-feed__item:nth-child(n + 9) {
+  opacity: 1;
+  animation: none;
+}
+
+/* --- Desktop grid: 2 columns >=900px, 3 columns >=1400px --- */
+@media (min-width: 900px) {
+  .explore-feed {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    gap: 20px;
+  }
+
+  /* The opening stat card is the one deliberately "hero" card in the
+     feed (singular, always first, sets the scale of the whole dataset) —
+     let it span the full grid width instead of sharing a row. Other card
+     types stay one-per-cell so the grid actually reads as a grid. */
+  .explore-feed__item[data-type='stat'] {
+    grid-column: 1 / -1;
+  }
+
+  /* Same stagger, same 8-card cap as mobile, just slightly quicker so it
+     stays subtle once items are arriving two/three at a time per row
+     instead of one at a time down a single column. */
+  .explore-feed__item:nth-child(1) { animation-delay: 0ms; }
+  .explore-feed__item:nth-child(2) { animation-delay: 30ms; }
+  .explore-feed__item:nth-child(3) { animation-delay: 60ms; }
+  .explore-feed__item:nth-child(4) { animation-delay: 90ms; }
+  .explore-feed__item:nth-child(5) { animation-delay: 120ms; }
+  .explore-feed__item:nth-child(6) { animation-delay: 150ms; }
+  .explore-feed__item:nth-child(7) { animation-delay: 180ms; }
+  .explore-feed__item:nth-child(8) { animation-delay: 210ms; }
+}
+
+@media (min-width: 1400px) {
+  .explore-feed {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- Card frame --- */
+.xcard {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 20px 16px;
+}
+
+@media (hover: hover) {
+  .xcard {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .xcard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--shadow, rgba(0, 0, 0, 0.12));
+  }
+}
+
+.xcard__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 14px;
+}
+
+.xcard__eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.xcard__lede {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin-bottom: 14px;
+}
+
+.xcard__approx {
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--ink-2);
+  margin-top: 12px;
+}
+
+.xcard__foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.xweight {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.xcard__method {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* Method note standing alone (no foot row) gets its own top spacing. */
+.xcard > .xcard__method,
+.xcard__foot .xcard__method {
+  margin-top: 0;
+}
+.xcard > .xcard__method {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.xcard__method-link {
+  color: var(--accent-reader);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.xcard__method-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Scripture text --- */
+.xscripture {
+  font-family: var(--font-scripture);
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-top: 6px;
+}
+
+.xscripture--lg {
+  font-size: 20px;
+  line-height: 1.55;
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+
+@media (min-width: 900px) {
+  .xscripture { font-size: 18px; }
+  .xscripture--lg { font-size: 23px; }
+}
+
+/* --- Ref links --- */
+.xref {
+  color: var(--accent-reader);
+  text-decoration: none;
+}
+
+.xref--head {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.15s ease;
+}
+
+.xref--head:hover {
+  color: var(--accent-reader);
+}
+
+.xref--chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.xref--chip:hover {
+  border-color: var(--accent-reader);
+  color: var(--accent-reader);
+}
+
+.xref:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.xref--dead {
+  color: var(--ink-3);
+  font-size: 12.5px;
+}
+
+.xchips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 2px;
+}
+
+/* --- Connection card --- */
+.xconn__side + .xconn__side {
+  margin-top: 2px;
+}
+
+.xconn__link {
+  color: var(--ink-3);
+  font-size: 15px;
+  text-align: center;
+  margin: 8px 0;
+  user-select: none;
+}
+
+/* --- Stat card (opening) --- */
+.xstat__headline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.xstat__big {
+  font-family: var(--font-scripture);
+  font-weight: 300;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.xstat__big-label {
+  font-size: 13px;
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+}
+
+.xstat__lede {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin-bottom: 16px;
+}
+
+.xstat__footrow {
+  display: flex;
+  gap: 28px;
+  margin-top: 16px;
+}
+
+.xstat__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.xstat__cell-num {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.xstat__cell-label {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+/* --- Tier breakdown --- */
+.xtiers {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 4px 0 2px;
+}
+
+.xtiers__row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.xtiers__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.xtiers__label {
+  width: 72px;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.xtiers__bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.xtiers__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  opacity: 0.75;
+}
+
+.xtiers__count {
+  width: 62px;
+  flex-shrink: 0;
+  text-align: right;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Spotlight card --- */
+.xspot__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.xspot__count {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.xspot__count-num {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.xspot__count-label {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+/* --- Quoted-OT card --- */
+.xquoted__count {
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-top: 12px;
+}
+
+.xquoted__count strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Synoptic card --- */
+.xsyn__pairs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.xsyn__pair {
+  flex: 1;
+  min-width: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.xsyn__pair-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.xsyn__pair-count {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.xsyn__rows {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.xsyn__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+}
+
+.xsyn__row-refs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.xsyn__row-amp {
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.xsyn__row-count {
+  font-size: 12px;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* --- Superlative card --- */
+.xsup__headline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.xsup__big {
+  font-family: var(--font-scripture);
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.xsup__big-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.xsup__body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* --- Show more --- */
+.explore-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.explore-more__btn {
+  min-height: 44px;
+  padding: 10px 28px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  color: var(--accent-reader);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.explore-more__btn:hover {
+  border-color: var(--accent-reader);
+}
+
+.explore-more__btn:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xref--chip,
+  .xref--head,
+  .xcard__method-link,
+  .explore-more__btn {
+    transition: none;
+  }
+
+  .explore-feed__item {
+    opacity: 1;
+    animation: none;
+  }
+
+  .xcard {
+    transition: none;
+  }
+
+  .xcard:hover {
+    transform: none;
+  }
+}

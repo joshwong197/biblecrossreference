@@ -1,9 +1,22 @@
-/* === CSS Custom Properties: Theme System === */
+/* === CSS Custom Properties: Theme System ===
+   One system app-wide: "Quiet Study" (DESIGN.md is the contract).
+   The Quiet Study tokens are the source of truth; the legacy v1 token names
+   (--bg-primary, --text-primary, --accent, ...) are kept as ALIASES onto them
+   so older inline-styled components inherit the system without a rewrite.
+   New CSS should use the Quiet Study names directly. */
 :root {
-  /* Dark mode (default) */
-  --bg-primary: #0D1117;
-  --bg-secondary: #161B22;
-  --bg-tertiary: #21262D;
+  /* Quiet Study — dark (default) */
+  --bg: #131312;
+  --bg-raised: #1D1D1B;
+  --ink: #E8E6E1;
+  --ink-2: #98968F;
+  --ink-3: #5A5954;
+  --line: #2A2A27;
+  --accent-reader: #D4AF37;
+  --viz-bg: #0D1117;
+  --font-scripture: Georgia, 'Times New Roman', serif;
+
+  /* Data palettes (per-theme literals — the only strong color in the UI) */
   --tier-1: #FFD700;
   --tier-2: #FF6B35;
   --tier-3: #4ECDC4;
@@ -12,28 +25,42 @@
   --ot-ot: #4A90D9;
   --nt-nt: #E8675A;
   --cross-testament: #C8A2E8;
-  --text-primary: #E0E0E0;
-  --text-secondary: #8B949E;
-  --text-muted: #6E7681;
-  --divider: #333333;
-  --border: #30363D;
+
+  /* Viz-canvas specifics */
   --arc-base-opacity: 0.25;
-  --bar-fill: #58A6FF;
+  --bar-fill: #5A5954;
   --bar-fill-opacity: 0.6;
-  --header-bg: #161B22;
-  --panel-bg: #161B22;
-  --button-bg: #21262D;
-  --button-hover: #30363D;
-  --button-active: #388BFD26;
-  --button-active-border: #388BFD;
-  --accent: #58A6FF;
+
+  /* Legacy aliases → Quiet Study (do not point components at these in new code) */
+  --bg-primary: var(--viz-bg);
+  --bg-secondary: var(--bg-raised);
+  --bg-tertiary: #262624;
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-2);
+  --text-muted: var(--ink-3);
+  --divider: var(--line);
+  --border: var(--line);
+  --header-bg: var(--bg);
+  --panel-bg: var(--bg-raised);
+  --button-bg: #262624;
+  --button-hover: #31312E;
+  --button-active: rgba(212, 175, 55, 0.14);
+  --button-active-border: var(--accent-reader);
+  --accent: var(--accent-reader);
   --shadow: rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="light"] {
-  --bg-primary: #FAFAFA;
-  --bg-secondary: #FFFFFF;
-  --bg-tertiary: #F0F0F0;
+  /* Quiet Study — light */
+  --bg: #FDFDFB;
+  --bg-raised: #F5F5F3;
+  --ink: #1D1D1F;
+  --ink-2: #6E6E73;
+  --ink-3: #B0B0B5;
+  --line: #EBEBE8;
+  --accent-reader: #8A6A0B;
+  --viz-bg: #FAFAFA;
+
   --tier-1: #B8860B;
   --tier-2: #CC4E1B;
   --tier-3: #1A8A7D;
@@ -42,21 +69,17 @@
   --ot-ot: #2B5C8A;
   --nt-nt: #B84A3E;
   --cross-testament: #8B5DAA;
-  --text-primary: #2D2D2D;
-  --text-secondary: #57606A;
-  --text-muted: #8C959F;
-  --divider: #DDDDDD;
-  --border: #D0D7DE;
+
   --arc-base-opacity: 0.35;
-  --bar-fill: #2B5C8A;
+  --bar-fill: #C9C9C4;
   --bar-fill-opacity: 0.5;
-  --header-bg: #FFFFFF;
+
+  /* Legacy aliases that need per-theme literals */
+  --bg-tertiary: #F0EFEC;
   --panel-bg: #FFFFFF;
-  --button-bg: #F0F0F0;
-  --button-hover: #E0E0E0;
-  --button-active: #ddf4ff;
-  --button-active-border: #54AEFF;
-  --accent: #0969DA;
+  --button-bg: #F0EFEC;
+  --button-hover: #E7E6E2;
+  --button-active: rgba(138, 106, 11, 0.10);
   --shadow: rgba(0, 0, 0, 0.1);
 }
 
@@ -76,8 +99,8 @@ html, body, #root {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: var(--bg);
+  color: var(--ink);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.2s ease, color 0.2s ease;

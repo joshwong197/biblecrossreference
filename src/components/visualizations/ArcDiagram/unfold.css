@@ -1,0 +1,218 @@
+/* === "The Unfolding" — Arc time-playback mode ===
+   Register 2 of DESIGN.md ("Quiet Study"): quiet pills/chips, tokens only,
+   tabular-nums for numbers, tier/gold are the only strong colors. Scoped to
+   the Unfold mode so it never touches normal-mode arc chrome. Both themes
+   work through the token switch — no hardcoded colors. */
+
+/* --- Toggle pill (top-left, zoom-badge styling family) --- */
+.arc__unfold-toggle {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+  background-color: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.arc__unfold-toggle:hover {
+  color: var(--ink);
+  border-color: var(--accent-reader);
+}
+
+.arc__unfold-toggle.is-active {
+  color: var(--ink);
+  border-color: var(--accent-reader);
+  background-color: var(--button-active);
+}
+
+.arc__unfold-toggle:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+}
+
+.arc__unfold-toggle-glyph {
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* --- Scrubber overlay along the bottom of the arc canvas --- */
+.unfold-scrubber {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px 14px;
+  background: linear-gradient(to top, var(--bg) 55%, transparent);
+  z-index: 12;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+}
+
+/* --- Progress track --- */
+.unfold-track {
+  position: relative;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.unfold-track__rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 999px;
+  background-color: var(--line);
+}
+
+.unfold-track__played {
+  position: absolute;
+  left: 0;
+  height: 3px;
+  border-radius: 999px;
+  background-color: var(--ink-2);
+}
+
+.unfold-track__testament {
+  position: absolute;
+  top: 3px;
+  width: 1px;
+  height: 12px;
+  background-color: var(--accent-reader);
+  opacity: 0.55;
+  transform: translateX(-0.5px);
+  pointer-events: none;
+}
+
+.unfold-track__playhead {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: var(--ink);
+  border: 2px solid var(--bg);
+  box-sizing: border-box;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* --- Control row --- */
+.unfold-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.unfold-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 5px 12px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background-color: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.unfold-pill:hover:not(:disabled) {
+  color: var(--ink);
+  border-color: var(--accent-reader);
+}
+
+.unfold-pill:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+}
+
+.unfold-pill:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.unfold-pill--play {
+  min-width: 84px;
+}
+
+.unfold-pill__glyph {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.unfold-controls__spacer {
+  flex: 1;
+}
+
+/* --- Position label --- */
+.unfold-position {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.unfold-position__ordinal {
+  color: var(--ink-2);
+  font-weight: 400;
+}
+
+/* --- Honesty microcopy (permanently visible) --- */
+.unfold-microcopy {
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.01em;
+}
+
+/* --- Mobile: controls wrap, larger touch targets --- */
+@media (max-width: 899px) {
+  .unfold-scrubber {
+    padding: 12px 12px 14px;
+  }
+
+  .unfold-track {
+    height: 32px;
+  }
+
+  .unfold-pill {
+    min-height: 44px;
+    padding: 8px 14px;
+  }
+
+  .unfold-position {
+    white-space: normal;
+  }
+}
+
+/* --- Reduced motion: no transitions on the mode chrome --- */
+@media (prefers-reduced-motion: reduce) {
+  .arc__unfold-toggle,
+  .unfold-pill {
+    transition: none;
+  }
+}

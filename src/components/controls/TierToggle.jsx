@@ -14,32 +14,32 @@ export default function TierToggle() {
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.label}>Tiers</div>
+    <div className="tier-toggle">
+      <div className="viz-label">Tiers</div>
       {TIER_IDS.map((id) => {
         const tier = TIERS[id];
         const checked = tierVisibility[id];
         const count = tierCounts[id] || 0;
 
         return (
-          <label key={id} style={styles.item}>
+          <label key={id} className="tier-toggle__item" data-off={checked ? undefined : 'true'}>
             <input
               type="checkbox"
+              className="tier-toggle__native visually-hidden"
               checked={checked}
               onChange={() => toggleTier(id)}
-              style={{ display: 'none' }}
             />
             <span
+              className="tier-toggle__dot"
               style={{
-                ...styles.checkbox,
                 backgroundColor: checked ? `var(${tier.cssVar})` : 'transparent',
                 borderColor: `var(${tier.cssVar})`,
               }}
             />
-            <span style={styles.tierLabel}>
+            <span className="tier-toggle__name">
               {id}. {tier.shortLabel}
             </span>
-            <span style={styles.count}>
+            <span className="tier-toggle__count">
               {count.toLocaleString()}
             </span>
           </label>
@@ -48,46 +48,3 @@ export default function TierToggle() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 4,
-    padding: '8px 12px',
-  },
-  label: {
-    fontSize: 11,
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px',
-    color: 'var(--text-muted)',
-    marginBottom: 4,
-  },
-  item: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
-    padding: '3px 0',
-    cursor: 'pointer',
-    fontSize: 13,
-  },
-  checkbox: {
-    display: 'inline-block',
-    width: 14,
-    height: 14,
-    borderRadius: 3,
-    border: '2px solid',
-    flexShrink: 0,
-    transition: 'background-color 0.15s ease',
-  },
-  tierLabel: {
-    color: 'var(--text-primary)',
-    flex: 1,
-  },
-  count: {
-    color: 'var(--text-muted)',
-    fontSize: 12,
-    fontFamily: 'monospace',
-  },
-};

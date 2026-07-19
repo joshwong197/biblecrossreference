@@ -1,0 +1,741 @@
+/* === Visualization chrome — register 2 of DESIGN.md ("Quiet Study") ===
+   Real CSS for the viz-layer controls, detail panels, tooltip and loading
+   screen. Quiet pills/chips; tier colors are the only strong color; gold
+   (--accent-reader) for links/actions only. All colors via tokens — both
+   themes work through the token switch, no hardcoded colors.
+
+   Covers: TierToggle, ColorModeToggle, ThemeToggle, SearchBar, StatsPanel,
+   ReferencePanel, VerseTooltip, LoadingScreen, ArcDiagram chrome.
+   Imported once from VisualizationPage.jsx; LoadingScreen and VerseTooltip
+   also import it directly since they render outside the viz page. */
+
+/* --- Shared section / micro label --- */
+.viz-label {
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+/* ============================================================
+   TierToggle
+   ============================================================ */
+.tier-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+}
+
+.tier-toggle__item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 0;
+  cursor: pointer;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px;
+  transition: opacity 0.15s ease;
+}
+
+.tier-toggle__item[data-off='true'] {
+  opacity: 0.45;
+}
+
+.tier-toggle__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.tier-toggle__name {
+  flex: 1;
+  color: var(--ink);
+}
+
+.tier-toggle__count {
+  color: var(--ink-2);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tier-toggle__item:focus-within {
+  outline: none;
+}
+
+.tier-toggle__native:focus-visible + .tier-toggle__dot {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   ColorModeToggle
+   ============================================================ */
+.color-mode {
+  padding: 10px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.color-mode__buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.color-mode__btn {
+  flex: 1;
+  padding: 6px 8px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  background-color: var(--bg-raised);
+  color: var(--ink-2);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.color-mode__btn:hover {
+  background-color: var(--button-hover);
+}
+
+.color-mode__btn.is-active {
+  background-color: var(--button-active);
+  color: var(--ink);
+  border-color: var(--accent-reader);
+}
+
+.color-mode__btn:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   ThemeToggle
+   ============================================================ */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background-color: var(--bg-raised);
+  color: var(--ink-2);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--button-hover);
+  color: var(--ink);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   SearchBar
+   ============================================================ */
+.viz-search {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+
+.viz-search__input {
+  width: 100%;
+  padding: 8px 10px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background-color: var(--bg-raised);
+  color: var(--ink);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.viz-search__input::placeholder {
+  color: var(--ink-3);
+}
+
+.viz-search__input:hover {
+  background-color: var(--button-hover);
+}
+
+.viz-search__input:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+  border-color: var(--accent-reader);
+}
+
+.viz-search__dropdown {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 100%;
+  background-color: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 6px 20px var(--shadow);
+  z-index: 100;
+  max-height: 240px;
+  overflow-y: auto;
+  overflow: hidden auto;
+}
+
+.viz-search__suggestion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 9px 12px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background-color: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.viz-search__suggestion:last-child {
+  border-bottom: none;
+}
+
+.viz-search__suggestion:hover {
+  background-color: var(--button-hover);
+}
+
+.viz-search__suggestion:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: -2px;
+}
+
+.viz-search__suggestion-label {
+  font-weight: 500;
+}
+
+.viz-search__suggestion-abbrev {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   StatsPanel
+   ============================================================ */
+.stats-panel {
+  padding: 10px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.stats-panel__sublabel {
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 8px 0 4px;
+}
+
+.stats-panel__stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 0;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+}
+
+.stats-panel__stat-label {
+  color: var(--ink-2);
+}
+
+.stats-panel__stat-value {
+  color: var(--ink);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-panel__divider {
+  height: 1px;
+  background-color: var(--line);
+  margin: 8px 0;
+}
+
+/* ============================================================
+   ReferencePanel
+   ============================================================ */
+.ref-panel {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+}
+
+.ref-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.ref-panel__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ref-panel__close {
+  background: none;
+  border: none;
+  color: var(--ink-3);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ref-panel__close:hover {
+  color: var(--ink);
+  background-color: var(--bg-raised);
+}
+
+.ref-panel__close:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+}
+
+.ref-panel__verse {
+  font-family: var(--font-scripture);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+  font-style: italic;
+  padding: 8px 12px;
+  background-color: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin: 6px 12px;
+}
+
+.ref-panel__verse-num {
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--accent-reader);
+  font-size: 10.5px;
+  vertical-align: super;
+  margin-right: 3px;
+}
+
+.ref-panel__count {
+  font-size: 12px;
+  color: var(--ink-2);
+  padding: 2px 12px 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ref-panel__chapter-note {
+  font-style: italic;
+  color: var(--ink-3);
+}
+
+.ref-panel__section {
+  border-top: 1px solid var(--line);
+}
+
+.ref-panel__section-header {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s ease;
+}
+
+.ref-panel__section-header:hover {
+  color: var(--ink);
+}
+
+.ref-panel__section-header:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: -2px;
+}
+
+.ref-panel__tier-group {
+  padding: 0 0 4px;
+}
+
+.ref-panel__tier-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.ref-panel__tier-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.ref-panel__tier-count {
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-left: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ref-panel__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  padding: 6px 12px 6px 24px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  color: var(--ink);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.ref-panel__row:hover {
+  background-color: var(--bg-raised);
+}
+
+.ref-panel__row:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: -2px;
+}
+
+.ref-panel__votes {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.ref-panel__show-all {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-reader);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: text-decoration-color 0.15s ease;
+}
+
+.ref-panel__show-all:hover {
+  text-decoration: underline;
+}
+
+.ref-panel__show-all:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: -2px;
+}
+
+/* ============================================================
+   VerseTooltip
+   ============================================================ */
+.verse-tooltip {
+  position: fixed;
+  z-index: 1000;
+  max-width: 340px;
+  padding: 11px 14px;
+  background-color: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 6px 22px var(--shadow);
+  pointer-events: none;
+  animation: verse-tooltip-in 0.12s ease-out;
+}
+
+.verse-tooltip__ref {
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent-reader);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 6px;
+}
+
+.verse-tooltip__text {
+  font-family: var(--font-scripture);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  font-style: italic;
+}
+
+.verse-tooltip__loading {
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px;
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+@keyframes verse-tooltip-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   LoadingScreen
+   ============================================================ */
+.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--bg);
+}
+
+.loading-screen__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.loading-screen__label {
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.loading-screen__dots {
+  display: flex;
+  gap: 7px;
+}
+
+.loading-screen__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-reader);
+  animation: loading-dot-pulse 1.2s ease-in-out infinite;
+}
+
+.loading-screen__dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-screen__dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.loading-screen__status {
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  min-height: 1em;
+}
+
+@keyframes loading-dot-pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+/* ============================================================
+   ArcDiagram — chrome only (canvas rendering untouched)
+   ============================================================ */
+.arc {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.arc__canvas {
+  width: 100%;
+  display: block;
+}
+
+.arc__axis {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-top: 1px solid var(--line);
+}
+
+.arc__book-label {
+  position: absolute;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 8px;
+  color: var(--ink-3);
+  transform: rotate(-45deg);
+  transform-origin: top left;
+  white-space: nowrap;
+  top: 4px;
+}
+
+.arc__book-label--nt {
+  border-left: 2px solid var(--accent-reader);
+  padding-left: 2px;
+}
+
+.arc__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.arc__zoom-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px 4px 12px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  background-color: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  z-index: 10;
+}
+
+.arc__reset-btn {
+  padding: 3px 10px;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background-color: var(--bg);
+  color: var(--accent-reader);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.arc__reset-btn:hover {
+  border-color: var(--accent-reader);
+}
+
+.arc__reset-btn:focus-visible {
+  outline: 2px solid var(--accent-reader);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   Mobile: within the slide-up sheet, interactive rows >= 44px
+   ============================================================ */
+@media (max-width: 899px) {
+  .tier-toggle__item {
+    min-height: 44px;
+  }
+
+  .color-mode__btn {
+    min-height: 44px;
+  }
+
+  .viz-search__input {
+    min-height: 44px;
+  }
+
+  .viz-search__suggestion {
+    min-height: 44px;
+  }
+
+  .ref-panel__section-header {
+    min-height: 44px;
+  }
+
+  .ref-panel__row {
+    min-height: 44px;
+  }
+
+  .ref-panel__show-all {
+    min-height: 44px;
+  }
+}
+
+/* ============================================================
+   Reduced motion — disable every animation/transition above
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .tier-toggle__item,
+  .tier-toggle__dot,
+  .color-mode__btn,
+  .theme-toggle,
+  .viz-search__input,
+  .viz-search__suggestion,
+  .ref-panel__close,
+  .ref-panel__section-header,
+  .ref-panel__row,
+  .ref-panel__show-all,
+  .arc__reset-btn {
+    transition: none;
+  }
+
+  .verse-tooltip {
+    animation: none;
+  }
+
+  .loading-screen__dot {
+    animation: none;
+    opacity: 0.7;
+  }
+}

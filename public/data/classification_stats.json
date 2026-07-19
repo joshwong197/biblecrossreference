@@ -1,11 +1,90 @@
 {
   "total": 344799,
   "by_tier": {
-    "1": 2803,
-    "2": 424,
-    "3": 4453,
-    "4": 42519,
-    "5": 294600
+    "1": 1691,
+    "2": 1510,
+    "3": 19462,
+    "4": 33072,
+    "5": 289064
   },
-  "cross_testament": 73313
+  "ambiguous_by_tier": {
+    "1": 954,
+    "2": 1060,
+    "3": 8041,
+    "4": 20217,
+    "5": 40571
+  },
+  "cross_testament": 73313,
+  "quoter_distribution": {
+    "from": 166171,
+    "to": 178628
+  },
+  "gold_standard": {
+    "gold_total": 236,
+    "gold_found_in_data": 230,
+    "gold_in_tier1_or_2": 151,
+    "recall": 0.6565217391304348,
+    "recall_loosening_applied": false
+  },
+  "verbatim_run": {
+    "chosen_n": 5,
+    "tuning_table": [
+      {
+        "n": 4,
+        "tier1_total": 2812,
+        "tier2_total": 1440,
+        "tier3_same_corpus_verbatim": 32389,
+        "gold_in_tier1_or_2": 177,
+        "gold_found": 230,
+        "recall": 0.7695652173913043
+      },
+      {
+        "n": 5,
+        "tier1_total": 1691,
+        "tier2_total": 1510,
+        "tier3_same_corpus_verbatim": 18583,
+        "gold_in_tier1_or_2": 151,
+        "gold_found": 230,
+        "recall": 0.6565217391304348
+      },
+      {
+        "n": 6,
+        "tier1_total": 1243,
+        "tier2_total": 1535,
+        "tier3_same_corpus_verbatim": 10948,
+        "gold_in_tier1_or_2": 130,
+        "gold_found": 230,
+        "recall": 0.5652173913043478
+      }
+    ]
+  },
+  "tier1_formula_histogram_top10": {
+    "(verbatim run only, no formula)": 809,
+    "it is written": 457,
+    "written in the law": 74,
+    "which was spoken": 70,
+    "moses said": 53,
+    "isaiah the prophet": 30,
+    "which were spoken": 26,
+    "the scripture saith": 24,
+    "have ye not read": 22,
+    "the law and the prophets": 21
+  },
+  "rules": {
+    "pass1_vote_bands": "high: votes>=50; medium: 10<=votes<50; low: votes<10",
+    "directionality": "quoter = the side later in canonical order (higher book num; tiebreak chapter, then verse). Only the quoter's verse and the verse immediately preceding it are scanned for formulas; the verbatim-run check compares the quoter's verse to the other verse.",
+    "tier1_direct_quotation": "EITHER (a) verbatim run: the two verses share a contiguous run of >= 5 identical words (lowercased, punctuation stripped, intra-word dashes joined, stop words kept) AND the pair is cross-testament (see corpus routing below); OR (b) citation formula: the quoter (or preceding) verse contains a formula from QUOTATION_FORMULAS AND shared content-word overlap with the other verse is >= 3 for strong formulas or >= 5 for generic formulas (GENERIC_QUOTATION_FORMULAS); formula-backed hits keep Tier 1 regardless of corpus. Speech-report formulas ('thus saith the lord', 'the word of the lord came', 'god said') are deliberately excluded: they introduce original divine speech, not citations of earlier texts.",
+    "verbatim_corpus_routing": "same-corpus verbatim parallels are parallel passages (Tier 3) per tier definitions; cross-testament verbatim runs are quotations (Tier 1). Same-corpus verbatim-only hits (OT->OT or NT->NT, no passing citation formula) are same text recorded twice -- Kings/Chronicles, Isa 36-39 || 2 Kgs 18-20, Psalm doublets, synoptic parallels -- and are routed to Tier 3, flagged ambiguous only when the run is exactly at the minimum N.",
+    "tier2_fulfillment": "quoter (or preceding) verse contains a formula from FULFILLMENT_FORMULAS and the pair did not qualify for Tier 1 (no overlap minimum required, but zero shared content words is flagged ambiguous).",
+    "tier3_parallel_passage": "same-corpus verbatim run >= 5 words with no passing citation formula (see verbatim_corpus_routing), OR jaccard >= 0.35 AND >=2 shared proper nouns, OR jaccard >= 0.45 alone.",
+    "tier4_thematic_echo": "jaccard >= 0.15, OR (shared theological terms >= 2 AND vote_band != 'low'), OR (vote_band == 'high' AND shared theological terms >= 1).",
+    "tier5_shared_vocabulary": "everything else.",
+    "evidence": "evidence fields (ev_type/ev_detail/ev_shared: the matched formula, verbatim-run length, or jaccard/theological-term figures behind each decision) are published per-reference so any classification can be independently verified.",
+    "ambiguous_flag": "flags borderline calls without changing the tier. Tier 1 is ambiguous unless a detection path is solid (verbatim run strictly above N, or a formula in the quoter verse itself with overlap strictly above its class minimum); Tier 3 via same-corpus verbatim routing is ambiguous only when the run is exactly N; Tier 2 is ambiguous when overlap is zero or the formula appeared only in the preceding verse; Tiers 3-5 via pass-3 similarity are ambiguous within +/-0.05 of a jaccard threshold or exactly at a theological-term threshold. Full rules: AMBIGUITY RULES comment block in 03_classify.py."
+  },
+  "tier1_by_corpus": {
+    "cross_testament": 1129,
+    "ot_to_ot": 261,
+    "nt_to_nt": 301
+  }
 }

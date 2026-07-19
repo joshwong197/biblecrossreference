@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const useAppStore = create((set, get) => ({
+const useAppStore = create((set) => ({
   // Theme
   theme: localStorage.getItem('bible-crossref-theme') || 'dark',
   toggleTheme: () =>
@@ -11,7 +11,7 @@ const useAppStore = create((set, get) => ({
     }),
 
   // Active visualization view
-  activeView: 'arc', // 'arc' | 'grid' | 'globe'
+  activeView: 'arc', // 'arc' | 'grid' | 'scroll'
   setActiveView: (view) => set({ activeView: view }),
 
   // Tier visibility toggles
@@ -38,37 +38,14 @@ const useAppStore = create((set, get) => ({
   setHoveredChapter: (ch) => set({ hoveredChapter: ch }),
   setSearchQuery: (q) => set({ searchQuery: q }),
 
-  // Data (loaded at startup)
+  // Data (loaded at startup; verse text lives in per-book shards via readerCache)
   references: null,
   metadata: null,
-  bibleText: null,
   loading: true,
   loadingProgress: '',
-  setData: (references, metadata, bibleText) => set((state) => ({
-    references,
-    metadata,
-    bibleText: bibleText !== undefined ? bibleText : state.bibleText,
-    loading: false,
-  })),
+  setData: (references, metadata) => set({ references, metadata, loading: false }),
   setLoading: (loading) => set({ loading }),
   setLoadingProgress: (loadingProgress) => set({ loadingProgress }),
-
-  // KJV verse text cache
-  verseText: null,
-  verseTextLoading: false,
-  loadVerseText: async () => {
-    const state = get();
-    if (state.verseText || state.verseTextLoading) return;
-    set({ verseTextLoading: true });
-    try {
-      const res = await fetch('/data/kjv.json');
-      const data = await res.json();
-      set({ verseText: data, verseTextLoading: false });
-    } catch (err) {
-      console.error('Failed to load KJV text:', err);
-      set({ verseTextLoading: false });
-    }
-  },
 }));
 
 export default useAppStore;

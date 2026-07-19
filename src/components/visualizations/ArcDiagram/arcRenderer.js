@@ -1,114 +1,110 @@
 import { TIER_COLORS_DARK, TIER_COLORS_LIGHT, TESTAMENT_COLORS_DARK, TESTAMENT_COLORS_LIGHT, hexToRgba, getTestamentPairKey } from '../../../utils/colorScales';
 
-export function renderArcs(ctx, arcs, config) {
-  const {
-    width,
-    height,
-    tierVisibility,
-    colorMode,
-    theme,
-    hoveredChapter,
-    selectedChapter,
-    totalChapters,
-    viewStart = 0,
-    viewEnd = totalChapters,
-  } = config;
+/**
+ * Two-layer rendering: renderBase draws every visible arc (expensive, ~55k
+ * curves — cached to an offscreen canvas by the component), renderHighlight
+ * draws only the arcs touching one chapter (cheap, runs on every hover).
+ */
 
-  const baseline = height * 0.95;
-  const maxArcHeight = height * 0.9;
-  const baseOpacity = theme === 'dark' ? 0.25 : 0.35;
+function getVisibleArcs(arcs, config) {
+  const { tierVisibility, totalChapters, viewStart, viewEnd } = config;
   const visibleChapters = viewEnd - viewStart;
 
-  ctx.clearRect(0, 0, width, height);
+  const tierFiltered = arcs.filter((a) => tierVisibility[a.tier]);
+  if (visibleChapters >= totalChapters) return tierFiltered;
+  return tierFiltered.filter((a) => {
+    const minCh = Math.min(a.from, a.to);
+    const maxCh = Math.max(a.from, a.to);
+    return maxCh >= viewStart && minCh <= viewEnd;
+  });
+}
 
-  // Filter by tier visibility
-  const visibleArcs = arcs.filter((a) => tierVisibility[a.tier]);
-
-  // Filter by viewport (skip arcs fully outside visible range)
-  const viewportArcs = visibleChapters < totalChapters
-    ? visibleArcs.filter((a) => {
-        const minCh = Math.min(a.from, a.to);
-        const maxCh = Math.max(a.from, a.to);
-        return maxCh >= viewStart && minCh <= viewEnd;
-      })
-    : visibleArcs;
-
-  const highlightChapter = hoveredChapter ?? selectedChapter;
-
+/** Group arcs by draw color, in back-to-front draw order. */
+function groupArcs(arcs, { colorMode, theme }) {
   if (colorMode === 'testament') {
-    renderByTestament(ctx, viewportArcs, { width, baseline, maxArcHeight, baseOpacity, theme, highlightChapter, totalChapters, viewStart, visibleChapters });
-  } else {
-    renderByTier(ctx, viewportArcs, { width, baseline, maxArcHeight, baseOpacity, theme, highlightChapter, totalChapters, viewStart, visibleChapters });
-  }
-}
-
-function renderByTier(ctx, arcs, config) {
-  const { width, baseline, maxArcHeight, baseOpacity, theme, highlightChapter, totalChapters, viewStart, visibleChapters } = config;
-  const tierColors = theme === 'dark' ? TIER_COLORS_DARK : TIER_COLORS_LIGHT;
-  const tiers = [5, 4, 3, 2, 1];
-
-  for (const tier of tiers) {
-    const tierArcs = arcs.filter((a) => a.tier === tier);
-    if (tierArcs.length === 0) continue;
-
-    const color = tierColors[tier];
-    renderArcGroup(ctx, tierArcs, color, { width, baseline, maxArcHeight, baseOpacity, highlightChapter, totalChapters, viewStart, visibleChapters });
-  }
-}
-
-function renderByTestament(ctx, arcs, config) {
-  const { width, baseline, maxArcHeight, baseOpacity, theme, highlightChapter, totalChapters, viewStart, visibleChapters } = config;
-  const testamentColors = theme === 'dark' ? TESTAMENT_COLORS_DARK : TESTAMENT_COLORS_LIGHT;
-
-  // Group by testament pair
-  const groups = { 'cross': [], 'OT-OT': [], 'NT-NT': [] };
-  for (const arc of arcs) {
-    const key = getTestamentPairKey(arc.fromBook, arc.toBook);
-    groups[key].push(arc);
-  }
-
-  // Draw order: cross first (background), then OT-OT, then NT-NT
-  for (const key of ['cross', 'OT-OT', 'NT-NT']) {
-    if (groups[key].length === 0) continue;
-    renderArcGroup(ctx, groups[key], testamentColors[key], { width, baseline, maxArcHeight, baseOpacity, highlightChapter, totalChapters, viewStart, visibleChapters });
-  }
-}
-
-function renderArcGroup(ctx, arcs, color, config) {
-  const { width, baseline, maxArcHeight, baseOpacity, highlightChapter, totalChapters, viewStart, visibleChapters } = config;
-
-  if (highlightChapter !== null && highlightChapter !== undefined) {
-    // Dim arcs (not connected to highlight chapter)
-    ctx.beginPath();
-    ctx.strokeStyle = hexToRgba(color, baseOpacity * 0.1);
-    ctx.lineWidth = 0.5;
+    const colors = theme === 'dark' ? TESTAMENT_COLORS_DARK : TESTAMENT_COLORS_LIGHT;
+    const groups = { cross: [], 'OT-OT': [], 'NT-NT': [] };
     for (const arc of arcs) {
-      if (arc.from === highlightChapter || arc.to === highlightChapter) continue;
-      drawArc(ctx, arc, width, baseline, maxArcHeight, totalChapters, viewStart, visibleChapters);
+      groups[getTestamentPairKey(arc.fromBook, arc.toBook)].push(arc);
     }
-    ctx.stroke();
+    return ['cross', 'OT-OT', 'NT-NT']
+      .filter((key) => groups[key].length > 0)
+      .map((key) => ({ color: colors[key], arcs: groups[key] }));
+  }
 
-    // Highlighted arcs
+  const colors = theme === 'dark' ? TIER_COLORS_DARK : TIER_COLORS_LIGHT;
+  return [5, 4, 3, 2, 1]
+    .map((tier) => ({ color: colors[tier], arcs: arcs.filter((a) => a.tier === tier) }))
+    .filter((g) => g.arcs.length > 0);
+}
+
+/** Base stroke opacity for the faint "already drawn" arcs, per theme. */
+function baseOpacityFor(theme) {
+  return theme === 'dark' ? 0.25 : 0.35;
+}
+
+/**
+ * Stroke a set of arcs, grouped by draw color, at a fixed opacity/width.
+ * Shared by every render path — callers pass the exact arc set to draw
+ * (no internal view/tier filtering), so it also serves incremental draws.
+ */
+function strokeArcGroups(ctx, arcs, config, opacity, lineWidth) {
+  const { height } = config;
+  const baseline = height * 0.95;
+  const maxArcHeight = height * 0.9;
+
+  const groups = groupArcs(arcs, config);
+  for (const { color, arcs: groupArcsList } of groups) {
     ctx.beginPath();
-    ctx.strokeStyle = hexToRgba(color, 0.8);
-    ctx.lineWidth = 1.5;
-    for (const arc of arcs) {
-      if (arc.from !== highlightChapter && arc.to !== highlightChapter) continue;
-      drawArc(ctx, arc, width, baseline, maxArcHeight, totalChapters, viewStart, visibleChapters);
-    }
-    ctx.stroke();
-  } else {
-    ctx.beginPath();
-    ctx.strokeStyle = hexToRgba(color, baseOpacity);
-    ctx.lineWidth = 0.5;
-    for (const arc of arcs) {
-      drawArc(ctx, arc, width, baseline, maxArcHeight, totalChapters, viewStart, visibleChapters);
+    ctx.strokeStyle = hexToRgba(color, opacity);
+    ctx.lineWidth = lineWidth;
+    for (const arc of groupArcsList) {
+      drawArc(ctx, arc, config, baseline, maxArcHeight);
     }
     ctx.stroke();
   }
 }
 
-function drawArc(ctx, arc, width, baseline, maxArcHeight, totalChapters, viewStart, visibleChapters) {
+export function renderBase(ctx, arcs, config) {
+  const { width, height, theme } = config;
+  ctx.clearRect(0, 0, width, height);
+  strokeArcGroups(ctx, getVisibleArcs(arcs, config), config, baseOpacityFor(theme), 0.5);
+}
+
+export function renderHighlight(ctx, arcs, config, highlightChapter) {
+  const touching = getVisibleArcs(arcs, config).filter(
+    (a) => a.from === highlightChapter || a.to === highlightChapter,
+  );
+  strokeArcGroups(ctx, touching, config, 0.8, 1.5);
+}
+
+/* ============================================================
+   Unfold mode — time playback
+   These take an already-tier-filtered, pre-sliced arc array (the
+   component owns the sorted-by-max prefix index) and a full-view config
+   (viewStart 0 .. viewEnd totalChapters), so no view/tier filtering
+   happens here. renderUnfoldBase clears then paints the whole prefix;
+   appendUnfoldArcs strokes only the newly-arrived arcs onto the persistent
+   base WITHOUT clearing (the forward-playback fast path); renderUnfoldLanding
+   paints the arriving chapter's arcs bright over the composite.
+   ============================================================ */
+export function renderUnfoldBase(ctx, arcs, config) {
+  const { width, height, theme } = config;
+  ctx.clearRect(0, 0, width, height);
+  strokeArcGroups(ctx, arcs, config, baseOpacityFor(theme), 0.5);
+}
+
+export function appendUnfoldArcs(ctx, arcs, config) {
+  strokeArcGroups(ctx, arcs, config, baseOpacityFor(config.theme), 0.5);
+}
+
+export function renderUnfoldLanding(ctx, arcs, config) {
+  strokeArcGroups(ctx, arcs, config, 0.9, 1.6);
+}
+
+function drawArc(ctx, arc, config, baseline, maxArcHeight) {
+  const { width, totalChapters, viewStart, viewEnd } = config;
+  const visibleChapters = viewEnd - viewStart;
   const x1 = ((arc.from - viewStart) / visibleChapters) * width;
   const x2 = ((arc.to - viewStart) / visibleChapters) * width;
   const distance = Math.abs(arc.to - arc.from);

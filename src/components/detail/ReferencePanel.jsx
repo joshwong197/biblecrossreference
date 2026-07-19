@@ -2,16 +2,16 @@ import { useMemo, useState, useRef, useCallback } from 'react';
 import useAppStore from '../../stores/useAppStore';
 import { TIERS } from '../../constants/tiers';
 import VerseTooltip from '../shared/VerseTooltip';
+import useVerseText from '../../hooks/useVerseText';
 
 export default function ReferencePanel() {
   const selectedChapter = useAppStore((s) => s.selectedChapter);
   const selectedVerse = useAppStore((s) => s.selectedVerse);
   const references = useAppStore((s) => s.references);
   const metadata = useAppStore((s) => s.metadata);
-  const bibleText = useAppStore((s) => s.bibleText);
   const setSelectedChapter = useAppStore((s) => s.setSelectedChapter);
 
-  // Build O(1) chapter lookup with bookNum for bible_text key construction
+  // Build O(1) chapter lookup
   const chapterLookup = useMemo(() => {
     if (!metadata) return null;
     const lookup = new Array(metadata.totalChapters);
@@ -20,7 +20,6 @@ export default function ReferencePanel() {
         lookup[ch.globalIndex] = {
           bookName: book.name,
           bookAbbrev: book.abbrev,
-          bookNum: book.num,
           chapter: ch.chapter,
           verses: ch.verses,
         };
@@ -39,36 +38,31 @@ export default function ReferencePanel() {
     return { refsFrom: from, refsTo: to, totalCount: from.length + to.length };
   }, [selectedChapter, references]);
 
-  // Get selected verse text from bible_text.json
-  const verseText = useMemo(() => {
-    if (!selectedVerse || !bibleText || selectedChapter === null || !chapterLookup) return null;
-    const info = chapterLookup[selectedChapter];
-    if (!info) return null;
-    const key = `${info.bookNum}.${info.chapter}.${selectedVerse}`;
-    return bibleText[key] || null;
-  }, [selectedVerse, bibleText, selectedChapter, chapterLookup]);
+  // Selected verse text from the per-book text shard (lazy, cached)
+  const selectedInfo = selectedChapter !== null && chapterLookup ? chapterLookup[selectedChapter] : null;
+  const { getText } = useVerseText(selectedVerse && selectedInfo ? selectedInfo.bookAbbrev : null);
+  const verseText = selectedVerse && selectedInfo ? getText(selectedInfo.chapter, selectedVerse) : null;
 
-  if (selectedChapter === null || !chapterLookup) return null;
+  if (!selectedInfo) return null;
 
-  const info = chapterLookup[selectedChapter];
-  if (!info) return null;
+  const info = selectedInfo;
 
   return (
-    <div style={styles.panel}>
-      <div style={styles.header}>
-        <span style={styles.title}>{info.bookName} {info.chapter}{selectedVerse ? `:${selectedVerse}` : ''}</span>
-        <button onClick={() => setSelectedChapter(null)} style={styles.closeBtn}>&times;</button>
+    <div className="ref-panel">
+      <div className="ref-panel__header">
+        <span className="ref-panel__title">{info.bookName} {info.chapter}{selectedVerse ? `:${selectedVerse}` : ''}</span>
+        <button onClick={() => setSelectedChapter(null)} className="ref-panel__close" aria-label="Close reference panel">&times;</button>
       </div>
 
       {verseText && (
-        <div style={styles.verseText}>
-          <span style={styles.verseNum}>{selectedVerse}</span> {verseText}
+        <div className="ref-panel__verse">
+          <span className="ref-panel__verse-num">{selectedVerse}</span> {verseText}
         </div>
       )}
 
-      <div style={styles.count}>
+      <div className="ref-panel__count">
         {totalCount.toLocaleString()} cross-references
-        {selectedVerse ? <span style={styles.chapterNote}> (chapter-level)</span> : ''}
+        {selectedVerse ? <span className="ref-panel__chapter-note"> (chapter-level)</span> : ''}
       </div>
 
       {refsFrom.length > 0 && (
@@ -133,8 +127,8 @@ function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
   let count = 0;
 
   return (
-    <div style={styles.section}>
-      <button onClick={() => setExpanded(!expanded)} style={styles.sectionHeader}>
+    <div className="ref-panel__section">
+      <button onClick={() => setExpanded(!expanded)} className="ref-panel__section-header" aria-expanded={expanded}>
         <span>{expanded ? '\u25BE' : '\u25B8'} {label}</span>
       </button>
       {expanded && (
@@ -142,18 +136,16 @@ function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
           {byTier.map(({ tier, items }) => {
             const tierInfo = TIERS[tier];
             return (
-              <div key={tier} style={styles.tierGroup}>
-                <div style={styles.tierLabel}>
+              <div key={tier} className="ref-panel__tier-group">
+                <div className="ref-panel__tier-label">
                   <span
-                    style={{
-                      ...styles.tierDot,
-                      backgroundColor: `var(--tier-${tier})`,
-                    }}
+                    className="ref-panel__tier-dot"
+                    style={{ backgroundColor: `var(--tier-${tier})` }}
                   />
                   {tierInfo?.shortLabel || `Tier ${tier}`}
-                  <span style={styles.tierCount}>({items.length})</span>
+                  <span className="ref-panel__tier-count">({items.length})</span>
                 </div>
-                {items.map((ref) => {
+                {items.map((ref, idx) => {
                   count++;
                   if (count > maxItems) return null;
                   const target = getTarget(ref);
@@ -161,14 +153,14 @@ function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
                   if (!targetInfo) return null;
                   return (
                     <button
-                      key={`${ref.from}-${ref.to}`}
+                      key={`${ref.from}-${ref.to}-${idx}`}
                       onClick={() => onSelect(target)}
                       onMouseEnter={(e) => handleMouseEnter(targetInfo, e)}
                       onMouseLeave={handleMouseLeave}
-                      style={styles.refItem}
+                      className="ref-panel__row"
                     >
                       <span>{targetInfo.bookAbbrev} {targetInfo.chapter}</span>
-                      <span style={styles.votes}>{ref.votes} votes</span>
+                      <span className="ref-panel__votes">{ref.votes} votes</span>
                     </button>
                   );
                 })}
@@ -176,7 +168,7 @@ function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
             );
           })}
           {!showAll && count > maxItems && (
-            <button onClick={() => setShowAll(true)} style={styles.showMore}>
+            <button onClick={() => setShowAll(true)} className="ref-panel__show-all">
               Show all ({refs.length})
             </button>
           )}
@@ -194,124 +186,3 @@ function RefSection({ label, refs, chapterLookup, getTarget, onSelect }) {
     </div>
   );
 }
-
-const styles = {
-  panel: {
-    padding: '8px 0',
-    borderTop: '1px solid var(--border)',
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '0 12px',
-  },
-  title: {
-    fontSize: 13,
-    fontWeight: 700,
-    color: 'var(--text-primary)',
-  },
-  closeBtn: {
-    background: 'none',
-    border: 'none',
-    color: 'var(--text-muted)',
-    fontSize: 18,
-    cursor: 'pointer',
-    padding: '0 4px',
-    lineHeight: 1,
-  },
-  verseText: {
-    fontSize: 11,
-    color: 'var(--text-primary)',
-    padding: '6px 12px',
-    backgroundColor: 'var(--button-bg)',
-    borderRadius: 4,
-    margin: '4px 12px',
-    lineHeight: 1.5,
-    fontStyle: 'italic',
-  },
-  verseNum: {
-    fontWeight: 700,
-    fontStyle: 'normal',
-    color: 'var(--accent)',
-    fontSize: 10,
-  },
-  count: {
-    fontSize: 11,
-    color: 'var(--text-muted)',
-    padding: '2px 12px 6px',
-  },
-  section: {
-    borderTop: '1px solid var(--border)',
-  },
-  sectionHeader: {
-    display: 'block',
-    width: '100%',
-    padding: '6px 12px',
-    fontSize: 11,
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px',
-    color: 'var(--text-muted)',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    textAlign: 'left',
-  },
-  tierGroup: {
-    padding: '0 12px 4px',
-  },
-  tierLabel: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 4,
-    fontSize: 11,
-    fontWeight: 600,
-    color: 'var(--text-secondary)',
-    padding: '3px 0',
-  },
-  tierDot: {
-    width: 8,
-    height: 8,
-    borderRadius: '50%',
-    display: 'inline-block',
-    flexShrink: 0,
-  },
-  tierCount: {
-    fontWeight: 400,
-    color: 'var(--text-muted)',
-    marginLeft: 2,
-  },
-  refItem: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    width: '100%',
-    padding: '3px 8px 3px 16px',
-    fontSize: 11,
-    color: 'var(--text-primary)',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    textAlign: 'left',
-    borderRadius: 3,
-  },
-  votes: {
-    fontSize: 10,
-    color: 'var(--text-muted)',
-  },
-  showMore: {
-    display: 'block',
-    width: '100%',
-    padding: '6px 12px',
-    fontSize: 11,
-    color: 'var(--accent)',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    textAlign: 'center',
-  },
-  chapterNote: {
-    fontStyle: 'italic',
-    opacity: 0.7,
-  },
-};

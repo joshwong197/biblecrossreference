@@ -100,39 +100,95 @@ OT_BOOKS = [b for b in BOOKS if b["testament"] == "OT"]
 NT_BOOKS = [b for b in BOOKS if b["testament"] == "NT"]
 
 # Quotation formulas for Tier 1 detection
+#
+# IMPORTANT DISTINCTION -- CITATION vs SPEECH-REPORT formulas:
+# a CITATION formula introduces an author quoting an EARLIER TEXT
+# ("as it is written", "the scripture saith"); a SPEECH-REPORT formula
+# introduces original divine/prophetic speech ("thus saith the lord",
+# "the word of the lord came", "god said"). Speech-report formulas were
+# removed from this list entirely after diagnostics showed they produced
+# thousands of OT->OT false Tier 1s (e.g. Isa.43.1 -> Gen.32.28 matching
+# "thus saith the lord" -- prophetic speech, not a quotation of Genesis).
+#
+# NOTE on "GENERIC_QUOTATION_FORMULAS" below: some formulas are real
+# citation language but also occur in plain narrative (e.g. "Then came
+# Isaiah the prophet unto king Hezekiah"). These stay eligible for Tier 1
+# but are held to a higher token-overlap bar (GENERIC_MIN_OVERLAP in
+# 03_classify.py) than the specific/strong formulas. Bare "saying" was
+# dropped entirely (near-ubiquitous in KJV reported speech).
 QUOTATION_FORMULAS = [
     "it is written",
     "as it is written",
+    "as it is written in the book of",
+    "it is also written",
+    "in the volume of the book it is written",
     "the scripture saith",
     "the scripture says",
+    "the scripture cannot be broken",
     "for it is written",
     "as the prophet said",
     "which was spoken",
     "which were spoken",
     "as he said",
     "as he saith",
+    "as he saith also in",
     "as the scripture hath said",
     "the holy ghost saith",
-    "saying",
     "david saith",
+    "for david himself said",
     "moses said",
+    "moses saith",
+    "moses writeth",
     "isaiah the prophet",
+    "esaias the prophet",
     "the prophet esaias",
     "well spake the holy ghost by esaias",
     "as saith the prophet",
+    "have ye not read",
+    "did ye never read",
+    "written in the law",
+    "written in your law",
+    "the law and the prophets",
+    "contained in the scripture",
+    "spake in a certain place",
+    "testified in a certain place",
 ]
+
+# Formulas that are legitimate citation language but also occur in ordinary
+# KJV narrative, so a plain match is weak evidence of an actual scriptural
+# quotation. Still eligible for Tier 1, but held to a stricter token-overlap
+# bar than the rest of QUOTATION_FORMULAS.
+GENERIC_QUOTATION_FORMULAS = {
+    "as he said",
+    "as he saith",
+    "moses said",
+    "moses saith",
+    "david saith",
+    "isaiah the prophet",
+    "esaias the prophet",
+    "the prophet esaias",
+}
 
 # Fulfillment formulas for Tier 2 detection
 FULFILLMENT_FORMULAS = [
     "to fulfill",
     "that it might be fulfilled",
+    "that it might be fulfilled which was spoken",
+    "that the saying might be fulfilled",
+    "that the word might be fulfilled",
     "was fulfilled",
     "might be fulfilled",
+    "must be fulfilled",
+    "must needs be fulfilled",
     "then was fulfilled",
     "it was fulfilled",
+    "this day is this scripture fulfilled",
+    "the scriptures might be fulfilled",
     "spoken by the prophet",
     "spoken of the lord by the prophet",
     "spoken through the prophet",
+    "spake by the prophet",
+    "spoken by the mouth of",
     "fulfilled which was spoken",
     "as in the days of",
     "according to that which is written",

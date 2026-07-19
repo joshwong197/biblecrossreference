@@ -1,0 +1,266 @@
+{
+  "Gen": {
+    "name": "Genesis",
+    "blurb": "The opening book of the Pentateuch, traditionally attributed to Moses, combining primeval narrative with the family history of the patriarchs. It moves from accounts of creation, the flood, and the dispersion of nations to the stories of Abraham, Isaac, Jacob, and Joseph. Among the most heavily cross-referenced books in the canon, it supplies material quoted and echoed throughout both Testaments."
+  },
+  "Exod": {
+    "name": "Exodus",
+    "blurb": "Narrative and law, traditionally attributed to Moses, recounting Israel's deliverance from slavery in Egypt and the covenant made at Sinai. It contains the plague accounts, the departure from Egypt, the giving of the Ten Commandments, and instructions for the tabernacle. Its legal and narrative sections are widely referenced elsewhere in Scripture."
+  },
+  "Lev": {
+    "name": "Leviticus",
+    "blurb": "A book of priestly law and ritual instruction, traditionally attributed to Moses, set at Sinai within the larger Exodus narrative. It details sacrificial procedures, purity regulations, the priesthood, and the festival calendar. Its statutes on holiness and offering are frequently cited in later biblical texts."
+  },
+  "Num": {
+    "name": "Numbers",
+    "blurb": "A blend of narrative, census records, and law, traditionally attributed to Moses, tracing Israel's wilderness journey from Sinai toward the land of Canaan. It records the numbering of the tribes, episodes of rebellion, and further legal material. The book takes its English name from the two censuses it reports."
+  },
+  "Deut": {
+    "name": "Deuteronomy",
+    "blurb": "Presented as Moses' farewell addresses on the plains of Moab, restating the law before Israel enters Canaan, and traditionally attributed to him. It reviews the wilderness period, renews the covenant, and sets out blessings and curses. It is one of the most frequently quoted Old Testament books in the New Testament."
+  },
+  "Josh": {
+    "name": "Joshua",
+    "blurb": "A historical narrative, traditionally associated with Joshua, describing Israel's entry into Canaan under his leadership after the death of Moses. It recounts the crossing of the Jordan, military campaigns, and the division of the land among the tribes. It opens the section of books covering Israel's life in the land."
+  },
+  "Judg": {
+    "name": "Judges",
+    "blurb": "Historical narrative covering the period between the settlement of Canaan and the rise of the monarchy, its authorship anonymous though traditionally associated with Samuel. It relates a recurring cycle of apostasy, oppression, and deliverance through a series of tribal leaders called judges. The accounts of Deborah, Gideon, and Samson appear here."
+  },
+  "Ruth": {
+    "name": "Ruth",
+    "blurb": "A short narrative set in the time of the judges, telling of a Moabite woman who settles among the people of Israel with her mother-in-law Naomi. Its authorship is anonymous, though tradition has associated it with Samuel. The book closes with a genealogy linking Ruth to King David."
+  },
+  "1Sam": {
+    "name": "1 Samuel",
+    "blurb": "Historical narrative covering Israel's transition from the era of the judges to the monarchy, its composition anonymous. It follows the prophet Samuel, the reign of Saul as the first king, and the rise of David. The books of Samuel were originally a single work later divided in two."
+  },
+  "2Sam": {
+    "name": "2 Samuel",
+    "blurb": "The continuation of the Samuel narrative, anonymous in authorship, focused on the reign of David over Judah and then all Israel. It records his consolidation of the kingdom, the covenant promise made to his house, and the crises within his family and court. It forms part of the account of Israel's monarchy."
+  },
+  "1Kgs": {
+    "name": "1 Kings",
+    "blurb": "Historical narrative, anonymous in authorship, beginning with the death of David and the reign of Solomon, including the building of the temple in Jerusalem. It then traces the division of the kingdom and the parallel histories of Israel and Judah, introducing the prophet Elijah. Kings was originally one book later divided in two."
+  },
+  "2Kgs": {
+    "name": "2 Kings",
+    "blurb": "The continuation of the Kings narrative, anonymous in authorship, following the divided monarchy to its end. It records the ministry of Elisha, the fall of the northern kingdom to Assyria, and the fall of Jerusalem and exile to Babylon. It closes the historical sequence of Israel's monarchy."
+  },
+  "1Chr": {
+    "name": "1 Chronicles",
+    "blurb": "Historical narrative traditionally associated with Ezra, retelling Israel's history with an emphasis on genealogy, temple worship, and the line of David. It opens with extended genealogies from Adam onward before focusing on David's reign. Chronicles covers much of the same period as Samuel and Kings from a distinct vantage point."
+  },
+  "2Chr": {
+    "name": "2 Chronicles",
+    "blurb": "The continuation of Chronicles, traditionally associated with Ezra, following the reign of Solomon and the kings of Judah down to the Babylonian exile. It gives particular attention to the temple, its worship, and religious reforms. It ends with the decree of Cyrus permitting the return from exile."
+  },
+  "Ezra": {
+    "name": "Ezra",
+    "blurb": "A post-exilic historical narrative, traditionally associated with Ezra the scribe, recording the return of Jewish exiles from Babylon and the rebuilding of the temple in Jerusalem. It includes documents in both Hebrew and Aramaic and describes Ezra's efforts to reestablish the law. It is closely connected to the book of Nehemiah."
+  },
+  "Neh": {
+    "name": "Nehemiah",
+    "blurb": "A post-exilic historical narrative, drawing substantially on first-person memoirs attributed to Nehemiah, cupbearer to the Persian king. It recounts the rebuilding of Jerusalem's walls and the community reforms that followed the return from exile. In the Hebrew tradition it was joined with Ezra as a single work."
+  },
+  "Esth": {
+    "name": "Esther",
+    "blurb": "A short narrative set in the Persian court, anonymous in authorship, telling how a Jewish queen acts to avert the destruction of her people. It provides the account behind the festival of Purim. Notably, the book does not mention God by name."
+  },
+  "Job": {
+    "name": "Job",
+    "blurb": "A work of wisdom literature, anonymous in authorship, largely in poetry framed by a prose narrative, exploring the problem of undeserved suffering. It presents the dialogues between Job and his companions and a series of speeches attributed to God. It stands among the oldest and most debated texts in the wisdom tradition."
+  },
+  "Ps": {
+    "name": "Psalms",
+    "blurb": "A collection of one hundred fifty poems and songs used in worship, many traditionally attributed to David and others to further named authors. Arranged in five books, it spans praise, lament, thanksgiving, and instruction. It is the most extensively cross-referenced book in the canon, quoted throughout the New Testament."
+  },
+  "Prov": {
+    "name": "Proverbs",
+    "blurb": "A book of wisdom literature, traditionally associated with Solomon along with other named contributors, gathering short sayings and longer poems on practical and moral conduct. Its material ranges from parental instruction to concise aphorisms on wisdom and folly. It is a central text of the Old Testament wisdom tradition."
+  },
+  "Eccl": {
+    "name": "Ecclesiastes",
+    "blurb": "A reflective work of wisdom literature, traditionally associated with Solomon, presented in the voice of a teacher called Qoheleth. It examines the limits of human effort and understanding and the fleeting nature of earthly pursuits. Its meditations on meaning and mortality set it apart within the wisdom books."
+  },
+  "Song": {
+    "name": "Song of Solomon",
+    "blurb": "A collection of love poetry, traditionally associated with Solomon, celebrating mutual desire between two lovers in lyrical, imagistic language. It proceeds through exchanged speeches rather than a single narrative. It has drawn a long history of both literal and allegorical readings."
+  },
+  "Isa": {
+    "name": "Isaiah",
+    "blurb": "A major prophetic book traditionally attributed to Isaiah of Jerusalem, spanning judgment against Judah and the nations and extended passages of consolation and restoration. Its composition and unity are matters of scholarly debate. It is among the most frequently quoted Old Testament books in the New Testament."
+  },
+  "Jer": {
+    "name": "Jeremiah",
+    "blurb": "A major prophetic book traditionally attributed to Jeremiah, combining oracles, biography, and poetry set in Judah's final decades before the Babylonian exile. It records his warnings of judgment, his conflicts with authorities, and his promise of a new covenant. It is one of the longest books in the Bible."
+  },
+  "Lam": {
+    "name": "Lamentations",
+    "blurb": "A book of poetic laments over the destruction of Jerusalem, traditionally associated with Jeremiah. It consists of five poems, most of them acrostics following the Hebrew alphabet. It gives sustained voice to grief and appeals for mercy amid catastrophe."
+  },
+  "Ezek": {
+    "name": "Ezekiel",
+    "blurb": "A major prophetic book traditionally attributed to the priest Ezekiel, addressed to the exiles in Babylon and marked by elaborate visions and symbolic acts. It moves from oracles of judgment against Jerusalem to visions of restoration and a rebuilt temple. Its imagery has been widely influential in later texts."
+  },
+  "Dan": {
+    "name": "Daniel",
+    "blurb": "A book combining court narratives and apocalyptic visions, traditionally attributed to Daniel and set among the Jewish exiles in Babylon; its date and composition are debated. The first half recounts episodes of faithfulness under foreign kings, and the second reports symbolic visions of successive kingdoms. Its apocalyptic imagery is echoed in the New Testament."
+  },
+  "Hos": {
+    "name": "Hosea",
+    "blurb": "The first of the twelve Minor Prophets, attributed to Hosea, who prophesied to the northern kingdom of Israel before its fall. The book uses the imagery of marriage and infidelity to frame its message of judgment and restoration. Several of its lines are quoted in the New Testament."
+  },
+  "Joel": {
+    "name": "Joel",
+    "blurb": "A short prophetic book attributed to Joel, occasioned by a devastating locust plague treated as a sign of a coming day of the LORD. It calls for communal repentance and promises renewal and an outpouring of the Spirit. Its date is uncertain and debated among scholars."
+  },
+  "Amos": {
+    "name": "Amos",
+    "blurb": "A prophetic book attributed to Amos, a herdsman from Judah who prophesied against the northern kingdom of Israel in a time of prosperity. It delivers oracles against surrounding nations and Israel alike, with a strong emphasis on social justice. It is among the earliest of the writing prophets."
+  },
+  "Obad": {
+    "name": "Obadiah",
+    "blurb": "The shortest book in the Old Testament, a single chapter of prophecy attributed to Obadiah. It pronounces judgment against Edom for its hostility toward Judah. It closes with a brief announcement of restoration for the house of Jacob."
+  },
+  "Jonah": {
+    "name": "Jonah",
+    "blurb": "A narrative among the Minor Prophets, centered on the prophet Jonah and his reluctant mission to the city of Nineveh. Unlike most prophetic books, it is chiefly a story about the prophet rather than a collection of oracles. Its account of the great fish is among the most widely known in Scripture."
+  },
+  "Mic": {
+    "name": "Micah",
+    "blurb": "A prophetic book attributed to Micah, a contemporary of Isaiah, addressing both Israel and Judah. It alternates oracles of judgment with passages of hope, touching on justice, leadership, and future restoration. Several of its verses are quoted or alluded to in the New Testament."
+  },
+  "Nah": {
+    "name": "Nahum",
+    "blurb": "A prophetic book attributed to Nahum, consisting of poetry announcing the downfall of Nineveh, the capital of Assyria. It portrays the collapse of a power that had oppressed Israel and Judah. Its vivid imagery forms a sustained oracle against a single city."
+  },
+  "Hab": {
+    "name": "Habakkuk",
+    "blurb": "A short prophetic book attributed to Habakkuk, structured as a dialogue between the prophet and God over the problem of injustice and impending invasion. It concludes with a psalm-like prayer. One of its lines on living by faith is quoted several times in the New Testament."
+  },
+  "Zeph": {
+    "name": "Zephaniah",
+    "blurb": "A prophetic book attributed to Zephaniah, set in the reign of Josiah of Judah, announcing a coming day of judgment against Judah and the nations. It moves from warnings of desolation to a closing promise of restoration for a humbled remnant. It belongs to the collection of twelve Minor Prophets."
+  },
+  "Hag": {
+    "name": "Haggai",
+    "blurb": "A brief post-exilic prophetic book attributed to Haggai, addressed to the community that had returned from Babylon. Its dated oracles urge the people to rebuild the temple in Jerusalem. It is closely tied in setting to the book of Zechariah."
+  },
+  "Zech": {
+    "name": "Zechariah",
+    "blurb": "A post-exilic prophetic book traditionally attributed to Zechariah, combining a series of symbolic night visions with later oracles. It encourages the rebuilding of the temple and looks toward future restoration. Its imagery is frequently drawn upon in the New Testament, especially in the passion accounts."
+  },
+  "Mal": {
+    "name": "Malachi",
+    "blurb": "The last of the Minor Prophets and the final book of the Old Testament in the Christian canon, attributed to Malachi. It is structured as a series of disputations addressing priestly neglect, covenant faithfulness, and social conduct. It closes with an expectation of a coming messenger."
+  },
+  "Matt": {
+    "name": "Matthew",
+    "blurb": "The first of the four Gospels, traditionally attributed to Matthew, presenting an account of the life, teaching, death, and resurrection of Jesus. It gives particular attention to his teaching, gathered into extended discourses, and frequently cites the Old Testament. It stands at the opening of the New Testament."
+  },
+  "Mark": {
+    "name": "Mark",
+    "blurb": "The shortest of the four Gospels, traditionally attributed to Mark, narrating the ministry, death, and resurrection of Jesus in a rapid, action-focused style. It is widely regarded in scholarship as among the earliest of the Gospels. It shares much of its material with Matthew and Luke."
+  },
+  "Luke": {
+    "name": "Luke",
+    "blurb": "A Gospel traditionally attributed to Luke, a companion of Paul, addressed to a reader named Theophilus and written as an orderly account of the life of Jesus. It gives notable attention to the marginalized, to prayer, and to birth narratives found nowhere else. It forms the first part of a two-volume work continued in Acts."
+  },
+  "John": {
+    "name": "John",
+    "blurb": "The fourth Gospel, traditionally attributed to John, distinct in style and content from the other three. It organizes its account around a series of signs and extended discourses, with sustained reflection on the identity of Jesus. Its authorship and setting are debated among scholars."
+  },
+  "Acts": {
+    "name": "Acts",
+    "blurb": "A historical narrative traditionally attributed to Luke, serving as a sequel to his Gospel and tracing the spread of the early church after the ascension of Jesus. It follows the growth of the movement from Jerusalem outward, centering on Peter and then Paul. It provides the principal narrative bridge between the Gospels and the letters."
+  },
+  "Rom": {
+    "name": "Romans",
+    "blurb": "A letter attributed to Paul, addressed to the church at Rome, and the most systematic of his epistles. It sets out an extended argument concerning sin, faith, law, and the inclusion of Jews and Gentiles. It quotes the Old Testament extensively and has been widely influential in later theology."
+  },
+  "1Cor": {
+    "name": "1 Corinthians",
+    "blurb": "A letter attributed to Paul, addressed to the church at Corinth in response to reports and questions from that community. It treats divisions, conduct, worship, spiritual gifts, and the resurrection. It is among the most detailed windows into an early Christian congregation."
+  },
+  "2Cor": {
+    "name": "2 Corinthians",
+    "blurb": "A letter attributed to Paul, addressed to the church at Corinth and notably personal in tone. It defends his ministry, discusses a collection for the church in Jerusalem, and reflects on hardship and reconciliation. Its composition history is debated, with some proposing it combines more than one letter."
+  },
+  "Gal": {
+    "name": "Galatians",
+    "blurb": "A letter attributed to Paul, addressed to churches in Galatia and marked by a sharp, argumentative tone. It concerns the relationship between faith, law, and the status of Gentile believers. It shares much of its subject matter with the letter to the Romans."
+  },
+  "Eph": {
+    "name": "Ephesians",
+    "blurb": "A letter traditionally attributed to Paul, addressed to the church at Ephesus, though its authorship is debated in scholarship. It moves from reflection on unity and the church to practical instruction on conduct and relationships. It is one of the epistles associated with Paul's imprisonment."
+  },
+  "Phil": {
+    "name": "Philippians",
+    "blurb": "A letter attributed to Paul, addressed to the church at Philippi and warm in tone, written from imprisonment. It expresses thanks, encourages steadfastness and joy, and includes a well-known hymn-like passage. It is counted among the Pauline prison epistles."
+  },
+  "Col": {
+    "name": "Colossians",
+    "blurb": "A letter traditionally attributed to Paul, addressed to the church at Colossae, with its authorship debated among scholars. It counters certain teachings circulating in the community and offers instruction on Christian conduct and household relationships. It shares much material with the letter to the Ephesians."
+  },
+  "1Thess": {
+    "name": "1 Thessalonians",
+    "blurb": "A letter attributed to Paul, addressed to the church at Thessalonica and often regarded as among the earliest of his epistles. It commends the community's faith, offers encouragement, and addresses questions about those who have died and the return of Christ. It is brief and largely pastoral in character."
+  },
+  "2Thess": {
+    "name": "2 Thessalonians",
+    "blurb": "A letter traditionally attributed to Paul, addressed to the church at Thessalonica, with its authorship debated in scholarship. It responds to confusion about end-time expectations and urges steady conduct and work. It closely parallels the concerns of the first letter to that community."
+  },
+  "1Tim": {
+    "name": "1 Timothy",
+    "blurb": "One of the Pastoral Epistles, traditionally attributed to Paul and addressed to his associate Timothy, though authorship is debated. It offers guidance on church leadership, sound teaching, and conduct within the community. It is grouped with 2 Timothy and Titus as letters directed to individuals overseeing churches."
+  },
+  "2Tim": {
+    "name": "2 Timothy",
+    "blurb": "One of the Pastoral Epistles, traditionally attributed to Paul and addressed to Timothy, though authorship is debated. Framed as a final charge written from imprisonment, it urges endurance and faithful teaching. It is the most personal in tone of the three Pastoral letters."
+  },
+  "Titus": {
+    "name": "Titus",
+    "blurb": "One of the Pastoral Epistles, traditionally attributed to Paul and addressed to his associate Titus on the island of Crete, though authorship is debated. It gives instruction on appointing leaders and ordering the life of the churches there. It shares its concerns and vocabulary with the letters to Timothy."
+  },
+  "Phlm": {
+    "name": "Philemon",
+    "blurb": "A brief personal letter attributed to Paul, addressed to Philemon concerning Onesimus, an enslaved man connected to his household. It is the shortest of the Pauline epistles and is written as a personal appeal rather than a general teaching. It is counted among the letters associated with Paul's imprisonment."
+  },
+  "Heb": {
+    "name": "Hebrews",
+    "blurb": "A letter or written sermon whose authorship is unknown and much debated, though it was long associated with Paul. It argues at length from the Old Testament, drawing extensively on the language of priesthood, sacrifice, and covenant. It quotes and interprets the Hebrew scriptures more densely than most New Testament books."
+  },
+  "Jas": {
+    "name": "James",
+    "blurb": "A general epistle traditionally attributed to James, offering practical instruction in the manner of wisdom literature. It addresses faith and conduct, speech, wealth and poverty, and endurance under trial. It reads as a series of exhortations rather than a sustained argument."
+  },
+  "1Pet": {
+    "name": "1 Peter",
+    "blurb": "A general epistle traditionally attributed to the apostle Peter, addressed to Christians in Asia Minor facing hardship. It encourages endurance under suffering and offers instruction on conduct within society and the household. It draws frequently on the language and imagery of the Old Testament."
+  },
+  "2Pet": {
+    "name": "2 Peter",
+    "blurb": "A general epistle traditionally attributed to the apostle Peter, though its authorship is among the most debated in the New Testament. It warns against false teachers and addresses questions about the delay of Christ's return. It shares a substantial body of material with the letter of Jude."
+  },
+  "1John": {
+    "name": "1 John",
+    "blurb": "A general epistle traditionally associated with John, written to reassure its readers and to counter teachings the author regards as false. It emphasizes themes of love, truth, and the tests of genuine faith. It reads more as a reflective address than a conventional letter, lacking the usual opening and closing forms."
+  },
+  "2John": {
+    "name": "2 John",
+    "blurb": "A very short letter traditionally associated with John, addressed to a community described as the elect lady and her children. It urges mutual love and warns against deceptive teachers. It is one of the briefest books in the New Testament, occupying a single chapter."
+  },
+  "3John": {
+    "name": "3 John",
+    "blurb": "A short personal letter traditionally associated with John, addressed to an individual named Gaius. It commends hospitality toward traveling teachers and names a disputed figure in the community. Together with 2 John it is among the shortest books in the Bible."
+  },
+  "Jude": {
+    "name": "Jude",
+    "blurb": "A brief general epistle traditionally attributed to Jude, occupying a single chapter. It warns against false teachers and urges its readers to contend for the faith. It shares much of its content with the second letter of Peter and refers to material outside the Old Testament canon."
+  },
+  "Rev": {
+    "name": "Revelation",
+    "blurb": "The final book of the New Testament, an apocalypse traditionally attributed to John, written to seven churches in Asia Minor. It presents a sequence of visions in highly symbolic imagery concerning judgment, conflict, and a renewed creation. It draws heavily on the language and imagery of the Old Testament, especially the prophetic books."
+  }
+}

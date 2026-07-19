@@ -1,326 +1,434 @@
 import { useRef, useEffect, useMemo, useState, useCallback } from 'react';
-import * as d3 from 'd3';
 import useAppStore from '../../../stores/useAppStore';
 import useCanvasSize from '../../../hooks/useCanvasSize';
 import { BOOKS } from '../../../constants/books';
-import useForceLayout from './useForceLayout';
-import BookNode, { NODE_WIDTH, NODE_HEIGHT } from './BookNode';
-import ConnectionLines from './ConnectionLines';
+import { TIERS } from '../../../constants/tiers';
+import { buildChapterMatrix, buildLedgerMatrices, NO_TIER } from './matrixAggregation';
+import { drawMatrix, drawLedger, computeLayout, cellAtPoint } from './matrixRenderer';
+import MatrixPanel from './MatrixPanel';
+import './GridView.css';
 
-const MIN_COUNT_OPTIONS = [1, 5, 10, 25, 50];
+const BOOK_ABBREVS = BOOKS.map((b) => b.abbrev);
+const N_BOOKS = 66;
+const OT_LAST_INDEX = 38; // Malachi (book 39) — testament divider after this
+
+// Structural landmarks (0-based book indices). Names only, never claims.
+const LANDMARKS = [
+  { text: 'Synoptic web', row: 41, col: 40, rotate: false },
+  { text: 'Kings ↔ Chronicles', row: 12, col: 11, rotate: false },
+  { text: 'Psalms', row: 50, col: 18, rotate: true },
+  { text: 'Isaiah', row: 56, col: 22, rotate: true },
+];
+
+function sampleColors() {
+  const cs = getComputedStyle(document.documentElement);
+  const get = (name, fallback) => cs.getPropertyValue(name).trim() || fallback;
+  return {
+    vizBg: get('--viz-bg', '#0D1117'),
+    ink: get('--ink', '#E8E6E1'),
+    ink2: get('--ink-2', '#98968F'),
+    ink3: get('--ink-3', '#5A5954'),
+    line: get('--line', '#2A2A27'),
+    accent: get('--accent', '#58A6FF'),
+    tier1: get('--tier-1', '#FFD700'),
+    tier2: get('--tier-2', '#FF6B35'),
+    tier3: get('--tier-3', '#4ECDC4'),
+    tier4: get('--tier-4', '#9B8EC4'),
+  };
+}
 
 export default function GridView() {
-  const outerRef = useRef(null);
-  const svgRef = useRef(null);
-  const gRef = useRef(null);
-  const { width: containerWidth, height: containerHeight } = useCanvasSize(outerRef);
+  const wrapRef = useRef(null);
+  const canvasRef = useRef(null);
+  const layoutRef = useRef(null); // { layout, nRows, nCols } for hit-testing
+  const { width, height } = useCanvasSize(wrapRef);
 
   const references = useAppStore((s) => s.references);
   const metadata = useAppStore((s) => s.metadata);
   const tierVisibility = useAppStore((s) => s.tierVisibility);
-  const colorMode = useAppStore((s) => s.colorMode);
   const theme = useAppStore((s) => s.theme);
-  const setSelectedChapter = useAppStore((s) => s.setSelectedChapter);
 
-  const [minCount, setMinCount] = useState(5);
-  const [hoveredNode, setHoveredNode] = useState(null);
-  const [selectedNode, setSelectedNode] = useState(null);
-  const [tooltip, setTooltip] = useState(null);
+  // Drill state: 'book' shows 66x66; 'chapter' zooms to one book pair.
+  const [pair, setPair] = useState(null); // { i, j } book indices (0-based)
+  const [hoverCell, setHoverCell] = useState(null); // { i, j }
+  const [cursorCell, setCursorCell] = useState(null); // keyboard focus cell
+  const [tooltip, setTooltip] = useState(null); // { x, y, i, j }
+  const [selectedCell, setSelectedCell] = useState(null); // { ci, cj } -> panel
 
-  // Build 66x66 matrix (same as before)
-  const matrix = useMemo(() => {
-    if (!references || !metadata) return null;
+  // Ledger controls (book-level only).
+  const [showDirection, setShowDirection] = useState(true);
+  const [normalize, setNormalize] = useState(false);
+  const [showLabels, setShowLabels] = useState(true);
 
-    const mat = Array.from({ length: 66 }, () => Array(66).fill(0));
+  // Direction-aware book matrix (public/data/book_matrix.json). Loaded once.
+  const [bookMatrixData, setBookMatrixData] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    fetch('/data/book_matrix.json')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (alive) setBookMatrixData(d); })
+      .catch(() => { /* fall back to symmetric density from chapter aggregate */ });
+    return () => { alive = false; };
+  }, []);
 
-    const chapterToBook = new Array(metadata.totalChapters);
-    for (const book of metadata.books) {
-      for (const ch of book.chapterDetails) {
-        chapterToBook[ch.globalIndex] = book.num - 1;
-      }
-    }
+  const isChapter = pair !== null;
 
-    for (const ref of references) {
-      if (!tierVisibility[ref.tier]) continue;
-      const fromBook = chapterToBook[ref.from];
-      const toBook = chapterToBook[ref.to];
-      if (fromBook !== undefined && toBook !== undefined) {
-        mat[fromBook][toBook]++;
-        mat[toBook][fromBook]++;
-      }
-    }
-
-    return mat;
-  }, [references, metadata, tierVisibility]);
-
-  const { nodes, edges, tick, dragHandlers } = useForceLayout(
-    matrix, containerWidth, containerHeight, minCount
+  const chapters = useMemo(
+    () => (metadata ? metadata.books.map((b) => b.chapters) : null),
+    [metadata],
   );
 
-  // Set up zoom/pan on SVG
+  // --- Book-level Ledger aggregation (honors tier filter) ---
+  const ledger = useMemo(
+    () => buildLedgerMatrices(bookMatrixData, tierVisibility, chapters),
+    [bookMatrixData, tierVisibility, chapters],
+  );
+
+  const chapterMatrix = useMemo(() => {
+    if (!isChapter || !references || !metadata) return null;
+    return buildChapterMatrix(references, tierVisibility, pair.i, pair.j, metadata);
+  }, [isChapter, references, tierVisibility, pair, metadata]);
+
+  // At book level the directed layer is only real when book_matrix loaded.
+  const directedMode = showDirection && !!bookMatrixData;
+
+  // --- Active view derived values ---
+  const nRows = isChapter && chapterMatrix ? chapterMatrix.nRows : N_BOOKS;
+  const nCols = isChapter && chapterMatrix ? chapterMatrix.nCols : N_BOOKS;
+  const bookCounts = ledger.symCount; // hit-test / drill gate at book level
+  const counts = isChapter && chapterMatrix ? chapterMatrix.counts : bookCounts;
+  const chTopTier = isChapter && chapterMatrix ? chapterMatrix.topTier : null;
+  const maxOffDiag = isChapter && chapterMatrix ? chapterMatrix.maxOffDiag : 0;
+  const sameBook = isChapter && chapterMatrix ? chapterMatrix.sameBook : false;
+
+  const rowLabels = useMemo(() => {
+    if (!isChapter) return BOOK_ABBREVS;
+    return Array.from({ length: nRows }, (_, k) => String(k + 1));
+  }, [isChapter, nRows]);
+
+  const colLabels = useMemo(() => {
+    if (!isChapter) return BOOK_ABBREVS;
+    return Array.from({ length: nCols }, (_, k) => String(k + 1));
+  }, [isChapter, nCols]);
+
+  const bookI = isChapter && metadata ? metadata.books[pair.i] : null;
+  const bookJ = isChapter && metadata ? metadata.books[pair.j] : null;
+
+  // --- Render ---
   useEffect(() => {
-    const svg = svgRef.current;
-    const g = gRef.current;
-    if (!svg || !g) return;
+    const canvas = canvasRef.current;
+    if (!canvas || width === 0 || height === 0) return;
 
-    const zoom = d3.zoom()
-      .scaleExtent([0.3, 3])
-      .on('zoom', (event) => {
-        g.setAttribute('transform', event.transform);
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const colors = sampleColors();
+
+    if (isChapter) {
+      if (!chapterMatrix) return;
+      const layout = computeLayout(width, height, nRows, nCols);
+      layoutRef.current = { layout, nRows, nCols };
+      drawMatrix(ctx, {
+        counts, maxOffDiag,
+        nRows, nCols, layout, colors,
+        rowLabels, colLabels,
+        diagonalCell: (i, j) => sameBook && i === j,
+        testamentDivRow: null,
+        testamentDivCol: null,
+        hoverCell, cursorCell,
+        width, height,
       });
+      return;
+    }
 
-    d3.select(svg).call(zoom);
+    // Book level: the Ledger.
+    const layout = computeLayout(width, height, N_BOOKS, N_BOOKS,
+      directedMode ? { gutterLeft: 66, gutterTop: 62 } : {});
+    layoutRef.current = { layout, nRows: N_BOOKS, nCols: N_BOOKS };
+    drawLedger(ctx, {
+      mode: directedMode ? 'directed' : 'symmetric',
+      N: N_BOOKS, layout, colors, bookLabels: BOOK_ABBREVS,
+      warmCount: ledger.warmCount, warmTier: ledger.warmTier,
+      groundCount: ledger.groundCount, symCount: ledger.symCount,
+      maxWarmRaw: ledger.maxWarmRaw, maxWarmDens: ledger.maxWarmDens,
+      maxGroundRaw: ledger.maxGroundRaw, maxGroundDens: ledger.maxGroundDens,
+      maxSymRaw: ledger.maxSymRaw, maxSymDens: ledger.maxSymDens,
+      normalize, chapters,
+      testamentDiv: OT_LAST_INDEX,
+      hoverCell, cursorCell,
+      showLandmarks: showLabels, landmarks: LANDMARKS,
+      width, height,
+    });
+  }, [
+    isChapter, chapterMatrix, ledger, directedMode, normalize, chapters,
+    counts, maxOffDiag, nRows, nCols, sameBook, showLabels,
+    rowLabels, colLabels, hoverCell, cursorCell, theme, width, height,
+  ]);
 
-    return () => {
-      d3.select(svg).on('.zoom', null);
-    };
-  }, [containerWidth, containerHeight]);
+  // Micro fade on drill in/out (CSS transition handles the tween; reduced
+  // motion disables the transition, so this simply snaps).
+  const viewKey = isChapter ? `${pair.i}-${pair.j}` : 'book';
+  const prevViewRef = useRef(viewKey);
+  useEffect(() => {
+    if (prevViewRef.current === viewKey) return;
+    prevViewRef.current = viewKey;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.style.opacity = '0.4';
+    const id = requestAnimationFrame(() => { canvas.style.opacity = '1'; });
+    return () => cancelAnimationFrame(id);
+  }, [viewKey]);
 
-  // Get connected edges for hovered node (for tooltip)
-  const hoveredConnections = useMemo(() => {
-    if (hoveredNode === null) return [];
-    return edges.filter(
-      (e) => e.source?.id === hoveredNode || e.target?.id === hoveredNode
-    ).sort((a, b) => b.count - a.count);
-  }, [edges, hoveredNode, tick]);
-
-  const handleNodeHover = useCallback((nodeId) => {
-    setHoveredNode(nodeId);
-    if (nodeId !== null) {
-      const node = nodes.find((n) => n.id === nodeId);
-      if (node) {
-        const connectedEdges = edges
-          .filter((e) => e.source?.id === nodeId || e.target?.id === nodeId)
-          .sort((a, b) => b.count - a.count);
-        const topConnections = connectedEdges.slice(0, 5);
-        setTooltip({
-          node,
-          connections: topConnections,
-          total: connectedEdges.length,
-          totalRefs: connectedEdges.reduce((sum, e) => sum + e.count, 0),
-        });
-      }
-    } else {
+  // --- Pointer interaction ---
+  const handleMouseMove = useCallback((e) => {
+    const store = layoutRef.current;
+    if (!store) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const cell = cellAtPoint(store.layout, store.nRows, store.nCols, mx, my);
+    if (!cell) {
+      setHoverCell(null);
       setTooltip(null);
+      return;
     }
-  }, [nodes, edges, tick]);
+    setHoverCell(cell);
+    setTooltip({ x: mx, y: my, i: cell.i, j: cell.j });
+  }, []);
 
-  const handleNodeSelect = useCallback((nodeId) => {
-    setSelectedNode((prev) => (prev === nodeId ? null : nodeId));
-    // Open ReferencePanel for first chapter of book
-    if (metadata) {
-      const book = metadata.books.find((b) => b.num === nodeId + 1);
-      if (book?.chapterDetails?.length) {
-        setSelectedChapter(book.chapterDetails[0].globalIndex);
-      }
+  const handleMouseLeave = useCallback(() => {
+    setHoverCell(null);
+    setTooltip(null);
+  }, []);
+
+  const drillOrSelect = useCallback((cell) => {
+    const idx = cell.i * nCols + cell.j;
+    if (counts[idx] === 0) return;
+    if (!isChapter) {
+      setPair({ i: cell.i, j: cell.j });
+      setHoverCell(null);
+      setTooltip(null);
+      setCursorCell(null);
+      setSelectedCell(null);
+    } else {
+      setSelectedCell({ ci: cell.i, cj: cell.j });
     }
-  }, [metadata, setSelectedChapter]);
+  }, [counts, nCols, isChapter]);
+
+  const handleClick = useCallback((e) => {
+    const store = layoutRef.current;
+    if (!store) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const cell = cellAtPoint(store.layout, store.nRows, store.nCols,
+      e.clientX - rect.left, e.clientY - rect.top);
+    if (cell) drillOrSelect(cell);
+  }, [drillOrSelect]);
+
+  // --- Keyboard interaction (arrow keys move a cursor cell; Enter drills) ---
+  const handleKeyDown = useCallback((e) => {
+    const move = (di, dj) => {
+      e.preventDefault();
+      setCursorCell((prev) => {
+        const base = prev || hoverCell || { i: 0, j: 0 };
+        return {
+          i: Math.min(Math.max(base.i + di, 0), nRows - 1),
+          j: Math.min(Math.max(base.j + dj, 0), nCols - 1),
+        };
+      });
+    };
+    switch (e.key) {
+      case 'ArrowUp': move(-1, 0); break;
+      case 'ArrowDown': move(1, 0); break;
+      case 'ArrowLeft': move(0, -1); break;
+      case 'ArrowRight': move(0, 1); break;
+      case 'Enter':
+      case ' ': {
+        const target = cursorCell || hoverCell;
+        if (target) { e.preventDefault(); drillOrSelect(target); }
+        break;
+      }
+      case 'Escape':
+        if (selectedCell) setSelectedCell(null);
+        else if (isChapter) setPair(null);
+        break;
+      default: break;
+    }
+  }, [nRows, nCols, hoverCell, cursorCell, drillOrSelect, selectedCell, isChapter]);
+
+  const goBack = useCallback(() => {
+    setPair(null);
+    setSelectedCell(null);
+    setHoverCell(null);
+    setCursorCell(null);
+    setTooltip(null);
+  }, []);
 
   if (!references || !metadata) {
-    return <div style={styles.loading}>Loading connections view...</div>;
+    return <div className="gv-loading">Loading matrix view...</div>;
   }
 
-  return (
-    <div ref={outerRef} style={styles.container}>
-      {/* Min count filter */}
-      <div style={styles.controls}>
-        <span style={styles.controlLabel}>Min refs:</span>
-        {MIN_COUNT_OPTIONS.map((n) => (
-          <button
-            key={n}
-            onClick={() => setMinCount(n)}
-            style={{
-              ...styles.filterBtn,
-              backgroundColor: minCount === n
-                ? (theme === 'dark' ? '#58A6FF' : '#0969DA')
-                : (theme === 'dark' ? '#21262D' : '#F6F8FA'),
-              color: minCount === n
-                ? '#fff'
-                : (theme === 'dark' ? '#8B949E' : '#57606A'),
-            }}
-          >
-            {n}
-          </button>
-        ))}
-        <span style={styles.edgeCount}>
-          {edges.length} connections
-        </span>
-      </div>
+  // --- Tooltip content ---
+  let tooltipNode = null;
+  if (tooltip) {
+    const idx = tooltip.i * nCols + tooltip.j;
+    const clampX = Math.min(tooltip.x + 14, width - 236);
+    const clampY = Math.min(tooltip.y + 14, height - 90);
+    const style = { left: Math.max(clampX, 4), top: Math.max(clampY, 4) };
 
-      <svg
-        ref={svgRef}
-        width={containerWidth}
-        height={containerHeight - 36}
-        style={{ display: 'block' }}
-      >
-        <g ref={gRef}>
-          <ConnectionLines
-            edges={edges}
-            theme={theme}
-            colorMode={colorMode}
-            hoveredNode={hoveredNode}
-            selectedNode={selectedNode}
-          />
-          {nodes.map((node) => (
-            <BookNode
-              key={node.id}
-              node={node}
-              metadata={metadata}
-              theme={theme}
-              isHovered={hoveredNode === node.id}
-              isSelected={selectedNode === node.id}
-              isDimmed={
-                (hoveredNode !== null && hoveredNode !== node.id &&
-                  !edges.some(
-                    (e) =>
-                      (e.source?.id === hoveredNode && e.target?.id === node.id) ||
-                      (e.target?.id === hoveredNode && e.source?.id === node.id)
-                  ))
-              }
-              onHover={handleNodeHover}
-              onSelect={handleNodeSelect}
-              dragHandlers={dragHandlers}
-            />
-          ))}
-        </g>
-      </svg>
-
-      {/* Tooltip */}
-      {tooltip && (
-        <div style={{
-          ...styles.tooltip,
-          backgroundColor: theme === 'dark' ? '#161B22' : '#fff',
-          borderColor: theme === 'dark' ? '#30363D' : '#D0D7DE',
-          color: theme === 'dark' ? '#C9D1D9' : '#24292F',
-        }}>
-          <div style={styles.tooltipTitle}>{tooltip.node.name}</div>
-          <div style={styles.tooltipSubtitle}>
-            {tooltip.total} connections &middot; {tooltip.totalRefs.toLocaleString()} total refs
+    if (isChapter) {
+      const count = counts[idx];
+      const tier = chTopTier ? chTopTier[idx] : NO_TIER;
+      const fromLabel = `${bookI.abbrev} ${tooltip.i + 1}`;
+      const toLabel = `${bookJ.abbrev} ${tooltip.j + 1}`;
+      tooltipNode = (
+        <div className="gv-tooltip" style={style}>
+          <div className="gv-tt-title">{fromLabel} &rarr; {toLabel}</div>
+          <div className="gv-tt-sub">
+            {count.toLocaleString()} reference{count === 1 ? '' : 's'}
           </div>
-          {tooltip.connections.length > 0 && (
-            <div style={styles.tooltipList}>
-              {tooltip.connections.map((edge, i) => {
-                const other = edge.source?.id === tooltip.node.id ? edge.target : edge.source;
-                return (
-                  <div key={i} style={styles.tooltipItem}>
-                    <span>{other?.name}</span>
-                    <span style={styles.tooltipCount}>{edge.count}</span>
-                  </div>
-                );
-              })}
-              {tooltip.total > 5 && (
-                <div style={styles.tooltipMore}>+{tooltip.total - 5} more</div>
-              )}
+          {count > 0 && tier !== NO_TIER && TIERS[tier] && (
+            <div className="gv-tt-tier gv-tt-sub">
+              <span className="gv-tt-dot" style={{ backgroundColor: `var(--tier-${tier})` }} />
+              strongest: {TIERS[tier].shortLabel}
             </div>
           )}
         </div>
-      )}
+      );
+    } else {
+      const warm = ledger.warmCount[idx];
+      const warmT = ledger.warmTier[idx];
+      const ground = ledger.groundCount[idx];
+      const total = counts[idx];
+      const rowName = BOOKS[tooltip.i].name;
+      const colName = BOOKS[tooltip.j].name;
+      tooltipNode = (
+        <div className="gv-tooltip" style={style}>
+          <div className="gv-tt-title">
+            {rowName} {directedMode ? '→' : '↔'} {colName}
+          </div>
+          {directedMode ? (
+            <>
+              <div className="gv-tt-sub">
+                {warm > 0
+                  ? `${warm.toLocaleString()} quote${warm === 1 ? '' : 's'} & allusion${warm === 1 ? '' : 's'}`
+                  : 'no quotation in this direction'}
+              </div>
+              {warm > 0 && warmT !== NO_TIER && TIERS[warmT] && (
+                <div className="gv-tt-tier gv-tt-sub">
+                  <span className="gv-tt-dot" style={{ backgroundColor: `var(--tier-${warmT})` }} />
+                  {rowName} quotes {colName}
+                </div>
+              )}
+              {ground > 0 && (
+                <div className="gv-tt-sub">{ground.toLocaleString()} kinship link{ground === 1 ? '' : 's'}</div>
+              )}
+            </>
+          ) : (
+            <div className="gv-tt-sub">
+              {total.toLocaleString()} connection{total === 1 ? '' : 's'}
+            </div>
+          )}
+        </div>
+      );
+    }
+  }
 
-      <div style={styles.hint}>
-        Drag books to rearrange &middot; Scroll to zoom &middot; Click book for details
+  return (
+    <div className="gv-root">
+      <div className="gv-topbar">
+        {isChapter ? (
+          <div className="gv-breadcrumb">
+            <button className="gv-back" onClick={goBack}>&lsaquo; back</button>
+            <span className="gv-crumb-title">{bookI.name} &times; {bookJ.name}</span>
+            <span>chapter &times; chapter &middot; density</span>
+          </div>
+        ) : (
+          <div className="gv-breadcrumb">
+            <span className="gv-crumb-title">The Ledger</span>
+            <span>66 &times; 66 books</span>
+          </div>
+        )}
+
+        {!isChapter && (
+          <div className="gv-controls">
+            <button
+              className={`gv-pill${directedMode ? ' is-on' : ''}`}
+              onClick={() => setShowDirection((v) => !v)}
+              aria-pressed={directedMode}
+              disabled={!bookMatrixData}
+              title="Show quotation direction (rows quote columns)"
+            >
+              Direction
+            </button>
+            <button
+              className={`gv-pill${normalize ? ' is-on' : ''}`}
+              onClick={() => setNormalize((v) => !v)}
+              aria-pressed={normalize}
+              title="Divide by chapter-pair count so large books stop dominating"
+            >
+              Normalize
+            </button>
+            {directedMode && (
+              <button
+                className={`gv-pill${showLabels ? ' is-on' : ''}`}
+                onClick={() => setShowLabels((v) => !v)}
+                aria-pressed={showLabels}
+                title="Structural landmark labels"
+              >
+                Labels
+              </button>
+            )}
+          </div>
+        )}
+
+        <div className="gv-legend">
+          {isChapter
+            ? 'darker = more references · click a cell for details'
+            : directedMode
+              ? 'darker = more · click any cell to zoom'
+              : 'darker = more connections · click any cell to zoom'}
+        </div>
       </div>
+
+      <div className="gv-canvas-wrap" ref={wrapRef}>
+        <canvas
+          ref={canvasRef}
+          className="gv-canvas"
+          tabIndex={0}
+          role="img"
+          aria-label={isChapter
+            ? `Chapter reference matrix, ${bookI.name} rows by ${bookJ.name} columns`
+            : 'Book reference ledger, 66 by 66 books, rows quote columns'}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+        />
+        {tooltipNode}
+        {selectedCell && bookI && bookJ && (
+          <MatrixPanel
+            bookI={bookI}
+            bookJ={bookJ}
+            chapterI={selectedCell.ci + 1}
+            chapterJ={selectedCell.cj + 1}
+            globalFrom={chapterMatrix.offI + selectedCell.ci}
+            globalTo={chapterMatrix.offJ + selectedCell.cj}
+            references={references}
+            tierVisibility={tierVisibility}
+            onClose={() => setSelectedCell(null)}
+          />
+        )}
+      </div>
+
+      {!isChapter && (
+        <div className="gv-layer-legend">
+          {directedMode
+            ? 'Direction shown for quotes & allusions (tiers 1–2); kinship tiers (3–5) shown without direction.'
+            : 'Symmetric density across all visible tiers — no direction claimed. Turn on Direction to orient by who quotes whom.'}
+        </div>
+      )}
     </div>
   );
 }
-
-const styles = {
-  container: {
-    width: '100%',
-    height: '100%',
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  loading: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    color: 'var(--text-muted)',
-  },
-  controls: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 4,
-    padding: '6px 12px',
-    borderBottom: '1px solid var(--border)',
-    height: 36,
-    boxSizing: 'border-box',
-  },
-  controlLabel: {
-    fontSize: 11,
-    fontWeight: 600,
-    color: 'var(--text-muted)',
-    marginRight: 2,
-  },
-  filterBtn: {
-    padding: '2px 8px',
-    fontSize: 11,
-    fontWeight: 600,
-    border: '1px solid var(--border)',
-    borderRadius: 4,
-    cursor: 'pointer',
-    transition: 'all 0.15s',
-  },
-  edgeCount: {
-    fontSize: 11,
-    color: 'var(--text-muted)',
-    marginLeft: 'auto',
-  },
-  tooltip: {
-    position: 'absolute',
-    top: 48,
-    right: 12,
-    padding: '10px 14px',
-    border: '1px solid',
-    borderRadius: 8,
-    fontSize: 12,
-    boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-    zIndex: 10,
-    minWidth: 180,
-    maxWidth: 240,
-  },
-  tooltipTitle: {
-    fontWeight: 700,
-    fontSize: 13,
-    marginBottom: 2,
-  },
-  tooltipSubtitle: {
-    fontSize: 11,
-    color: 'var(--text-muted)',
-    marginBottom: 8,
-  },
-  tooltipList: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 3,
-  },
-  tooltipItem: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    fontSize: 11,
-  },
-  tooltipCount: {
-    color: 'var(--text-muted)',
-    fontWeight: 600,
-  },
-  tooltipMore: {
-    fontSize: 10,
-    color: 'var(--text-muted)',
-    fontStyle: 'italic',
-    marginTop: 2,
-  },
-  hint: {
-    position: 'absolute',
-    bottom: 12,
-    left: '50%',
-    transform: 'translateX(-50%)',
-    fontSize: 12,
-    color: 'var(--text-muted)',
-    backgroundColor: 'var(--bg-secondary)',
-    padding: '4px 12px',
-    borderRadius: 4,
-    border: '1px solid var(--border)',
-    opacity: 0.8,
-    whiteSpace: 'nowrap',
-  },
-};

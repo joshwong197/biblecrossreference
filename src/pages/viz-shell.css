@@ -1,0 +1,213 @@
+/* === Visualization shell (/arc, /grid, /globe) — register 2 of DESIGN.md ===
+   Desktop (>=900px): fixed sidebar + canvas, as before but in real CSS.
+   Mobile (<900px): sidebar collapses into a compact control strip (tier
+   pills + "..." button) that sits above the bottom tab bar; the full control
+   stack opens as a dismissible slide-up sheet. All colors via tokens. */
+
+.viz-shell {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.viz-shell__sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  background: var(--panel-bg);
+  overflow-y: auto;
+}
+
+.viz-shell__canvas {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  /* Register 2: the canvas ground is the one near-black surface (Harrison
+     homage in dark; gallery-white in light). Page chrome stays on --bg. */
+  background: var(--viz-bg);
+}
+
+.viz-shell__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+}
+
+/* Strip and sheet are mobile-only; hidden on desktop. */
+.viz-shell__strip {
+  display: none;
+}
+
+.viz-shell__overlay {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .viz-shell {
+    flex-direction: column;
+    /* Clear the fixed bottom tab bar (56px items + 1px top border + safe
+       area) so the control strip sits directly above it without overlap. */
+    padding-bottom: calc(57px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .viz-shell__sidebar {
+    display: none;
+  }
+
+  .viz-shell__strip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    padding: 6px 10px;
+    background: var(--bg-raised, var(--bg-secondary));
+    border-top: 1px solid var(--line, var(--border));
+    overflow-x: auto;
+  }
+
+  .viz-shell__pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 44px;
+    min-width: 48px;
+    padding: 0 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line, var(--border));
+    background: var(--bg, var(--bg-primary));
+    color: var(--ink, var(--text-primary));
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+    cursor: pointer;
+  }
+
+  .viz-shell__pill[data-off='true'] {
+    opacity: 0.45;
+  }
+
+  .viz-shell__pill-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  .viz-shell__more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 48px;
+    margin-left: auto;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line, var(--border));
+    background: var(--bg, var(--bg-primary));
+    color: var(--ink-2, var(--text-secondary));
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .viz-shell__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 150; /* above the bottom tab bar (z-index: 50) and header (100) */
+    background: rgba(0, 0, 0, 0.35);
+    animation: viz-fade-in 0.15s ease;
+  }
+}
+
+.viz-shell__pill:focus-visible,
+.viz-shell__more:focus-visible,
+.viz-shell__sheet-close:focus-visible {
+  outline: 2px solid var(--accent-reader, var(--accent));
+  outline-offset: 2px;
+}
+
+.viz-shell__sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 151;
+  display: flex;
+  flex-direction: column;
+  max-height: 75vh;
+  background: var(--panel-bg);
+  color: var(--text-primary);
+  border-top: 1px solid var(--line, var(--border));
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -8px 24px var(--shadow, rgba(0, 0, 0, 0.2));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  animation: viz-sheet-up 0.2s ease;
+}
+
+.viz-shell__sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line, var(--border));
+  flex-shrink: 0;
+}
+
+.viz-shell__sheet-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.viz-shell__sheet-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  padding: 6px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 8px;
+}
+
+.viz-shell__sheet-close:hover {
+  color: var(--text-primary);
+  background: var(--button-bg);
+}
+
+.viz-shell__sheet-body {
+  overflow-y: auto;
+  padding-bottom: 16px;
+}
+
+@keyframes viz-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes viz-sheet-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viz-shell__overlay,
+  .viz-shell__sheet {
+    animation: none;
+  }
+}
