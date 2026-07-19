@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BOOKS, BOOK_GROUPS } from '../../constants/books';
 import { chapterCount, bookSlug } from '../../utils/bookSlug';
 
@@ -64,6 +64,13 @@ export default function BookChapterPicker({ currentBook, onClose }) {
                   </button>
                 ))}
               </div>
+              <Link
+                to={`/book/${bookSlug(pickedBook)}`}
+                className="reader-picker__about"
+                onClick={onClose}
+              >
+                About {pickedBook.name} &rarr;
+              </Link>
             </>
           )}
         </div>

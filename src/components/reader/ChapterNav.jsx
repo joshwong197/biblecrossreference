@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { prevChapterOf, nextChapterOf, bookSlug } from '../../utils/bookSlug';
 
 export default function ChapterNav({ book, chapter, onOpenPicker }) {
@@ -18,9 +18,9 @@ export default function ChapterNav({ book, chapter, onOpenPicker }) {
         &larr;
       </button>
       <span className="reader-chapter-nav__title">
-        <Link to={`/book/${bookSlug(book)}`} className="reader-chapter-nav__booklink">
+        <button type="button" className="reader-chapter-nav__booklink" onClick={onOpenPicker}>
           {book.name}
-        </Link>
+        </button>
         <button type="button" className="reader-chapter-nav__chapterbtn" onClick={onOpenPicker}>
           {chapter}
         </button>

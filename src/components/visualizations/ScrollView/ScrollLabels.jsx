@@ -77,6 +77,7 @@ export default function ScrollLabels({ metadata, getPosition, radius, tokens }) 
           position={[b.pos.x, b.pos.y, b.pos.z]}
           distanceFactor={12}
           center
+          zIndexRange={[40, 0]} /* below app header (100) and controls sheet (150) */
           style={{ pointerEvents: 'none' }}
         >
           <div
