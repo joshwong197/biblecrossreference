@@ -1,4 +1,5 @@
 import { useRef, useEffect, useMemo, useState, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import useAppStore from '../../../stores/useAppStore';
 import useCanvasSize from '../../../hooks/useCanvasSize';
 import { BOOKS } from '../../../constants/books';
@@ -48,8 +49,16 @@ export default function GridView() {
   const tierVisibility = useAppStore((s) => s.tierVisibility);
   const theme = useAppStore((s) => s.theme);
 
-  // Drill state: 'book' shows 66x66; 'chapter' zooms to one book pair.
-  const [pair, setPair] = useState(null); // { i, j } book indices (0-based)
+  // Drill state lives in the URL (?zoom=i-j) so the browser/phone back
+  // gesture exits the chapter zoom instead of leaving the page entirely.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pair = useMemo(() => {
+    const m = /^(\d{1,2})-(\d{1,2})$/.exec(searchParams.get('zoom') || '');
+    if (!m) return null;
+    const i = Number(m[1]);
+    const j = Number(m[2]);
+    return i < N_BOOKS && j < N_BOOKS ? { i, j } : null;
+  }, [searchParams]);
   const [hoverCell, setHoverCell] = useState(null); // { i, j }
   const [cursorCell, setCursorCell] = useState(null); // keyboard focus cell
   const [tooltip, setTooltip] = useState(null); // { x, y, i, j }
@@ -207,15 +216,18 @@ export default function GridView() {
     const idx = cell.i * nCols + cell.j;
     if (counts[idx] === 0) return;
     if (!isChapter) {
-      setPair({ i: cell.i, j: cell.j });
+      setSearchParams({ zoom: `${cell.i}-${cell.j}` }); // pushes history: back gesture un-zooms
       setHoverCell(null);
       setTooltip(null);
       setCursorCell(null);
       setSelectedCell(null);
     } else {
-      setSelectedCell({ ci: cell.i, cj: cell.j });
+      // Tag with the pair key so a stale panel never survives history
+      // navigation into a different zoom (selection is never reset by the
+      // back gesture — only ignored).
+      setSelectedCell({ ci: cell.i, cj: cell.j, key: `${pair.i}-${pair.j}` });
     }
-  }, [counts, nCols, isChapter]);
+  }, [counts, nCols, isChapter, pair, setSearchParams]);
 
   const handleClick = useCallback((e) => {
     const store = layoutRef.current;
@@ -251,19 +263,19 @@ export default function GridView() {
       }
       case 'Escape':
         if (selectedCell) setSelectedCell(null);
-        else if (isChapter) setPair(null);
+        else if (isChapter) setSearchParams({});
         break;
       default: break;
     }
-  }, [nRows, nCols, hoverCell, cursorCell, drillOrSelect, selectedCell, isChapter]);
+  }, [nRows, nCols, hoverCell, cursorCell, drillOrSelect, selectedCell, isChapter, setSearchParams]);
 
   const goBack = useCallback(() => {
-    setPair(null);
+    setSearchParams({});
     setSelectedCell(null);
     setHoverCell(null);
     setCursorCell(null);
     setTooltip(null);
-  }, []);
+  }, [setSearchParams]);
 
   if (!references || !metadata) {
     return <div className="gv-loading">Loading matrix view...</div>;
@@ -407,7 +419,7 @@ export default function GridView() {
           onKeyDown={handleKeyDown}
         />
         {tooltipNode}
-        {selectedCell && bookI && bookJ && (
+        {selectedCell && bookI && bookJ && selectedCell.key === `${pair.i}-${pair.j}` && (
           <MatrixPanel
             bookI={bookI}
             bookJ={bookJ}

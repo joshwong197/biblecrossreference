@@ -124,9 +124,10 @@ export default function BookPage() {
   // mean the page renders without that section — never a crash.
   const intro = (bookIntros && bookIntros[book.abbrev]) || {};
   const proseSections = [
+    ['Place in the canon', intro.distinctives],
+    ['Themes', intro.themes],
     ['Authorship & date', intro.attribution],
     ['Setting', intro.setting],
-    ['Themes', intro.themes],
   ].filter(([, text]) => text);
   const outline = Array.isArray(intro.outline) && intro.outline.length > 0 ? intro.outline : null;
 
@@ -173,7 +174,9 @@ export default function BookPage() {
           </div>
         )}
 
-        {intro.blurb && <p className="about-p book-blurb">{intro.blurb}</p>}
+        {intro.blurb && String(intro.blurb).split(/\n{2,}/).map((p, i) => (
+          <p key={i} className="about-p book-blurb">{p}</p>
+        ))}
 
         <Link to={`/read/${canonicalSlug}/1`} className="book-cta">
           Read {book.name} 1 &rarr;
@@ -182,7 +185,9 @@ export default function BookPage() {
         {proseSections.map(([title, text]) => (
           <section key={title}>
             <h2 className="about-h2">{title}</h2>
-            <p className="about-p">{text}</p>
+            {String(text).split(/\n{2,}/).map((p, i) => (
+              <p key={i} className="about-p">{p}</p>
+            ))}
           </section>
         ))}
 
